@@ -21,19 +21,9 @@ class figureGenerate:
         self.dbInf = DBInterface(self.config, self.inter)
         self.figureHelper = FigureHelper([8, 4.8])
 
-    def drawTwoDistrict(self):
-        list_a = ["second_hand_smoking=1","second_hand_smoking=2"]
-        list_d = ["second_hand_smoking is not null","second_hand_smoking is not null"]
-        labels = ['偶尔', '经常']
-        dataRaw = self.dbInf.getDiffDistrictData(list_a,list_d,"exam",self.config.year,True)
-        dataRaw = self.dbInf.sortArray(dataRaw)
-        data = [[x[1] for x in dataRaw], [x[2] for x in dataRaw]]
-        xlables = [x[0][0:2] for x in dataRaw]
-        id = self.figureHelper.stackedBarPlotWithTable(data, labels, xlables,"百分比%")
-        f = plt.figure(id)
-        f.savefig('图96.png')
 
-    def drawOneDistrict(self,fid,attrExpr,divideExpr,dbName,year,isPercent,complete,figureText):
+
+    def drawDistrict(self,fid,attrExpr,divideExpr,dbName,year,isPercent,complete,figureText):
         dataRaw = self.dbInf.getDistrictData(attrExpr,divideExpr,"",dbName,"district",year,isPercent,complete)
         dataRaw = self.dbInf.sortList(dataRaw)
         data = [[x[1] for x in dataRaw]]
@@ -68,21 +58,72 @@ class figureGenerate:
         else:
             pass
 
-    def drawDiseaseYear(self,fid, attrExprList, divideExprList,diseaseNameList, dbName,year, isPercent, complete):
+    def drawDiseaseYear(self,fid, attrExprList, divideExprList,diseaseNameList, dbName,year,n, isPercent, complete):
 
-        dataRawList =[self.dbInf.getDiffDistrictData(attrExprList,divideExprList,diseaseNameList,
-                                                     dbName,"all",year-0,isPercent,complete),
-                      self.dbInf.getDiffDistrictData(attrExprList, divideExprList, diseaseNameList,
+        dataRawList = []
+
+        for i in range(0,n):
+            # dataNow = self.dbInf.getDiffDistrictData(attrExprList,divideExprList,diseaseNameList,
+            #                                          dbName,"all",year-(n-1-i),isPercent,complete)
+            dataNow = self.dbInf.getDiffDistrictData(attrExprList, divideExprList, diseaseNameList,
                                                      dbName, "all", year, isPercent, complete)
-                    ]
+            dataRawList.append(dataNow)
+
         dataRaw = self.dbInf.timeArray(dataRawList)
         dataRaw = self.dbInf.sortArray(dataRaw)
-        data = [[x[1] for x in dataRaw], [x[2] for x in dataRaw]]
+
+        data = []
+        labels = []
+        for i in range(0, n):
+            data.append([x[i+1] for x in dataRaw])
+            labels.append(str(year-(n-1-i)))
+
         xlables = [x[0] for x in dataRaw]
-        labels = [str(year-1),str(year)]
         id =self.figureHelper.compoundBarPlot(data, labels, xlables,False,False,"") #不带横线
         f = plt.figure(id)
         f.savefig('图'+str(fid)+'.png')
+
+    def drawDiseaseDistrict(self, fid, attrExprList, divideExprList, diseaseNameList, dbName, year, isPercent,
+                            complete):
+
+        dataRaw = self.dbInf.getDiffDistrictData(attrExprList, divideExprList, diseaseNameList,
+                                                 dbName, "district", year, isPercent, complete)
+        dataRaw = self.dbInf.sortArray(dataRaw)
+        data = []
+        for i in range(0, len(attrExprList)):
+            data.append([x[i+1] for x in dataRaw])
+
+        xlables = [x[0][0:2] for x in dataRaw]
+        id = self.figureHelper.stackedBarPlotWithTable(data, diseaseNameList, xlables, "百分比%")
+        f = plt.figure(id)
+        f.savefig('图' + str(fid) + '.png')
+
+
+    def drawYearDistrict(self, fid, attrExpr, divideExpr, dbName, year, n, isPercent,
+                            complete):
+
+        dataRawList = []
+
+        for i in range(0, n):
+            # dataNow = self.dbInf.getDistrictData(attrExpr, divideExpr, "", dbName, "district", year - (n - 1 - i), isPercent,
+            #                                      complete)
+            dataNow = self.dbInf.getDistrictData(attrExpr, divideExpr, "", dbName, "district", year, isPercent,
+                                                 complete)
+
+            dataRawList.append(dataNow)
+
+        dataRaw = self.dbInf.sortArray(dataRawList)
+
+        data = []
+        labels = []
+        for i in range(0, n):
+            data.append([x[i + 1] for x in dataRaw])
+            labels.append(str(year - (n - 1 - i)))
+
+        xlables = [x[0][0:2] for x in dataRaw]
+        id = self.figureHelper.compoundBarPlot(data, labels, xlables, False, False, "")  # 不带横线
+        f = plt.figure(id)
+        f.savefig('图' + str(fid) + '.png')
 
     def finish(self):
         self.figureHelper.finish()
