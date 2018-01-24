@@ -124,6 +124,9 @@ class figureGenerate:
         id = self.figureHelper.compoundBarPlot(data, labels, xlables, False, False, "")  # 不带横线
         f = plt.figure(id)
         f.savefig('图' + str(fid) + '.png')
+		
+		#drawDisease2() [[男病1，男病2，男病3],[女病1，女病2，女病3]] 逐个调用单个的函数
+		#添加到List
 
     def finish(self):
         self.figureHelper.finish()
