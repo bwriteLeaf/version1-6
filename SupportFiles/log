@@ -1,0 +1,17 @@
+2017-11-28 invalid literal for int() with base 10: 'id\n'
+2017-11-28 invalid literal for int() with base 10: 'id\n'
+2017-11-28 15:41:40.773434 invalid literal for int() with base 10: 'id\n'
+2017-11-29 12:32:24.269578 Expecting property name enclosed in double quotes: line 2 column 5 (char 6)
+2017-11-29 14:04:38.267084 Expecting property name enclosed in double quotes: line 2 column 5 (char 6)
+2017-11-29 14:07:32.840420 Expecting property name enclosed in double quotes: line 2 column 5 (char 6)
+2017-11-29 14:11:09.915079 Expecting property name enclosed in double quotes: line 4 column 1 (char 48)
+2017-11-30 18:24:19.081262 Expecting property name enclosed in double quotes: line 5 column 1 (char 49)
+2017-11-30 22:04:00.112767 'gbk' codec can't decode byte 0xb4 in position 72: illegal multibyte sequence
+2017-11-30 22:04:38.220074 Expecting value: line 5 column 13 (char 61)
+2017-11-30 22:05:20.287960 Expecting ',' delimiter: line 5 column 17 (char 65)
+userÅäÖÃÈ±Ê§£¬Çë¼ì²éÅäÖÃÎÄ¼ş
+hostÅäÖÃÈ±Ê§£¬Çë¼ì²éÅäÖÃÎÄ¼ş
+userÅäÖÃÈ±Ê§£¬Çë¼ì²éÅäÖÃÎÄ¼ş
+pwdÅäÖÃÈ±Ê§£¬Çë¼ì²éÅäÖÃÎÄ¼ş
+dbÅäÖÃÈ±Ê§£¬Çë¼ì²éÅäÖÃÎÄ¼ş
+dbÅäÖÃÈ±Ê§£¬Çë¼ì²éÅäÖÃÎÄ¼ş

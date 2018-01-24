@@ -1,0 +1,6 @@
+.idea/
+.idea/workspace.xml
+*.pyc
+.LaTeXFiles/
+.Templates/
+.Presentation/

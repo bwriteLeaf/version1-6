@@ -1,0 +1,72 @@
+2018-01-10 10:26:29.368083 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where (hypertension_A=1 or heart_disease_A=1 or diabetes_A=1 or epilepsy_A=1 or thyroid_disease_A=1 or chronic_nephritis_A=1 or swelling_A=1) 
+2018-01-10 10:26:29.370294 (1054, "Unknown column 'hypertension_A' in 'where clause'")
+2018-01-10 10:26:29.374415 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where is_ill_A is not null
+2018-01-10 10:26:29.377422 (1054, "Unknown column 'is_ill_A' in 'where clause'")
+2018-01-10 10:26:29.701993 select left(service_code, 6) as city,count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where (hypertension_A=1 or heart_disease_A=1 or diabetes_A=1 or epilepsy_A=1 or thyroid_disease_A=1 or chronic_nephritis_A=1 or swelling_A=1) group by city order by x desc
+2018-01-10 10:26:29.704745 (1054, "Unknown column 'hypertension_A' in 'where clause'")
+2018-01-10 10:26:29.870026 select hypertension_A,heart_disease_A,diabetes_A,epilepsy_A,thyroid_disease_A,chronic_nephritis_A,swelling_A, count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where (hypertension_A=1 or heart_disease_A=1 or diabetes_A=1 or epilepsy_A=1 or thyroid_disease_A=1 or chronic_nephritis_A=1 or swelling_A=1) group by hypertension_A,heart_disease_A,diabetes_A,epilepsy_A,thyroid_disease_A,chronic_nephritis_A,swelling_A order by x desc
+2018-01-10 10:26:29.872181 (1054, "Unknown column 'hypertension_A' in 'field list'")
+2018-01-10 10:26:29.876198 select count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where (hypertension_A=1 or heart_disease_A=1 or diabetes_A=1 or epilepsy_A=1 or thyroid_disease_A=1 or chronic_nephritis_A=1 or swelling_A=1)  group by hypertension_A,heart_disease_A,diabetes_A,epilepsy_A,thyroid_disease_A,chronic_nephritis_A,swelling_A order by x desc limit 1
+2018-01-10 10:26:29.878226 (1054, "Unknown column 'hypertension_A' in 'where clause'")
+2018-01-10 10:26:29.881205 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where is_ill_A is not null 
+2018-01-10 10:26:29.884213 (1054, "Unknown column 'is_ill_A' in 'where clause'")
+2018-01-10 10:26:29.887245 select count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where (hypertension_A=1 or heart_disease_A=1 or diabetes_A=1 or epilepsy_A=1 or thyroid_disease_A=1 or chronic_nephritis_A=1 or swelling_A=1)  group by hypertension_A,heart_disease_A,diabetes_A,epilepsy_A,thyroid_disease_A,chronic_nephritis_A,swelling_A order by x desc limit 1,1
+2018-01-10 10:26:29.889452 (1054, "Unknown column 'hypertension_A' in 'where clause'")
+2018-01-10 10:26:29.892437 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where is_ill_A is not null 
+2018-01-10 10:26:29.895468 (1054, "Unknown column 'is_ill_A' in 'where clause'")
+2018-01-10 10:26:29.898453 select count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where (hypertension_A=1 or heart_disease_A=1 or diabetes_A=1 or epilepsy_A=1 or thyroid_disease_A=1 or chronic_nephritis_A=1 or swelling_A=1)  group by hypertension_A,heart_disease_A,diabetes_A,epilepsy_A,thyroid_disease_A,chronic_nephritis_A,swelling_A order by x desc limit 2,1
+2018-01-10 10:26:29.901335 (1054, "Unknown column 'hypertension_A' in 'where clause'")
+2018-01-10 10:26:29.904345 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where is_ill_A is not null 
+2018-01-10 10:26:29.907081 (1054, "Unknown column 'is_ill_A' in 'where clause'")
+2018-01-10 10:26:29.911093 select count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where (hypertension_A=1 or heart_disease_A=1 or diabetes_A=1 or epilepsy_A=1 or thyroid_disease_A=1 or chronic_nephritis_A=1 or swelling_A=1)  group by hypertension_A,heart_disease_A,diabetes_A,epilepsy_A,thyroid_disease_A,chronic_nephritis_A,swelling_A order by x desc limit 3,1
+2018-01-10 10:26:29.914284 (1054, "Unknown column 'hypertension_A' in 'where clause'")
+2018-01-10 10:26:29.917293 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where is_ill_A is not null 
+2018-01-10 10:26:29.919444 (1054, "Unknown column 'is_ill_A' in 'where clause'")
+2018-01-10 10:26:29.923157 select count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where (hypertension_A=1 or heart_disease_A=1 or diabetes_A=1 or epilepsy_A=1 or thyroid_disease_A=1 or chronic_nephritis_A=1 or swelling_A=1)  group by hypertension_A,heart_disease_A,diabetes_A,epilepsy_A,thyroid_disease_A,chronic_nephritis_A,swelling_A order by x desc limit 4,1
+2018-01-10 10:26:29.925314 (1054, "Unknown column 'hypertension_A' in 'where clause'")
+2018-01-10 10:26:29.929326 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where is_ill_A is not null 
+2018-01-10 10:26:29.932332 (1054, "Unknown column 'is_ill_A' in 'where clause'")
+2018-01-10 10:26:29.935367 select count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where (hypertension_A=1 or heart_disease_A=1 or diabetes_A=1 or epilepsy_A=1 or thyroid_disease_A=1 or chronic_nephritis_A=1 or swelling_A=1)  group by hypertension_A,heart_disease_A,diabetes_A,epilepsy_A,thyroid_disease_A,chronic_nephritis_A,swelling_A order by x desc limit 1
+2018-01-10 10:26:29.937372 (1054, "Unknown column 'hypertension_A' in 'where clause'")
+2018-01-10 10:26:29.941280 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where is_ill_A is not null 
+2018-01-10 10:26:29.944289 (1054, "Unknown column 'is_ill_A' in 'where clause'")
+2018-01-10 10:26:32.051398 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where hight_blood_pressure_A >= 140 or low_blood_pressure_A >= 90
+2018-01-10 10:26:32.054402 (1054, "Unknown column 'hight_blood_pressure_A' in 'where clause'")
+2018-01-10 10:26:32.058499 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where hight_blood_pressure_A is not null or low_blood_pressure_A is not null
+2018-01-10 10:26:32.060529 (1054, "Unknown column 'hight_blood_pressure_A' in 'where clause'")
+2018-01-10 10:26:32.417891 select left(service_code, 6) as city, count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where hight_blood_pressure_A >= 140 or low_blood_pressure_A>=90 group by city order by x desc
+2018-01-10 10:26:32.421902 (1054, "Unknown column 'hight_blood_pressure_A' in 'where clause'")
+2018-01-10 10:26:32.428108 select count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where hight_blood_pressure_A >= 140 or low_blood_pressure_A>=90 group by left(service_code,6) order by x desc limit 1
+2018-01-10 10:26:32.430115 (1054, "Unknown column 'hight_blood_pressure_A' in 'where clause'")
+2018-01-10 10:26:32.436128 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where hight_blood_pressure_A is not null or low_blood_pressure_A is not null
+2018-01-10 10:26:32.438134 (1054, "Unknown column 'hight_blood_pressure_A' in 'where clause'")
+2018-01-10 10:26:32.443235 select count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where hight_blood_pressure_A >= 140 or low_blood_pressure_A>=90 group by left(service_code,6) order by x desc limit 1,1
+2018-01-10 10:26:32.448549 (1054, "Unknown column 'hight_blood_pressure_A' in 'where clause'")
+2018-01-10 10:26:32.452662 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where hight_blood_pressure_A is not null or low_blood_pressure_A is not null
+2018-01-10 10:26:32.456760 (1054, "Unknown column 'hight_blood_pressure_A' in 'where clause'")
+2018-01-10 10:26:32.460963 select count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where hight_blood_pressure_A >= 140 or low_blood_pressure_A>=90 group by left(service_code,6) order by x desc limit 2,1
+2018-01-10 10:26:32.466174 (1054, "Unknown column 'hight_blood_pressure_A' in 'where clause'")
+2018-01-10 10:26:32.470321 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where hight_blood_pressure_A is not null or low_blood_pressure_A is not null
+2018-01-10 10:26:32.473331 (1054, "Unknown column 'hight_blood_pressure_A' in 'where clause'")
+2018-01-10 10:26:34.455740 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where blood_sugar>=7.0 or diabetes1_A=1
+2018-01-10 10:26:34.458885 (1054, "Unknown column 'diabetes1_A' in 'where clause'")
+2018-01-10 10:26:34.462965 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where blood_sugar is not null and diabetes1_A is not null
+2018-01-10 10:26:34.466212 (1054, "Unknown column 'diabetes1_A' in 'where clause'")
+2018-01-10 10:26:34.469324 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2014-01-01' and '2014-12-31') as bt where blood_sugar>=7.0 or diabetes1_A=1
+2018-01-10 10:26:34.472332 (1054, "Unknown column 'diabetes1_A' in 'where clause'")
+2018-01-10 10:26:34.475340 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2014-01-01' and '2014-12-31') as bt where blood_sugar is not null and diabetes1_A is not null
+2018-01-10 10:26:34.478348 (1054, "Unknown column 'diabetes1_A' in 'where clause'")
+2018-01-10 10:26:34.482358 select left(service_code,6) as city, count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where blood_sugar >= 7.0 or diabetes1_A=1 group by city order by x desc
+2018-01-10 10:26:34.484363 (1054, "Unknown column 'diabetes1_A' in 'where clause'")
+2018-01-10 10:26:35.304531 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where alt_A>45
+2018-01-10 10:26:35.306798 (1054, "Unknown column 'alt_A' in 'where clause'")
+2018-01-10 10:26:35.310939 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where alt_A is not null
+2018-01-10 10:26:35.313946 (1054, "Unknown column 'alt_A' in 'where clause'")
+2018-01-10 10:26:35.636553 select left(service_code,6) as city, count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where alt_A>45 group by city order by x desc
+2018-01-10 10:26:35.639802 (1054, "Unknown column 'alt_A' in 'where clause'")
+2018-01-10 10:26:35.825122 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where cr_A > 73 or cr_A<41
+2018-01-10 10:26:35.827998 (1054, "Unknown column 'cr_A' in 'where clause'")
+2018-01-10 10:26:35.831131 select count(*) from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where cr_A is not null
+2018-01-10 10:26:35.834166 (1054, "Unknown column 'cr_A' in 'where clause'")
+2018-01-10 10:26:36.163339 select left(service_code,6) as city, count(*) as x from (select * from exam where service_code like '4403%' and complete=1 and service_time between '2015-01-01' and '2015-12-31') as bt where cr_A > 73 or cr_A<41 group by city order by x desc
+2018-01-10 10:26:36.166376 (1054, "Unknown column 'cr_A' in 'where clause'")

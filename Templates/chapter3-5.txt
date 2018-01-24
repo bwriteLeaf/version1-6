@@ -1,0 +1,102 @@
+[section]药物风险因素
+美国威斯康星州的一项对致畸信息服务项目开展情况及其效果的评价，发现咨询内容42%涉及到处方药物、28%为环境因素、15%为职业因素等。由此说明育龄夫妇应对药物与出生缺陷之间的关系给予重视，结果也表明不少孕妇可能有药物暴露史。
+在本年度报告中，服用药物相关风险主要对育龄夫妇自报目前是否服用药物及服用药物的种类进行评估。从男女双方参加健康检查时的近期服用药物比例来看，女方服用药物率明显高于《尚未实现，文字替换*1》男方，分别为
+{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and use_medicine_1=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and use_medicine_1 is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%
+和
+{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and use_medicine=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and use_medicine is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%
+全市及各区县男女方服用药物的比例如下图所示。{{fig = (1.png, 参检男女方服用药物情况, 图78)}}
+{{fig = (1.png, 各区参检男女方服用药物情况, 图79)}}
+
+与{{expr:int={{year}}-1}}年相比，男、女方服用药物的比例有所增加《尚未实现，文字替换*3》《尚未实现，year-1前一年》，
+女方由{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and use_medicine_1=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and use_medicine_1 is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%%升到7.01%，
+男方由{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and use_medicine_1=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and use_medicine_1 is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}升高至3.95%。
+{{fig = (1.png, 2015与2016年参检男女方服用药物情况比较, 图80)}}
+
+
+[section]行为风险因素
+本报告中生活方式/行为风险因素通过对育龄夫妇自报是否吸烟、被动吸烟、饮酒、服用毒麻药品进行评估。
+[subsection]吸烟
+{{year}}年度{{city}}参检女性的平均吸烟率为{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and smoking=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and smoking is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%，
+而参检男性的平均吸烟率为{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and smoking_1=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and smoking_1 is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%，
+
+，其中参检女性吸烟率排名前三位的地区分别为罗湖区、宝安区和大鹏新区；参检男性吸烟率排名前三位的是大鹏新区、坪山新区和光明新区。《尚未实现，按地区排序发病率，3》
+
+尽管参检女性本人吸烟率较低，但妇女被动吸烟比例较高。数据分析结果显示参检女性被动吸烟的比例为{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and (second_hand_smoking=1 or second_hand_smoking=2) and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and second_hand_smoking is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%，
+，其中大部分为偶尔被动吸烟，其中盐田区和罗湖区经常被动吸烟的女性较多。《尚未实现，按地区排序发病率，2》
+
+参检男性被动吸烟的比例比女性略高《尚未实现，文字替换*1》，全市平均54.99{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and (second_hand_smoking_1=1 or second_hand_smoking_1=2) and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and second_hand_smoking_1 is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%，，其中大部分为偶尔被动吸烟，比例为49.14{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and (second_hand_smoking_1=1) and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and second_hand_smoking_1 is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%，
+经常被动吸烟比例为49.14{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and (second_hand_smoking_1=2) and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and second_hand_smoking_1 is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%，经常被动吸烟的男性以坪山新区和大鹏新区最多。《尚未实现，按地区排序发病率，2》
+{{fig = (1.png, {{city}}不同地区参检女性吸烟情况, 图92)}}
+{{fig = (1.png, {{city}}不同地区参检男性吸烟情况, 图93)}}
+{{fig = (1.png, {{city}}不同地区参检女性被动吸烟情况, 图94)}}
+{{fig = (1.png, {{city}}不同地区参检男性被动吸烟情况, 图95)}}
+
+与去年的结果相比，{{year}}年和{{expr:int={{year}}-1}}年度参检女性平均吸烟率相差不大，男性有所下降[若指标1（去年高于今年），则填写“，女性有所下降”；若指标2（去年高于今年），则填写“，男性有所下降”；若指标1和2均为（去年高于今年），则“男女均有所下降”；否则此处空白不填写内容。]。《尚未实现，文字替换*2》
+
+从各区来看，罗湖区、大鹏新区和光明新区女性吸烟率2016年度明显高于2015年度，而宝安区、坪山区和盐田区2016年度女性吸烟率较2015年度显著降低。而男性吸烟率2016年度显著降低的区为宝安区、福田区，罗湖区、盐田区、和大鹏新区吸烟率较2015年度有所增长。[计算上一年份的指标4，然后列出，该指标今年高于去年的地区名。] 《尚未实现，前一年，地区按某一指标分类》
+{{fig = (1.png, 参检女性2015与{{year}}年度吸烟率比较, 图96)}}  《尚未实现，year-1前一年》
+{{fig = (1.png, 参检男性2015与{{year}}年度吸烟率比较, 图97)}}
+
+[subsection]饮酒
+参检男女方饮酒率分别为{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and (drinking_1=1 or drinking_1=2) and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and drinking_1 is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%，和{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and (drinking=1 or drinking=2) and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and drinking is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%，男方饮酒率远高于女方，
+其中女方饮酒率排名前三位的地区分别为南山区、罗湖区和盐田区；男方饮酒率排名前三位的是南山区、龙华新区和罗湖区。《尚未实现，按地区排序发病率，3》
+从数据上看，男女双方均方主要以偶尔饮酒为主，男方平均偶尔饮酒率为{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and (drinking_1=1) and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and drinking_1 is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%，女方平均偶尔饮酒率为{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and (drinking=1) and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and drinking is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%。男女方经常饮酒比例较低，分别为{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and (drinking_1=2) and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and drinking_1 is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%和{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and (drinking=2) and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and drinking is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%。
+{{fig = (1.png, {{city}}不同地区参检女性饮酒情况, 图98)}} 
+{{fig = (1.png, {{city}}不同地区参检男性饮酒情况, 图99)}}
+
+与{{expr:int={{year}}-1}}年度相比，{{year}}年度参检女性经常饮酒的比例略有升高[计算上一年份的指标8。比较指标8和上一年份的指标8.若今年高于去年，则“略有升高”，若今年低于去年，则“略有降低”，]，《尚未实现，文字替换*2》
+其中罗湖区和盐田区经常饮酒比例降低，大鹏新区和坪山新区略有升高。《尚未实现，前一年，地区按某一指标分类》
+
+男性2016年度平均经常饮酒的比例比2015年度有所升高，其中光明新区比去年明显要低，而龙华区、龙岗区、罗湖区和大鹏新区明显比去年升高。《尚未实现，文字替换*2》《尚未实现，前一年，地区按某一指标分类》
+{{fig = (1.png, 参检女性2015与{{year}}年度经常饮酒率比较, 图100)}} 
+{{fig = (1.png, 参检男性2015与{{year}}年度经常饮酒率比较, 图101)}}
+
+[subsection]服用毒麻药品
+2016年度深圳市参检男性使用毒麻药品比例为{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and drug_1=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and drug_1 is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%，女性为0.00{{expr:float={{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and drug=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}/{{sql=select count(*) from exam where service_code like '{{service_code}}%' and complete=1 and drug is not null and service_time between '{{year}}-01-01' and '{{year}}-12-31'}}*100}}%，均比2015年略低。《尚未实现，文字替换*1,前一年》
+
+[section]环境风险因素
+环境毒物接触风险根据育龄夫妇自报的生活或工作环境是否接触放射线、猫狗、高温、噪音、有机溶剂、振动、重金属、农药来评估，参检男性自报生活或工作环境中接触有毒有害物质的比例为12.96[指标1：分子：是否接触毒害物质（pois_expoid 不为空）的数据条数，分母：pois_expoid不缺失的总数据条数。]%，低于2015年度男性毒害物质的接触比例；参检女性自报生活或工作环境中接触有毒有害物质的比例为11.25，略低于男性人群，且低于2015年度的比例。
+《尚未实现，文字替换*1,前一年》《尚未实现，文字替换*1,男女比较》《尚未实现，没找到列》
+男性参检人群自报接触环境毒害物的前三位高暴露区域为光明新区、盐田区和坪山新区；女性参检人群自报接触环境毒害物的前三位高暴露区域为光明新区、罗湖区和盐田区。《尚未实现，按地区排序发病率，3》
+{{fig = (1.png, 男性参检人群自报接触毒害环境比例, 图102)}} 
+{{fig = (1.png, 女性参检人群自报接触毒害环境比例, 图103)}}
+在接触的毒害物质中，排名前三位的毒害物分别为噪音、猫狗和有机溶剂[将同一种暴露中女性和男性的比例相加，列出相加值最高的前三种毒害物质。比如：男性噪音比例+女性噪音的比例。]。毒害物质暴露情况需要结合服务对象职业，开展职业防护等相关措施。 《尚未实现，按疾病类别排序发病率，3》
+{{fig = (1.png, 男性参检人群接触有毒有害环境分类暴露率, 图104)}} 
+{{fig = (1.png, 女性参检人群接触有毒有害环境分类暴露率, 图105)}}
+
+[section]心理风险因素
+社会心理风险主要以心理压力为考察指标，主要通过是否感到生活、工作压力，与亲友、同事的关系是否紧张，是否感到经济压力来评价。根据育龄夫妇自评结果显示，女方自评感到工作生活压力大的人数占到
+[pressure_A= 3 or 4，分母：pressure_A不缺失的总数据条数。]%，
+感到经济压力大者占到4.98[economic_pressure_A= 3 or 4，分母：economic_pressure_A不缺失的总数据条数。
+]%，
+与亲友、同事关系紧张的人数占到0.19[tense_relationship_A= 3 or 4，分母：tense_relationship_A不缺失的总数据条数。]%。
+
+男方自评感到工作生活压力大的占到9.49
+[pressure = 3 or 4，分母：pressure不缺失的总数据条数。]%，
+感到经济压力大的占到8.20[economic_pressure= 3 or 4，分母：economic_pressure不缺失的总数据条数。]%，
+与亲友、同事关系紧张占到0.27[tense_relationship= 3 or 4，分母：tense_relationship不缺失的总数据条数。]%。
+从地区分布来看，参检男性感到工作生活压力大的区顺位排在前三位的是龙华新区、宝安区和罗湖区；
+感到经济压力大区为龙华新区、罗湖区和南山区；
+感到关系压力大的区为光明新区、大鹏新区和龙华新区。
+而参检女性感到工作压力大的区为光明新区、龙华新区和罗湖区；
+经济压力大的区为光明新区、宝安区和龙华新区；
+关系压力大的区为盐田区、宝安区和大鹏新区。 《尚未实现，按地区排序发病率，3》
+
+社会心理因素方面结果表明，深圳市育龄夫妇的社会心理风险因素的主要来源于
+***工作压力和经济压力，其中男方感到工作生活压力和经济压力大的比例均高于女方。***
+
+{{fig = (1.png,{{city}}不同地区参检男女方工作生活压力情况, 图106)}} 
+{{fig = (1.png,{{city}}不同地区参检男女方经济压力情况, 图107)}}
+{{fig = (1.png,{{city}}不同地区参检男女方关系压力情况, 图108)}} 
+
+2016年度参检育龄夫妇的平均工作生活压力、经济压力和关系压力大的比例与2015年度相比均有所降低。《尚未实现，文字替换*1,前一年》
+
+从各区来看，除宝安区和大鹏新区外，其它地区男性工作生活压力明显均低于2015年度；女性工作生活压力除光明新区、龙华区、南山区、大鹏新区外，其他地区均比去年低。从经济压力来看，除盐田区女性经济压力有明显下降以外，女性的经济压力与2015年度相差不大；各地区的男性经济压力与2015年度比均有不同程度的降低。《尚未实现，前一年，地区按某一指标分类》
+在参检男性关系压力方面，光明新区、宝安区、罗湖区、龙岗区和南山区较2015年度有明显下降；在参检女性关系压力方面，光明新区、龙华新区、罗湖区、龙岗区和福田区较2015年度有所下降。
+{{fig = (1.png,参检男性2015与{{year}}年度工作生活压力比较, 图109)}} 
+{{fig = (1.png,参检女性2015与{{year}}年度工作生活压力比较, 图110)}} 
+{{fig = (1.png,参检男性2015与{{year}}年度经济压力比较, 图111)}}
+{{fig = (1.png,参检女性2015与{{year}}年度经济压力比较, 图112)}}
+{{fig = (1.png,参检男性2015与{{year}}年度关系压力比较, 图113)}} 
+{{fig = (1.png,参检女性2015与{{year}}年度关系压力比较, 图114)}} 
+
