@@ -50,7 +50,7 @@ class FigureHelper:
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # xAxisLabelList: x轴标签
     # yLabel: y轴标签，可为空
-    def stackedBarPlot(self,dataList, dataLabelList, xAxisLabelList, yLabel=None, percentege=False):
+    def stackedBarPlot(self,dataList, dataLabelList, xAxisLabelList,xLable=None,yLabel=None):
 
         figureId = self.gernerateFigure()
         if len(dataList) == 0:
@@ -84,7 +84,7 @@ class FigureHelper:
     # xAxisLabelList: x轴标签
     # yLabel: y轴标签，可为空
     # TODO: 调整字体大小
-    def stackedBarPlotWithTable(self,dataList, dataLabelList, xAxisLabelList, yLabel=None):
+    def stackedBarPlotWithTable(self,dataList, dataLabelList, xAxisLabelList,xLable=None,yLabel=None):
         figureId = self.stackedBarPlot(dataList, dataLabelList, xAxisLabelList, yLabel)
 
         table = plt.table(cellText=dataList,
@@ -102,7 +102,7 @@ class FigureHelper:
     # dataList: 待绘制的数据集，为小数
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # xAxisLabelList: x轴标签
-    def stackedBarPlotWithPercentage(self,dataList, dataLabelList, xAxisLabelList):
+    def stackedBarPlotWithPercentage(self,dataList, dataLabelList, xAxisLabelList,xLable=None,yLabel=None):
         figureId = self.stackedBarPlot(dataList, dataLabelList, xAxisLabelList)
         plt.figure(figureId)
         yIndex = np.arange(0, 110, 10)
@@ -116,7 +116,7 @@ class FigureHelper:
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # xAxisLabelList: y轴标签
     # yLabel: y轴标签，可为空
-    def stackedHorizontalBarPlot(self,dataList, dataLabelList, yAxisLabelList, yLabel=None, percentege=False):
+    def stackedHorizontalBarPlot(self,dataList, dataLabelList, yAxisLabelList,xLable=None,yLabel=None):
         matplotlib.rcParams['font.sans-serif'] = 'Microsoft YaHei'
         figureId = self.gernerateFigure()
         if len(dataList) == 0:
@@ -151,7 +151,7 @@ class FigureHelper:
     # dataList: 待绘制的数据集，为小数
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # xAxisLabelList: x轴标签
-    def stackedHorizontalBarPlotWithPercentage(self,dataList, dataLabelList, yAxisLabelList):
+    def stackedHorizontalBarPlotWithPercentage(self,dataList, dataLabelList, yAxisLabelList,xLable=None,yLabel=None):
         figureId = self.stackedHorizontalBarPlot(dataList, dataLabelList, yAxisLabelList)
         plt.figure(figureId)
         xIndex = np.arange(0, 110, 10)
@@ -167,7 +167,7 @@ class FigureHelper:
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # yAxisLabelList: y轴标签
     # yLabel: y轴标签，可为空
-    def pyramidBarPlot(self,dataList, dataLabelList, yAxisLabelList, yLabel=None, percentege=False):
+    def pyramidBarPlot(self,dataList, dataLabelList, yAxisLabelList,xLable=None,yLabel=None):
         matplotlib.rcParams['font.sans-serif'] = 'Microsoft YaHei'
         figureId = self.gernerateFigure()
         if len(dataList) == 0:
@@ -211,7 +211,9 @@ class FigureHelper:
     # xAxisLabelList: x轴标签
     # vline 是否带横线，TRUE表示带均值横线，包括两条
     # hasTable 是否带表格，TRUE表示带表格
-    def compoundBarPlot(self,dataList, dataLabelList, xAxisLabelList, hline, hasTable,figureText):
+    # figureText: 长度为0表示不添加文字 ，否则添加“：数值”
+    def compoundBarPlot(self,dataList, dataLabelList, xAxisLabelList, xLable=None, yLable='百分比（%）',
+                        hline = False, hasTable = False,figureText = ""):
         case_cnt = len(dataList)
         n_groups = len(dataList[0])
         legends = []
@@ -250,7 +252,7 @@ class FigureHelper:
 
                     j = j + 1
 
-            plt.ylabel('百分比（%）')
+            plt.ylabel(yLable)
             # ax.set_title('Scores by group and gender')
 
         if case_cnt >= 2:
@@ -270,7 +272,7 @@ class FigureHelper:
         if hline:
             for i in range(0, len(dataList)):
                 dataNum = np.array(dataList[i])
-                plt.axhline(dataNum.mean(),linewidth=3, color='#d62728')  # TODO 添加文字：平均水平：数值
+                plt.axhline(dataNum.mean(),linewidth=3, color='#d62728')
                 if len(figureText) > 0:
                     plt.text(n_groups*0.7, dataNum.mean()*1.05, figureText+'：%.2f' % (dataNum.mean()))
                 # TODO 修改颜色与柱颜色统一
@@ -281,7 +283,7 @@ class FigureHelper:
     # dataList: 待绘制的数据集，为小数
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # yAxisLabelList: y轴标签
-    def horizontalBarPlot(self,dataList, dataLabelList, yAxisLabelList):
+    def horizontalBarPlot(self,dataList, dataLabelList, yAxisLabelList,xLable='百分比',yLabel=None):
         case_cnt = len(dataList)
         n_groups = len(dataList[0])
         legends = []
@@ -322,7 +324,7 @@ class FigureHelper:
 
             legends.append(rects)
 
-            plt.xlabel('百分比')
+            plt.xlabel(xLable)
             plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, 1.02, 0.5, .102), loc=3,
                        ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
 
@@ -357,7 +359,7 @@ class FigureHelper:
     # xAxisLabelList: x轴数据标签
     # xLable x轴标签
     # yLable y轴标签
-    def lineChartPlot(self,dataList, dataLabelList, xAxisLabelList, xLable, yLable):
+    def lineChartPlot(self,dataList, dataLabelList, xAxisLabelList, xLable=None, yLable=None):
         legends = []
         figureId = self.gernerateFigure()
         if len(dataList) == 0:
@@ -377,8 +379,11 @@ class FigureHelper:
         if case_cnt >= 2:
             plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, 1.02, 0.5, .102), loc=3,
                        ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
-        plt.ylabel(yLable)
-        plt.xlabel(xLable)
+
+        if yLable is not None:
+            plt.ylabel(yLable)
+        if xLable is not None:
+            plt.xlabel(xLable)
         return figureId
 
 
@@ -433,7 +438,7 @@ if __name__ == '__main__':
 
     pieChartData = [0.31, 16.3, 7.82, 0.02, 69.08, 6.47]
     pieLabels = ['l1', 'l2', 'l3', 'l4', 'l5', 'l6']
-    id4 = figureHelper.pieChartPlot(pieChartData, pieLabels)
+    id4 = figureHelper.pieChartPlot(pieChartData, pieLabels)# TODO: piechart 单独设计
     f = plt.figure(id4)
     f.savefig('4.png')
 

@@ -105,6 +105,18 @@ class DBInterface:
         sorted_list = sorted(all_list, key=lambda all_list: all_list[1], reverse=1)
         return sorted_list
 
+        # 对一个二维数组不进行排序返回类似格式
+    def noSortArray(self,dataRaw):
+        all_list = []
+        for i in range(0, len(dataRaw)):
+            data_now = dataRaw[i]
+            for j in range(0,len(data_now)):
+                if i==0:
+                    all_list.append(list(data_now[j]))
+                else:
+                    all_list[j].append(data_now[j][1])
+        return all_list
+
     def timeArray(self, dataRawList):
         all_list = []
         diseaseCnt = len(dataRawList[0])
