@@ -90,8 +90,7 @@ class FigureHelper:
         table = plt.table(cellText=dataList,
                           rowLabels=dataLabelList,
                           colLabels=xAxisLabelList,
-                          loc='bottom',
-                          fontsize=0.8)
+                          loc='bottom')
         plt.subplots_adjust(left=0.2, bottom=0.2)
 
         plt.xticks([])
@@ -213,13 +212,13 @@ class FigureHelper:
     # hasTable 是否带表格，TRUE表示带表格
     # figureText: 长度为0表示不添加文字 ，否则添加“：数值”
     def compoundBarPlot(self,dataList, dataLabelList, xAxisLabelList, xLable=None, yLable='百分比（%）',
-                        hline = False, hasTable = False,figureText = ""):
+                        hline = False, hasTable = False,figureText = "",colorList = []):
         case_cnt = len(dataList)
         n_groups = len(dataList[0])
         legends = []
 
         bar_width = 0.35
-        opacity = 0.5
+        opacity = 0.9
 
         figureId = self.gernerateFigure()
         if len(dataList) == 0:
@@ -227,8 +226,13 @@ class FigureHelper:
 
         xIndexes = np.arange(n_groups)
         for i in range(0, case_cnt):
-            l = plt.bar(xIndexes + i * bar_width, dataList[i], bar_width, alpha=opacity,
-                        label=dataLabelList[i])
+            if len(colorList) == 0:
+               l = plt.bar(xIndexes + i * bar_width, dataList[i], bar_width, alpha=opacity,
+                            label=dataLabelList[i])
+            else:
+                use_color = colorList[i]
+                l = plt.bar(xIndexes + i * bar_width, dataList[i], bar_width, alpha=opacity,
+                            label=dataLabelList[i], color=use_color)
             legends.append(l)
 
             if figureText:
@@ -244,7 +248,7 @@ class FigureHelper:
                     showStr = '%.2f' % dataList[i][j]
 
                     # Center the text vertically in the bar
-                    yloc = rect.get_height()*1.01
+                    yloc = rect.get_height()*1.03
                     label = plt.text(xloc, yloc, showStr, horizontalalignment='center',
                                      verticalalignment='center',
                                      clip_on=True)
@@ -264,7 +268,7 @@ class FigureHelper:
                               rowLabels=dataLabelList,
                               colLabels=xAxisLabelList,
                               loc='bottom',
-                              fontsize=0.8)
+                              fontsize=0.6)
             plt.subplots_adjust(left=0.2, bottom=0.2)
             plt.xticks([])
         else:
@@ -272,8 +276,14 @@ class FigureHelper:
         if hline:
             for i in range(0, len(dataList)):
                 dataNum = np.array(dataList[i])
-                plt.axhline(dataNum.mean(),linewidth=3, color='#d62728')
-                if len(figureText) > 0:
+                if len(colorList) == 0:
+                    use_color = '#d62728'
+                else:
+                    use_color = colorList[i]
+                plt.axhline(dataNum.mean(),linewidth=3, color=use_color)
+                if figureText == "case":
+                    plt.text(n_groups * 0.7, dataNum.mean() * 1.05, dataLabelList[i]+"平均水平" + '：%.2f' % (dataNum.mean()))
+                elif len(figureText) > 0 and figureText != "pass":
                     plt.text(n_groups*0.7, dataNum.mean()*1.05, figureText+'：%.2f' % (dataNum.mean()))
                 # TODO 修改颜色与柱颜色统一
         return figureId
@@ -416,95 +426,95 @@ if __name__ == '__main__':
     figureHelper = FigureHelper([8, 4.8])
 
 
-    data = [figureHelper.randomList(10), figureHelper.randomList(10), figureHelper.randomList(10), figureHelper.randomList(10)]
+    data = [figureHelper.randomList(10), figureHelper.randomList(10)]
     for d in data:
         print(d)
-    #累计条图
-    labels = ['l1', 'l2', 'l3', 'l4']
-    xlables = ['area1', 'area2', 'area3', 'area4', 'area5', 'area6', 'area7', 'area8', 'area9', 'area10']
-    id1 = figureHelper.stackedBarPlot(data, labels, xlables, 'test')
+
+    labels = ['2015', '2016']
+    xlables = ['光明', '龙岗', '福田', 'area4', 'area5', 'area6', 'area7', 'area8', 'area9', 'area10']
+    # 累计条图
+    # id1 = figureHelper.stackedBarPlot(data, labels, xlables, 'test')
+    # f = plt.figure(id1)
+    # f.savefig('3.png')
+
     #百分累计条图
-    id2 = figureHelper.stackedBarPlotWithPercentage([[40, 30, 30], [50, 20, 30], [10, 50, 40]], ['1', '2', '3'],
-                                       ['abc', 'def', '423'])
+    # id2 = figureHelper.stackedBarPlotWithPercentage([[40, 30, 30], [50, 20, 30], [10, 50, 40]], ['1', '2', '3'],
+    #                                    ['abc', 'def', '423'])
+    # f = plt.figure(id2)
+    # f.savefig('1.png')
     #带表格的累计条图
-    id3 = figureHelper.stackedBarPlotWithTable(data, labels, xlables)
 
-    f = plt.figure(id2)
-    f.savefig('1.png')
-    f = plt.figure(id3)
-    f.savefig('2.png')
-    f = plt.figure(id1)
-    f.savefig('3.png')
+    # id3 = figureHelper.stackedBarPlotWithTable(data, labels, xlables)
+    # f = plt.figure(id3)
+    # f.savefig('2.png')
 
-    pieChartData = [0.31, 16.3, 7.82, 0.02, 69.08, 6.47]
-    pieLabels = ['l1', 'l2', 'l3', 'l4', 'l5', 'l6']
-    id4 = figureHelper.pieChartPlot(pieChartData, pieLabels)# TODO: piechart 单独设计
-    f = plt.figure(id4)
-    f.savefig('4.png')
 
-    # 复式条图
+    #复式条图
     compBarData = [figureHelper.randomList(10), figureHelper.randomList(10)]
     compBarlabels = ['prapared', 'actual']
-    id5 = figureHelper.compoundBarPlot(compBarData, compBarlabels, xlables, True, False)
+    id5 = figureHelper.compoundBarPlot(compBarData, compBarlabels, xlables,
+                        xLable="", yLable="百分比（%）",hline=True,
+                        hasTable=False, figureText="",colorList=["r","y"])
     f = plt.figure(id5)
     f.savefig('5.png')
 
-    # 普通条图 带水平线
+    #普通条图 带水平线
     simpBarData = [figureHelper.randomList(10)]
     simpBarlabels = ['meaning']
-    id6 = figureHelper.compoundBarPlot(simpBarData, simpBarlabels, xlables, True, False)
+    id6 = figureHelper.compoundBarPlot(simpBarData, simpBarlabels, xlables,
+                        xLable="", yLable="百分比（%）",hline=True,
+                        hasTable=False, figureText="全市平均水平",colorList=["b"])
     f = plt.figure(id6)
     f.savefig('6.png')
 
-    # 复式线图
-    compLineData = [[37.27, 39.62, 60.17, 83.62, 90.65], [32.59, 17.25, 31.2, 79.3, 90.65]]
-    compLinelabels = ['country', 'city']
-    compLineXlabels = ['20-', '20-24', '25-29', '30-34', '35+']  # 一定要保证是按照字典序排列的，否则会先排序
-    id7 = figureHelper.lineChartPlot(compLineData, compLinelabels, compLineXlabels, 'age', 'percentage of second child')
-    f = plt.figure(id7)
-    f.savefig('7.png')
-
-    # 简单线图
-    compLineData = [[26, 11, 7.4, 6.9, 6.6, 6.2, 5.25, 4.87, 4.13, 3.48, 3.09, 2.67, 11.33]]
-    compLinelabels = ['null']
-    compLineXlabels = [0, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5, 10.5, 11.5]  # 一定要保证是按照字典序排列的，否则会先排序
-    id8 = figureHelper.lineChartPlot(compLineData, compLinelabels, compLineXlabels, 'year of marriage', 'percentage')
-    f = plt.figure(id8)
-    f.savefig('8.png')
-
     # 复式水平条图1
-    horiBarData = [[0.11, 0.26, 0.13, 0.32, 0.44, 1.16], [0.11, 0.23, 0.13, 0.24, 0.31, 0.7]]
-    horiBarlabels = ['women', 'men']
-    horiLineXlabels = ['>=35', '30-34', '25-29', '20-24', '<20', '<15']
-    id9 = figureHelper.horizontalBarPlot(horiBarData, horiBarlabels, horiLineXlabels)
-    f = plt.figure(id9)
-    f.savefig('9.png')
-
-    # 复式水平条图2-大图
-   # horiBarData2 = [randomList(5), randomList(5), randomList(5), randomList(5), randomList(5), randomList(5),
-   #                 randomList(5)]
-    #horiBarlabels2 = ['2011', '2012', '2013', '2014', '2015', '2016', '2017']
-   # horiLineXlabels2 = ['>=35', '30-34', '25-29', '20-24', '<20']
-   # id10 = horizontalBarPlot(horiBarData2, horiBarlabels2, horiLineXlabels2)
-   # f = plt.figure(id10)
-    #    f.savefig('10.png')
+    # horiBarData = [[0.11, 0.26, 0.13, 0.32, 0.44, 1.16], [0.11, 0.23, 0.13, 0.24, 0.31, 0.7]]
+    # horiBarlabels = ['women', 'men']
+    # horiLineXlabels = ['>=35', '30-34', '25-29', '20-24', '<20', '<15']
+    # id9 = figureHelper.horizontalBarPlot(horiBarData, horiBarlabels, horiLineXlabels)
+    # f = plt.figure(id9)
+    # f.savefig('9.png')
 
     # 水平百分累积条图
-    stahoriBarData = [[40, 30, 30, 10, 20], [50, 20, 30, 60, 60], [10, 50, 40, 30, 20]]
-    stahoriBarlabels = ['lable1', 'lable2', 'lable3']
-    stahoriLineXlabels = ['area1', 'area2', 'area3', 'area4', 'area5']
-    id11 = figureHelper.stackedHorizontalBarPlotWithPercentage(stahoriBarData, stahoriBarlabels, stahoriLineXlabels)
-    f = plt.figure(id11)
-    f.savefig('11.png')
+    # stahoriBarData = [[40, 30, 30, 10, 20], [50, 20, 30, 60, 60], [10, 50, 40, 30, 20]]
+    # stahoriBarlabels = ['lable1', 'lable2', 'lable3']
+    # stahoriLineXlabels = ['area1', 'area2', 'area3', 'area4', 'area5']
+    # id11 = figureHelper.stackedHorizontalBarPlotWithPercentage(stahoriBarData, stahoriBarlabels, stahoriLineXlabels)
+    # f = plt.figure(id11)
+    # f.savefig('11.png')
+
+    # 饼图
+    # pieChartData = [0.31, 16.3, 7.82, 0.02, 69.08, 6.47]
+    # pieLabels = ['l1', 'l2', 'l3', 'l4', 'l5', 'l6']
+    # id4 = figureHelper.pieChartPlot(pieChartData, pieLabels)  # TODO: piechart 单独设计
+    # f = plt.figure(id4)
+    # f.savefig('4.png')
+
+    # 复式线图
+    # compLineData = [[37.27, 39.62, 60.17, 83.62, 90.65], [32.59, 17.25, 31.2, 79.3, 90.65]]
+    # compLinelabels = ['country', 'city']
+    # compLineXlabels = ['20-', '20-24', '25-29', '30-34', '35+']  # 一定要保证是按照字典序排列的，否则会先排序
+    # id7 = figureHelper.lineChartPlot(compLineData, compLinelabels, compLineXlabels, 'age', 'percentage of second child')
+    # f = plt.figure(id7)
+    # f.savefig('7.png')
+
+    # 简单线图
+    # compLineData = [[26, 11, 7.4, 6.9, 6.6, 6.2, 5.25, 4.87, 4.13, 3.48, 3.09, 2.67, 11.33]]
+    # compLinelabels = ['null']
+    # compLineXlabels = [0, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5, 10.5, 11.5]  # 一定要保证是按照字典序排列的，否则会先排序
+    # id8 = figureHelper.lineChartPlot(compLineData, compLinelabels, compLineXlabels, 'year of marriage', 'percentage')
+    # f = plt.figure(id8)
+    # f.savefig('8.png')
+
 
     # 金字塔条图
-    priBarData = [list(reversed([40, 30, 30, 20, 10, 15, 8, 5, 3, 3, 1])),
-                  list(reversed([50, 40, 40, 20, 20, 10, 7, 3, 2, 1, 0.8]))]
-    priBarlabels = ['lable1', 'lable2']
-    priXlabels = ['0 years', '1 years', '2 years', '3 years', '4 years'
-        , '5 years', '6 years', '7 years', '8 years', '9 years', '>=10 years']
-    id12 = figureHelper.pyramidBarPlot(priBarData, priBarlabels, list(reversed(priXlabels)))
-    f = plt.figure(id12)
-    f.savefig('12.png')
+    # priBarData = [list(reversed([40, 30, 30, 20, 10, 15, 8, 5, 3, 3, 1])),
+    #               list(reversed([50, 40, 40, 20, 20, 10, 7, 3, 2, 1, 0.8]))]
+    # priBarlabels = ['lable1', 'lable2']
+    # priXlabels = ['0 years', '1 years', '2 years', '3 years', '4 years'
+    #     , '5 years', '6 years', '7 years', '8 years', '9 years', '>=10 years']
+    # id12 = figureHelper.pyramidBarPlot(priBarData, priBarlabels, list(reversed(priXlabels)))
+    # f = plt.figure(id12)
+    # f.savefig('12.png')
 
     figureHelper.finish()

@@ -23,19 +23,20 @@ class figureGenerate:
 
 
 
-    def drawDistrict(self,fid,attrExpr,divideExpr,dbName,year,isPercent,complete,figureText,picType = "bar"):
+    def drawDistrict(self,fid,attrExpr,divideExpr,dbName,year,isPercent,complete,
+                     figureText,yLable=None,picType = "bar", colorList=[]):
         dataRaw = self.dbInf.getDistrictData(attrExpr,divideExpr,"",dbName,"district",year,isPercent,complete)
         dataRaw = self.dbInf.sortList(dataRaw)
         data = [[x[1] for x in dataRaw]]
         labels = [""]
         xlables = [x[0][0:2] for x in dataRaw]
         id = self.basicDraw(picType, data, labels, xlables,
-                            hline=True, hasTable=False, figureText=figureText)  # 不带横线
+                            hline=True, hasTable=False, figureText=figureText,colorList=colorList)  # 不带横线
         f = plt.figure(id)
         f.savefig('图'+str(fid)+'.png')
 
     def drawDisease(self,fid, attrExprList, divideExprList,diseaseNameList, dbName,
-                    mainType,year, isPercent, complete,picType = "bar"):
+                    mainType,year, isPercent, complete,yLable=None,picType = "bar"):
         if mainType == "all":
             dataRaw = self.dbInf.getDiffDistrictData(attrExprList,divideExprList,diseaseNameList,
                                                      dbName,"all",year,isPercent,complete)
@@ -44,26 +45,15 @@ class figureGenerate:
             data = [[x[1] for x in dataRaw]]
             labels = diseaseNameList
             xlables = [x[0] for x in dataRaw]
-            id = self.basicDraw(picType, data, labels, xlables,
+            id = self.basicDraw(picType, data, labels, xlables, yLable=yLable,
                                 hline=False, hasTable=False, figureText="")  # 不带横线
             f = plt.figure(id)
             f.savefig('图'+str(fid)+'.png')
-        elif mainType == "district":
-            dataRaw = self.dbInf.getDiffDistrictData(attrExprList, divideExprList, diseaseNameList,
-                                                     dbName, "district", year, isPercent, complete)
-            dataRaw = self.dbInf.sortArray(dataRaw)
-            data = [[x[1] for x in dataRaw], [x[2] for x in dataRaw]]
-            xlables = [x[0][0:2] for x in dataRaw]
-            labels = diseaseNameList
-            id = self.basicDraw(picType, data, labels, xlables,
-                                hline=False, hasTable=True, figureText="")  # 不带横线
-            f = plt.figure(id)
-            f.savefig('图' + str(fid) + '.png')
         else:
             pass
 
     def drawDiseaseYear(self,fid, attrExprList, divideExprList,diseaseNameList, dbName,year,
-                        n, isPercent, complete,picType = "bar"):
+                        n, isPercent, complete,yLable=None,picType = "bar"):
 
         dataRawList = []
 
@@ -84,13 +74,13 @@ class figureGenerate:
             labels.append(str(year-(n-1-i)))
 
         xlables = [x[0] for x in dataRaw]
-        id = self.basicDraw(picType, data, labels, xlables,
-                            hline=False, hasTable=False, figureText="")  # 不带横线
+        id = self.basicDraw(picType, data, labels, xlables, yLable=yLable,
+                            hline=False, hasTable=False, figureText="pass")  # 不带横线
         f = plt.figure(id)
         f.savefig('图'+str(fid)+'.png')
 
     def drawDiseaseDistrict(self, fid, attrExprList, divideExprList, diseaseNameList, dbName, year, isPercent,
-                            complete,picType = "sbar"):
+                            complete,picType = "sbar",yLable=None,hline=True, hasTable=False, figureText="", colorList=[]):
 
         dataRaw = self.dbInf.getDiffDistrictData(attrExprList, divideExprList, diseaseNameList,
                                                  dbName, "district", year, isPercent, complete)
@@ -100,14 +90,14 @@ class figureGenerate:
             data.append([x[i+1] for x in dataRaw])
 
         xlables = [x[0][0:2] for x in dataRaw]
-        id = self.basicDraw(picType, data, diseaseNameList, xlables,
-                            hline=True, hasTable=False, figureText="")  # 不带横线
+        id = self.basicDraw(picType, data, diseaseNameList, xlables, yLable=yLable,
+                            hline=hline, hasTable=hasTable, figureText=figureText, colorList=colorList)  # 不带横线
         f = plt.figure(id)
         f.savefig('图' + str(fid) + '.png')
 
 
     def drawYearDistrict(self, fid, attrExpr, divideExpr, dbName, year, n, isPercent,
-                            complete,picType = "bar"):
+                            complete,picType = "bar",yLable=None):
 
         dataRawList = []
 
@@ -128,7 +118,7 @@ class figureGenerate:
             labels.append(str(year - (n - 1 - i)))
 
         xlables = [x[0][0:2] for x in dataRaw]
-        id = self.basicDraw(picType, data, labels, xlables,
+        id = self.basicDraw(picType, data, labels, xlables, yLable=yLable,
                             hline=False, hasTable=False, figureText="")  # 不带横线
         f = plt.figure(id)
         f.savefig('图' + str(fid) + '.png')
@@ -164,11 +154,11 @@ class figureGenerate:
         f.savefig('图' + str(fid) + '.png')
 
     def basicDraw(self,mainType,dataList, dataLabelList, xAxisLabelList, xLable=None, yLable=None,
-                    hline=False, hasTable=False, figureText=""):
+                    hline=False, hasTable=False, figureText="",colorList = []):
         p = None
         if mainType == "bar":
             p = self.figureHelper.compoundBarPlot(dataList, dataLabelList, xAxisLabelList, xLable, yLable,
-                    hline, hasTable, figureText)
+                    hline, hasTable, figureText, colorList)
         elif mainType == "sbar":
             p = self.figureHelper.stackedBarPlot(dataList, dataLabelList, xAxisLabelList, xLable, yLable)
         elif mainType == "spbar":
