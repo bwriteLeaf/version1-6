@@ -10,6 +10,7 @@ import pdb
 import pandas as pd
 from configuration import Config
 from interpreter import Interpreter
+import traceback
 
 class DBInterface:
 
@@ -34,16 +35,20 @@ class DBInterface:
      # 输入：最基本的SQL表达式
      # 返回执行结果，一个数值 int
     def execSQL(self,serviceCode,expr,dbName,year,complete):
-        serviceCode = str(serviceCode)
-        year = str(year)
-        complete_str = " and complete=1"
-        sql = "select count(*) from " + dbName + " where service_code like '" + serviceCode + "%" \
-                 + "' and service_time between '" + year + "-01-01' and '" + year + "-12-31'"
-        if len(expr) != 0:
-            sql = sql + " and " + expr
-        if complete:
-            sql = sql + complete_str
-        return self.__executeSQL(sql, 1, 1)
+        try:
+            serviceCode = str(serviceCode)
+            year = str(year)
+            complete_str = " and complete=1"
+            sql = "select count(*) from " + dbName + " where service_code like '" + serviceCode + "%" \
+                     + "' and service_time between '" + year + "-01-01' and '" + year + "-12-31'"
+            if len(expr) != 0:
+                sql = sql + " and " + expr
+            if complete:
+                sql = sql + complete_str
+            return self.__executeSQL(sql, 1, 1)
+
+        except Exception as e:
+            print(traceback.print_exc())
 
     #输入：分子的sql表达式，分母的sql表达式
     #返回List，[('大鹏新区', 8.8), ('罗湖区', 5.0), ('龙华新区', 4.8)]

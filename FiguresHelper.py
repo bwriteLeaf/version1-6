@@ -16,8 +16,8 @@ class FigureHelper:
         # 保存当前工作目录
         self.cwd = os.getcwd()
         # 切换工作目录至模板文件所在目录
-        os.chdir('DrawTest')
-        self.nfigsize = [6, 4.8]
+        os.chdir('DrawReal')
+        self.nfigsize = nfigsize
         self.gernerateFigure = self.gernerateFigureWrapper()
         matplotlib.rcParams['font.sans-serif'] = 'Microsoft YaHei'
 
@@ -221,7 +221,7 @@ class FigureHelper:
         indent_width = 0.1
         xIndexes = np.arange(n_groups)
 
-        if n_groups <= 4:
+        if n_groups <= 3 and case_cnt==1:
             bar_width = 0.25
             xIndexes = np.arange(1,3) * 0.4
             print(xIndexes)
@@ -256,7 +256,7 @@ class FigureHelper:
                     showStr = '%.2f' % dataList[i][j]
 
                     # Center the text vertically in the bar
-                    yloc = rect.get_height()*1.03
+                    yloc = rect.get_height()*1.02
                     label = plt.text(xloc, yloc, showStr, horizontalalignment='center',
                                      verticalalignment='center',
                                      clip_on=True)
@@ -434,7 +434,7 @@ class FigureHelper:
 
 if __name__ == '__main__':
 
-    figureHelper = FigureHelper([4, 4.8])
+    figureHelper = FigureHelper([8, 4.8])
 
 
     data = [figureHelper.randomList(10), figureHelper.randomList(10)]
@@ -442,7 +442,7 @@ if __name__ == '__main__':
         print(d)
 
     labels = ['2015', '2016']
-    xlables = ['光明', '龙岗', '福田', 'area4', 'area5', 'area6', 'area7', 'area8', 'area9', 'area10']
+    xlables = ["接触\n噪音","接触\n猫狗","接触有\n机溶剂","接触\n高温","接触\n放射线","接触\n重金属","接触\n农药","接触\n震动"]
     # 累计条图
     # id1 = figureHelper.stackedBarPlot(data, labels, xlables, 'test')
     # f = plt.figure(id1)
@@ -461,13 +461,13 @@ if __name__ == '__main__':
 
 
     #复式条图
-    compBarData = [figureHelper.randomList(2)]
-    compBarlabels = ['prapared']
-    id5 = figureHelper.compoundBarPlot(compBarData, compBarlabels, xlables[0:2],
-                        xLable="", yLable="百分比（%）",hline=True,
-                        hasTable=False, figureText="",colorList=["r"],indent=True )
-    f = plt.figure(id5)
-    f.savefig('5.png')
+    # compBarData = [figureHelper.randomList(2)]
+    # compBarlabels = ['prapared']
+    # id5 = figureHelper.compoundBarPlot(compBarData, compBarlabels, xlables[0:2],
+    #                     xLable="", yLable="百分比（%）",hline=True,
+    #                     hasTable=False, figureText="",colorList=["r"],indent=True )
+    # f = plt.figure(id5)
+    # f.savefig('5.png')
 
     #普通条图 带水平线
     simpBarData = [figureHelper.randomList(10)]
