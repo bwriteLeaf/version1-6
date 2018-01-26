@@ -16,11 +16,11 @@ from interpreter import Interpreter
 import traceback
 
 class figureGenerate:
-    def __init__(self, conf, inter):
+    def __init__(self, conf, inter,nfigzise):
         self.config = conf
         self.inter = inter
         self.dbInf = DBInterface(self.config, self.inter)
-        self.figureHelper = FigureHelper([8, 4.8])
+        self.figureHelper = FigureHelper(nfigzise)
 
 
 
@@ -40,7 +40,7 @@ class figureGenerate:
             print(traceback.print_exc())
 
     def drawDisease(self,fid, attrExprList, divideExprList,diseaseNameList, dbName,
-                    mainType,year, isPercent, complete,yLable=None,picType = "bar"):
+                    mainType,year, isPercent, complete,xLable=None,yLable=None,picType = "bar"):
         try:
             if mainType == "all":
                 dataRaw = self.dbInf.getDiffDistrictData(attrExprList,divideExprList,diseaseNameList,
@@ -50,7 +50,7 @@ class figureGenerate:
                 data = [[x[1] for x in dataRaw]]
                 labels = diseaseNameList
                 xlables = [x[0] for x in dataRaw]
-                id = self.basicDraw(picType, data, labels, xlables, yLable=yLable,
+                id = self.basicDraw(picType, data, labels, xlables,xLable=xLable, yLable=yLable,
                                     hline=False, hasTable=False, figureText="")  # 不带横线
                 f = plt.figure(id)
                 f.savefig(str(fid)+'.png')
@@ -137,12 +137,12 @@ class figureGenerate:
         except Exception as e:
             print(traceback.print_exc())
 
-		#drawDisease2() [[男病1，男病2，男病3],[女病1，女病2，女病3]] 逐个调用单个的函数
+		#drawDisease2() attrExprList=[[男病1，男病2，男病3],[女病1，女病2，女病3]] 逐个调用单个的函数
         # labels = [男,女] xlables = [病1，病2，病3]
 		#添加到List
 
     def drawDisease2(self, fid, attrExprList, divideExprList, labels, xlables, dbName, year, isSort, isPercent,
-                         complete,picType = "bar"):
+                         complete,picType = "bar",yLable=None):
         try:
             dataRawList = []
             n = len(labels)
@@ -163,7 +163,7 @@ class figureGenerate:
                 data.append([x[i + 1] for x in dataRaw])
 
             xlables = [x[0] for x in dataRaw]
-            id = self.basicDraw(picType,data, labels, xlables,
+            id = self.basicDraw(picType,data, labels, xlables, yLable=yLable,
                                 hline=False, hasTable=False, figureText="")  # 不带横线
             f = plt.figure(id)
             f.savefig(str(fid) + '.png')
