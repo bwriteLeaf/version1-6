@@ -119,7 +119,7 @@ class figureGenerate:
 
         xlables = [x[0][0:2] for x in dataRaw]
         id = self.basicDraw(picType, data, labels, xlables, yLable=yLable,
-                            hline=False, hasTable=False, figureText="")  # 不带横线
+                            hline=False, hasTable=True, figureText="")  # 不带横线
         f = plt.figure(id)
         f.savefig('图' + str(fid) + '.png')
 

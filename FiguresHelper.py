@@ -17,7 +17,7 @@ class FigureHelper:
         self.cwd = os.getcwd()
         # 切换工作目录至模板文件所在目录
         os.chdir('DrawTest')
-        self.nfigsize = [8, 4.8]
+        self.nfigsize = [6, 4.8]
         self.gernerateFigure = self.gernerateFigureWrapper()
         matplotlib.rcParams['font.sans-serif'] = 'Microsoft YaHei'
 
@@ -197,7 +197,8 @@ class FigureHelper:
         if yLabel is not None:
             plt.ylabel(yLabel)
         plt.yticks(yIndexes, yAxisLabelListr)
-        xIndex = [-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100]
+        xIndex = [-100, -80,
+                  -60, -40, -20, 0, 20, 40, 60, 80, 100]
         plt.xticks(xIndex, [100, 80, 60, 40, 20, 0, 20, 40, 60, 80, 100])
         plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, 1.02, 0.5, .102), loc=3,
                    ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
@@ -212,26 +213,33 @@ class FigureHelper:
     # hasTable 是否带表格，TRUE表示带表格
     # figureText: 长度为0表示不添加文字 ，否则添加“：数值”
     def compoundBarPlot(self,dataList, dataLabelList, xAxisLabelList, xLable=None, yLable='百分比（%）',
-                        hline = False, hasTable = False,figureText = "",colorList = []):
+                        hline = False, hasTable = False,figureText = "",colorList = [],indent = False):
         case_cnt = len(dataList)
         n_groups = len(dataList[0])
         legends = []
-
         bar_width = 0.35
+        indent_width = 0.1
+        xIndexes = np.arange(n_groups)
+
+        if n_groups <= 4:
+            bar_width = 0.25
+            xIndexes = np.arange(1,3) * 0.4
+            print(xIndexes)
         opacity = 0.9
 
         figureId = self.gernerateFigure()
         if len(dataList) == 0:
             return None
-
-        xIndexes = np.arange(n_groups)
         for i in range(0, case_cnt):
+            index = xIndexes + i * bar_width
+            if indent:
+                index = index + i * indent_width
             if len(colorList) == 0:
-               l = plt.bar(xIndexes + i * bar_width, dataList[i], bar_width, alpha=opacity,
+               l = plt.bar(index, dataList[i], bar_width, alpha=opacity,
                             label=dataLabelList[i])
             else:
                 use_color = colorList[i]
-                l = plt.bar(xIndexes + i * bar_width, dataList[i], bar_width, alpha=opacity,
+                l = plt.bar(index, dataList[i], bar_width, alpha=opacity,
                             label=dataLabelList[i], color=use_color)
             legends.append(l)
 
@@ -272,7 +280,10 @@ class FigureHelper:
             plt.subplots_adjust(left=0.2, bottom=0.2)
             plt.xticks([])
         else:
-            plt.xticks(xIndexes + bar_width * (case_cnt - 1) / case_cnt, xAxisLabelList)
+            if indent:
+                plt.xticks(xIndexes + (bar_width + indent_width) * (case_cnt - 1) / case_cnt, xAxisLabelList)
+            else:
+                plt.xticks(xIndexes + bar_width * (case_cnt - 1) / case_cnt, xAxisLabelList)
         if hline:
             for i in range(0, len(dataList)):
                 dataNum = np.array(dataList[i])
@@ -423,7 +434,7 @@ class FigureHelper:
 
 if __name__ == '__main__':
 
-    figureHelper = FigureHelper([8, 4.8])
+    figureHelper = FigureHelper([4, 4.8])
 
 
     data = [figureHelper.randomList(10), figureHelper.randomList(10)]
@@ -450,11 +461,11 @@ if __name__ == '__main__':
 
 
     #复式条图
-    compBarData = [figureHelper.randomList(10), figureHelper.randomList(10)]
-    compBarlabels = ['prapared', 'actual']
-    id5 = figureHelper.compoundBarPlot(compBarData, compBarlabels, xlables,
+    compBarData = [figureHelper.randomList(2)]
+    compBarlabels = ['prapared']
+    id5 = figureHelper.compoundBarPlot(compBarData, compBarlabels, xlables[0:2],
                         xLable="", yLable="百分比（%）",hline=True,
-                        hasTable=False, figureText="",colorList=["r","y"])
+                        hasTable=False, figureText="",colorList=["r"],indent=True )
     f = plt.figure(id5)
     f.savefig('5.png')
 
