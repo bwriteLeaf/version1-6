@@ -35,12 +35,13 @@ class figureGenerate:
             id = self.basicDraw(picType, data, labels, xlables, yLable=yLable,
                                 hline=True, hasTable=False, figureText=figureText,colorList=colorList)  # 不带横线
             f = plt.figure(id)
-            f.savefig(str(fid)+'.png')
+            f.savefig(fid+'.png')
         except Exception as e:
             print(traceback.print_exc())
 
     def drawDisease(self,fid, attrExprList, divideExprList,diseaseNameList, dbName,
-                    mainType,year, isPercent, complete,xLable=None,yLable=None,picType = "bar"):
+                    mainType,year, isPercent, complete,xLable=None,yLable=None,picType = "bar",
+                    figureText=""):
         try:
             if mainType == "all":
                 dataRaw = self.dbInf.getDiffDistrictData(attrExprList,divideExprList,diseaseNameList,
@@ -51,9 +52,9 @@ class figureGenerate:
                 labels = diseaseNameList
                 xlables = [x[0] for x in dataRaw]
                 id = self.basicDraw(picType, data, labels, xlables,xLable=xLable, yLable=yLable,
-                                    hline=False, hasTable=False, figureText="")  # 不带横线
+                                    hline=False, hasTable=False, figureText=figureText)  # 不带横线
                 f = plt.figure(id)
-                f.savefig(str(fid)+'.png')
+                f.savefig(fid+'.png')
             else:
                 pass
         except Exception as e:
@@ -61,7 +62,7 @@ class figureGenerate:
 
 
     def drawDiseaseYear(self,fid, attrExprList, divideExprList,diseaseNameList, dbName,year,
-                        n, isPercent, complete,yLable=None,picType = "bar"):
+                        n, isPercent, complete,yLable=None,picType = "bar",isSort = True):
         try:
             dataRawList = []
 
@@ -73,7 +74,11 @@ class figureGenerate:
                 dataRawList.append(dataNow)
 
             dataRaw = self.dbInf.timeArray(dataRawList)
-            dataRaw = self.dbInf.sortArray(dataRaw)
+
+            if isSort:
+                dataRaw = self.dbInf.sortArray(dataRaw)
+            else:
+                dataRaw = self.dbInf.noSortArray(dataRaw)
 
             data = []
             labels = []
@@ -85,7 +90,7 @@ class figureGenerate:
             id = self.basicDraw(picType, data, labels, xlables, yLable=yLable,
                                 hline=False, hasTable=False, figureText="pass")  # 不带横线
             f = plt.figure(id)
-            f.savefig(str(fid)+'.png')
+            f.savefig(fid+'.png')
         except Exception as e:
             print(traceback.print_exc())
 
@@ -103,7 +108,7 @@ class figureGenerate:
             id = self.basicDraw(picType, data, diseaseNameList, xlables, yLable=yLable,
                                 hline=hline, hasTable=hasTable, figureText=figureText, colorList=colorList)  # 不带横线
             f = plt.figure(id)
-            f.savefig(str(fid) + '.png')
+            f.savefig(fid + '.png')
         except Exception as e:
             print(traceback.print_exc())
 
@@ -133,7 +138,7 @@ class figureGenerate:
             id = self.basicDraw(picType, data, labels, xlables, yLable=yLable,
                                 hline=False, hasTable=True, figureText="")  # 不带横线
             f = plt.figure(id)
-            f.savefig(str(fid) + '.png')
+            f.savefig(fid + '.png')
         except Exception as e:
             print(traceback.print_exc())
 
@@ -166,7 +171,7 @@ class figureGenerate:
             id = self.basicDraw(picType,data, labels, xlables, yLable=yLable,
                                 hline=False, hasTable=False, figureText="")  # 不带横线
             f = plt.figure(id)
-            f.savefig(str(fid) + '.png')
+            f.savefig(fid + '.png')
         except Exception as e:
             print(traceback.print_exc())
 

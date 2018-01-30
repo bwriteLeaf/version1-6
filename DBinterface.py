@@ -38,9 +38,23 @@ class DBInterface:
         try:
             serviceCode = str(serviceCode)
             year = str(year)
+
+            year_str = "service_time"
             complete_str = " and complete=1"
-            sql = "select count(*) from " + dbName + " where service_code like '" + serviceCode + "%" \
-                     + "' and service_time between '" + year + "-01-01' and '" + year + "-12-31'"
+            service_str = "service_code"
+
+            if dbName == "early":
+                year_str = "earlyfollowup_time"
+                complete_str = " and earlyyncomplete=1"
+            elif dbName == "outcome":
+                year_str = "followup_time"
+                complete_str = " and yncomplete=1"
+            elif dbName == "exam, early":
+                year_str = "exam.complete_date"
+                service_str = "exam.service_code"
+
+            sql = "select count(*) from " + dbName + " where "+service_str+" like '" + serviceCode + "%" \
+                     + "' and "+year_str+" between '" + year + "-01-01' and '" + year + "-12-31'"
             if len(expr) != 0:
                 sql = sql + " and " + expr
             if complete:
