@@ -109,6 +109,44 @@ def pic1(figGen):
                        isPercent=True, complete=False, picType="pie")
 
 def pic2(figGen):
+    list_a = ['((DATEDIFF(service_time,mbirthday) div 365) <= 20)',
+     '((DATEDIFF(service_time,mbirthday) div 365) between 21 and 25)',
+     '((DATEDIFF(service_time,mbirthday) div 365) between 26 and 30)',
+     '((DATEDIFF(service_time,mbirthday) div 365) between 31 and 35)',
+     '((DATEDIFF(service_time,mbirthday) div 365) >= 36)']
+    list_d = ['', '', '', '', '']
+    labels = ['<=20', '21-25', '26-30', '31-35', '>=36']
+    figGen.drawDisease(12, list_a, list_d, labels, "exam", "all", config.year,
+                       isPercent=True, complete=True, picType="pie")
+    figGen.drawDiseaseDistrict(13, list_a, list_d, labels, "exam", config.year,
+                               isPercent=True, complete=True, picType="spbar",
+                               yLable="", hline=False,
+                               hasTable=False, figureText="", colorList=[])
+
+    list_a = ['((DATEDIFF(service_time,fbirthday) div 365) <= 20)',
+             '((DATEDIFF(service_time,fbirthday) div 365) between 21 and 25)',
+             '((DATEDIFF(service_time,fbirthday) div 365) between 26 and 30)',
+             '((DATEDIFF(service_time,fbirthday) div 365) between 31 and 35)',
+             '((DATEDIFF(service_time,fbirthday) div 365) >= 36)']
+    list_d = ['', '', '', '', '']
+    labels = ['<=20', '21-25', '26-30', '31-35', '>=36']
+    figGen.drawDisease(14, list_a, list_d, labels, "exam", "all", config.year,
+                       isPercent=True, complete=True, picType="pie")
+    figGen.drawDiseaseDistrict(15, list_a, list_d, labels, "exam", config.year,
+                               isPercent=True, complete=True, picType="spbar",
+                               yLable="", hline=False,
+                               hasTable=False, figureText="", colorList=[])
+
+    list_a = ['((DATEDIFF(service_time,mbirthday) div 365) = (DATEDIFF(service_time,fbirthday) div 365))',
+             '((DATEDIFF(service_time,mbirthday) div 365) < (DATEDIFF(service_time,fbirthday) div 365))',
+             '((DATEDIFF(service_time,mbirthday) div 365) > (DATEDIFF(service_time,fbirthday) div 365))']
+    list_d = ['fbirthday is not null and mbirthday is not null', 'fbirthday is not null and mbirthday is not null',
+             'fbirthday is not null and mbirthday is not null']
+    labels = ['同岁', '丈夫比妻子小', '丈夫比妻子大']
+    figGen.drawDisease(16, list_a, list_d, labels, "exam", "all", config.year,
+                       isPercent=True, complete=True, picType="pie")
+
+
     list_a = ["medu_level=1", "medu_level=2", "medu_level=3", "medu_level=4", "medu_level=5", "medu_level=6"]
     list_d = ["medu_level is not null", "medu_level is not null", "medu_level is not null", "medu_level is not null",
             "medu_level is not null", "medu_level is not null"]
