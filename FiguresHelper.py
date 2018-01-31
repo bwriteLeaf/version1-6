@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pdb
 import os
+import matplotlib.gridspec as gridspec
 
 class FigureHelper:
 
@@ -52,12 +53,17 @@ class FigureHelper:
     # yLabel: y轴标签，可为空
     def stackedBarPlot(self,dataList, dataLabelList, xAxisLabelList,xLable=None,yLabel=None):
 
+        case_cnt = len(dataList)  # 颜色组
+
         figureId = self.gernerateFigure()
         if len(dataList) == 0:
             return None
         legends = []
         xIndexes = np.arange(len(dataList[0]))
         yOffset = np.zeros(len(dataList[0]))
+
+        if case_cnt >=4:
+            plt.subplot2grid((1, 12), (0, 0), colspan=11, rowspan=1)
 
         for i in range(0, len(dataList)):
             l = plt.bar(xIndexes, dataList[i], bottom=yOffset, width=0.35)
@@ -67,10 +73,18 @@ class FigureHelper:
         if yLabel is not None:
             plt.ylabel(yLabel)
         plt.xticks(xIndexes, xAxisLabelList)
-        plt.legend(legends, dataLabelList)
+        # plt.legend(legends, dataLabelList)
         # plt.legend(legends, dataLabelList, bbox_to_anchor=(1.01, 1), loc=2, borderaxespad=0.)
-        plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, 1.02, 0.5, .102), loc=3,
-                   ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
+        bbox_to_anchor = (0.25, 1.02, 0.5, .102)
+        if case_cnt >=4:
+            bbox_to_anchor = (1.05, 0.65)
+            plt.legend(legends, dataLabelList, bbox_to_anchor=bbox_to_anchor, loc=2,
+                        borderaxespad=0.)
+        else:
+            plt.legend(legends, dataLabelList, bbox_to_anchor=bbox_to_anchor, loc=3,
+                       ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
+
+
         # plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, -.1, 0.5, -.1), loc=3,
         #           ncol=4, mode="expand", borderaxespad=0.)
 
@@ -365,7 +379,8 @@ class FigureHelper:
         # TODO 饼图的数字重叠问题
         # explode = (0, 0, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
         l = plt.pie(dataList, labels=dataLabelList, autopct='%1.2f%%',
-                    shadow=True, startangle=90, counterclock=False, pctdistance=1.3, labeldistance=5)
+                    shadow=True, startangle=90, counterclock=False, pctdistance = 1.3, labeldistance = 5)
+        #
         legends.append(l)
         plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
         plt.legend()
@@ -437,16 +452,16 @@ if __name__ == '__main__':
     figureHelper = FigureHelper([8, 4.8])
 
 
-    data = [figureHelper.randomList(10), figureHelper.randomList(10)]
+    data = [figureHelper.randomList(8), figureHelper.randomList(8), figureHelper.randomList(8), figureHelper.randomList(8), figureHelper.randomList(8)]
     for d in data:
         print(d)
 
-    labels = ['2015', '2016']
+    labels = ['<=20', '21-25', '26-30', '31-35', '>=36']
     xlables = ["接触\n噪音","接触\n猫狗","接触有\n机溶剂","接触\n高温","接触\n放射线","接触\n重金属","接触\n农药","接触\n震动"]
     # 累计条图
-    # id1 = figureHelper.stackedBarPlot(data, labels, xlables, 'test')
-    # f = plt.figure(id1)
-    # f.savefig('3.png')
+    id1 = figureHelper.stackedBarPlot(data, labels, xlables, 'test')
+    f = plt.figure(id1)
+    f.savefig('test3.png')
 
     #百分累计条图
     # id2 = figureHelper.stackedBarPlotWithPercentage([[40, 30, 30], [50, 20, 30], [10, 50, 40]], ['1', '2', '3'],
@@ -470,13 +485,13 @@ if __name__ == '__main__':
     # f.savefig('5.png')
 
     #普通条图 带水平线
-    simpBarData = [figureHelper.randomList(10)]
-    simpBarlabels = ['meaning']
-    id6 = figureHelper.compoundBarPlot(simpBarData, simpBarlabels, xlables,
-                        xLable="", yLable="百分比（%）",hline=True,
-                        hasTable=False, figureText="全市平均水平",colorList=["b"])
-    f = plt.figure(id6)
-    f.savefig('6.png')
+    # simpBarData = [figureHelper.randomList(10)]
+    # simpBarlabels = ['meaning']
+    # id6 = figureHelper.compoundBarPlot(simpBarData, simpBarlabels, xlables,
+    #                     xLable="", yLable="百分比（%）",hline=True,
+    #                     hasTable=False, figureText="全市平均水平",colorList=["b"])
+    # f = plt.figure(id6)
+    # f.savefig('6.png')
 
     # 复式水平条图1
     # horiBarData = [[0.11, 0.26, 0.13, 0.32, 0.44, 1.16], [0.11, 0.23, 0.13, 0.24, 0.31, 0.7]]

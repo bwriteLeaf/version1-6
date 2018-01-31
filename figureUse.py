@@ -119,122 +119,122 @@ def pic2(figGen):
               'mbirthday is not null', 'mbirthday is not null', 'mbirthday is not null']
     labels = ['<=20', '21-25', '26-30', '31-35', '>=36']
     figGen.drawDisease('12', list_a, list_d, labels, "exam", "all", config.year,
-                       isPercent=True, complete=True, picType="pie")
+                       isPercent=True, complete=True, picType="pie",isSort=False)
     figGen.drawDiseaseDistrict('13', list_a, list_d, labels, "exam", config.year,
                                isPercent=True, complete=True, picType="spbar",
                                yLable="", hline=False,
                                hasTable=False, figureText="", colorList=[])
     #TODO  饼图篡改标签、标签重合，百分堆积不是百分百、标签重合
-    list_a = ['((DATEDIFF(service_time,fbirthday) div 365) <= 20)',
-             '((DATEDIFF(service_time,fbirthday) div 365) between 21 and 25)',
-             '((DATEDIFF(service_time,fbirthday) div 365) between 26 and 30)',
-             '((DATEDIFF(service_time,fbirthday) div 365) between 31 and 35)',
-             '((DATEDIFF(service_time,fbirthday) div 365) >= 36)']
-    list_d = ['fbirthday is not null', 'fbirthday is not null',
-              'fbirthday is not null', 'fbirthday is not null', 'fbirthday is not null']
-    labels = ['<=20', '21-25', '26-30', '31-35', '>=36']
-    figGen.drawDisease('14', list_a, list_d, labels, "exam", "all", config.year,
-                       isPercent=True, complete=True, picType="pie")
-    figGen.drawDiseaseDistrict('15', list_a, list_d, labels, "exam", config.year,
-                               isPercent=True, complete=True, picType="spbar",
-                               yLable="", hline=False,
-                               hasTable=False, figureText="", colorList=[])
+    # list_a = ['((DATEDIFF(service_time,fbirthday) div 365) <= 20)',
+    #          '((DATEDIFF(service_time,fbirthday) div 365) between 21 and 25)',
+    #          '((DATEDIFF(service_time,fbirthday) div 365) between 26 and 30)',
+    #          '((DATEDIFF(service_time,fbirthday) div 365) between 31 and 35)',
+    #          '((DATEDIFF(service_time,fbirthday) div 365) >= 36)']
+    # list_d = ['fbirthday is not null', 'fbirthday is not null',
+    #           'fbirthday is not null', 'fbirthday is not null', 'fbirthday is not null']
+    # labels = ['<=20', '21-25', '26-30', '31-35', '>=36']
+    # figGen.drawDisease('14', list_a, list_d, labels, "exam", "all", config.year,
+    #                    isPercent=True, complete=True, picType="pie")
+    # figGen.drawDiseaseDistrict('15', list_a, list_d, labels, "exam", config.year,
+    #                            isPercent=True, complete=True, picType="spbar",
+    #                            yLable="", hline=False,
+    #                            hasTable=False, figureText="", colorList=[])
+    #
+    # list_a = ['((DATEDIFF(service_time,mbirthday) div 365) = (DATEDIFF(service_time,fbirthday) div 365))',
+    #          '((DATEDIFF(service_time,mbirthday) div 365) < (DATEDIFF(service_time,fbirthday) div 365))',
+    #          '((DATEDIFF(service_time,mbirthday) div 365) > (DATEDIFF(service_time,fbirthday) div 365))']
+    # list_d = ['fbirthday is not null and mbirthday is not null', 'fbirthday is not null and mbirthday is not null',
+    #          'fbirthday is not null and mbirthday is not null']
+    # labels = ['同岁', '丈夫比妻子小', '丈夫比妻子大']
+    # figGen.drawDisease('16', list_a, list_d, labels, "exam", "all", config.year,
+    #                    isPercent=True, complete=True, picType="pie")
 
-    list_a = ['((DATEDIFF(service_time,mbirthday) div 365) = (DATEDIFF(service_time,fbirthday) div 365))',
-             '((DATEDIFF(service_time,mbirthday) div 365) < (DATEDIFF(service_time,fbirthday) div 365))',
-             '((DATEDIFF(service_time,mbirthday) div 365) > (DATEDIFF(service_time,fbirthday) div 365))']
-    list_d = ['fbirthday is not null and mbirthday is not null', 'fbirthday is not null and mbirthday is not null',
-             'fbirthday is not null and mbirthday is not null']
-    labels = ['同岁', '丈夫比妻子小', '丈夫比妻子大']
-    figGen.drawDisease('16', list_a, list_d, labels, "exam", "all", config.year,
-                       isPercent=True, complete=True, picType="pie")
-
-
-    list_a = ["medu_level=1", "medu_level=2", "medu_level=3", "medu_level=4", "medu_level=5", "medu_level=6"]
-    list_d = ["medu_level is not null", "medu_level is not null", "medu_level is not null", "medu_level is not null",
-            "medu_level is not null", "medu_level is not null"]
-    labels = ["文盲", "小学", "初中", "高中\n/中专\n/中技", "大专\n/大本", "研究生\n及以上"]
-    figGen.drawDisease('18', list_a, list_d, labels, "exam", "all", config.year,
-                       isPercent=True, complete=True, picType="pie")
-
-    figGen.drawDiseaseDistrict('19', list_a, list_d, labels, "exam", config.year,
-                               isPercent=True, complete=True, picType="spbar",
-                               yLable="", hline=False,
-                               hasTable=False, figureText="", colorList=[])
-
-
-    list_a = ["fedu_level=1", "fedu_level=2", "fedu_level=3", "fedu_level=4", "fedu_level=5", "fedu_level=6"]
-    list_d = ["fedu_level is not null", "fedu_level is not null", "fedu_level is not null", "fedu_level is not null",
-              "fedu_level is not null", "fedu_level is not null"]
-    labels = ["文盲", "小学", "初中", "高中/中专/中技", "大专/大本", "研究生及以上"]
-    figGen.drawDisease('20', list_a, list_d, labels, "exam", "all", config.year,
-                       isPercent=True, complete=True, picType="pie")
-    figGen.drawDiseaseDistrict('21', list_a, list_d, labels, "exam", config.year,
-                               isPercent=True, complete=True, picType="spbar",
-                               yLable="", hline=False,
-                               hasTable=False, figureText="", colorList=[])
-
-    list_a = ["mjob=1", "mjob=2", "mjob=3", "mjob=4", "mjob=5", "mjob=6", "mjob=7"]
-    list_d = ["mjob is not null", "mjob is not null", "mjob is not null", "mjob is not null",
-              "mjob is not null", "mjob is not null", "mjob is not null"]
-    labels = ['农民','工人','服务业','经商','家务','教师\n/公务员\n/职员','其它']
-    figGen.drawDisease('22', list_a, list_d, labels, "exam", "all", config.year,
-                       isPercent=True, complete=True, picType="pie")
-
-    figGen.drawDiseaseDistrict('23', list_a, list_d, labels, "exam", config.year,
-                               isPercent=True, complete=True, picType="hspbar",
-                               yLable="", hline=False,
-                               hasTable=False, figureText="", colorList=[])
-
-    list_a = ["fjob=1", "fjob=2", "fjob=3", "fjob=4", "fjob=5", "fjob=6", "fjob=7"]
-    list_d = ["fjob is not null", "fjob is not null", "fjob is not null", "fjob is not null",
-              "fjob is not null", "fjob is not null", "fjob is not null"]
-    labels = ['农民', '工人', '服务业', '经商', '家务', '教师/公务员/职员', '其它']
-    figGen.drawDisease('24', list_a, list_d, labels, "exam", "all", config.year,
-                       isPercent=True, complete=True, picType="pie")
-
-    figGen.drawDiseaseDistrict('25', list_a, list_d, labels, "exam", config.year,
-                               isPercent=True, complete=True, picType="hspbar",
-                               yLable="", hline=False,
-                               hasTable=False, figureText="", colorList=[])
-
-    text_q = ''
-    figGen.drawDistrict('26', "mnationality!='汉族'", "", "exam", config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=["b"])
-    figGen.drawDistrict('27', "fnationality!='汉族'", "", "exam", config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=["r"])
-
-
-    list_a1 = ['(has_content=2 or has_content=4) and faccount_location_city=address_city', '(has_content=2 or has_content=4) and faccount_location_city!=address_city']
-    list_d1 = ['(has_content=2 or has_content=4) and faccount_location_city is not null and address_city is not null', '(has_content=2 or has_content=4) and faccount_location_city is not null and address_city is not null']
-    list_a2 = ["has_content between 3 and 4 and maccount_location_city=address_city", "has_content between 3 and 4 and maccount_location_city!=address_city"]
-    list_d2 = ["has_content between 3 and 4 and maccount_location_city is not null and address_city is not null", "has_content between 3 and 4 and maccount_location_city is not null and address_city is not null"]
-    list_a = [list_a1, list_a2]
-    list_d = [list_d1, list_d2]
-    labels = ['女方', '男方']
-    xlabels = ['本地', '非本地']
-    figGen.drawDisease2('28', list_a, list_d, labels, xlabels, "exam", config.year,
-                        isSort=False,
-                        isPercent=True, complete=True, picType="bar",
-                        yLable="百分比（%）")
-
-    list_a = list_a2
-    list_d = list_d2
-    labels = xlabels
-    figGen.drawDiseaseDistrict('29', list_a, list_d, labels, "exam", config.year,
-                               isPercent=True, complete=True, picType="spbar",
-                               yLable="百分比（%）", hline=False,
-                               hasTable=False, figureText="", colorList=[])
-
-    list_a = list_a1
-    list_d = list_d1
-    labels = xlabels
-    figGen.drawDiseaseDistrict('30', list_a, list_d, labels, "exam", config.year,
-                               isPercent=True, complete=True, picType="spbar",
-                               yLable="百分比（%）", hline=False,
-                               hasTable=False, figureText="", colorList=[])
+    #
+    # list_a = ["medu_level=1", "medu_level=2", "medu_level=3", "medu_level=4", "medu_level=5", "medu_level=6"]
+    # list_d = ["medu_level is not null", "medu_level is not null", "medu_level is not null", "medu_level is not null",
+    #         "medu_level is not null", "medu_level is not null"]
+    # labels = ["文盲", "小学", "初中", "高中\n/中专\n/中技", "大专\n/大本", "研究生\n及以上"]
+    # figGen.drawDisease('18', list_a, list_d, labels, "exam", "all", config.year,
+    #                    isPercent=True, complete=True, picType="pie")
+    #
+    # figGen.drawDiseaseDistrict('19', list_a, list_d, labels, "exam", config.year,
+    #                            isPercent=True, complete=True, picType="spbar",
+    #                            yLable="", hline=False,
+    #                            hasTable=False, figureText="", colorList=[])
+    #
+    #
+    # list_a = ["fedu_level=1", "fedu_level=2", "fedu_level=3", "fedu_level=4", "fedu_level=5", "fedu_level=6"]
+    # list_d = ["fedu_level is not null", "fedu_level is not null", "fedu_level is not null", "fedu_level is not null",
+    #           "fedu_level is not null", "fedu_level is not null"]
+    # labels = ["文盲", "小学", "初中", "高中/中专/中技", "大专/大本", "研究生及以上"]
+    # figGen.drawDisease('20', list_a, list_d, labels, "exam", "all", config.year,
+    #                    isPercent=True, complete=True, picType="pie")
+    # figGen.drawDiseaseDistrict('21', list_a, list_d, labels, "exam", config.year,
+    #                            isPercent=True, complete=True, picType="spbar",
+    #                            yLable="", hline=False,
+    #                            hasTable=False, figureText="", colorList=[])
+    #
+    # list_a = ["mjob=1", "mjob=2", "mjob=3", "mjob=4", "mjob=5", "mjob=6", "mjob=7"]
+    # list_d = ["mjob is not null", "mjob is not null", "mjob is not null", "mjob is not null",
+    #           "mjob is not null", "mjob is not null", "mjob is not null"]
+    # labels = ['农民','工人','服务业','经商','家务','教师\n/公务员\n/职员','其它']
+    # figGen.drawDisease('22', list_a, list_d, labels, "exam", "all", config.year,
+    #                    isPercent=True, complete=True, picType="pie")
+    #
+    # figGen.drawDiseaseDistrict('23', list_a, list_d, labels, "exam", config.year,
+    #                            isPercent=True, complete=True, picType="hspbar",
+    #                            yLable="", hline=False,
+    #                            hasTable=False, figureText="", colorList=[])
+    #
+    # list_a = ["fjob=1", "fjob=2", "fjob=3", "fjob=4", "fjob=5", "fjob=6", "fjob=7"]
+    # list_d = ["fjob is not null", "fjob is not null", "fjob is not null", "fjob is not null",
+    #           "fjob is not null", "fjob is not null", "fjob is not null"]
+    # labels = ['农民', '工人', '服务业', '经商', '家务', '教师/公务员/职员', '其它']
+    # figGen.drawDisease('24', list_a, list_d, labels, "exam", "all", config.year,
+    #                    isPercent=True, complete=True, picType="pie")
+    #
+    # figGen.drawDiseaseDistrict('25', list_a, list_d, labels, "exam", config.year,
+    #                            isPercent=True, complete=True, picType="hspbar",
+    #                            yLable="", hline=False,
+    #                            hasTable=False, figureText="", colorList=[])
+    #
+    # text_q = ''
+    # figGen.drawDistrict('26', "mnationality!='汉族'", "", "exam", config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=["b"])
+    # figGen.drawDistrict('27', "fnationality!='汉族'", "", "exam", config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=["r"])
+    #
+    #
+    # list_a1 = ['(has_content=2 or has_content=4) and faccount_location_city=address_city', '(has_content=2 or has_content=4) and faccount_location_city!=address_city']
+    # list_d1 = ['(has_content=2 or has_content=4) and faccount_location_city is not null and address_city is not null', '(has_content=2 or has_content=4) and faccount_location_city is not null and address_city is not null']
+    # list_a2 = ["has_content between 3 and 4 and maccount_location_city=address_city", "has_content between 3 and 4 and maccount_location_city!=address_city"]
+    # list_d2 = ["has_content between 3 and 4 and maccount_location_city is not null and address_city is not null", "has_content between 3 and 4 and maccount_location_city is not null and address_city is not null"]
+    # list_a = [list_a1, list_a2]
+    # list_d = [list_d1, list_d2]
+    # labels = ['女方', '男方']
+    # xlabels = ['本地', '非本地']
+    # figGen.drawDisease2('28', list_a, list_d, labels, xlabels, "exam", config.year,
+    #                     isSort=False,
+    #                     isPercent=True, complete=True, picType="bar",
+    #                     yLable="百分比（%）")
+    #
+    # list_a = list_a2
+    # list_d = list_d2
+    # labels = xlabels
+    # figGen.drawDiseaseDistrict('29', list_a, list_d, labels, "exam", config.year,
+    #                            isPercent=True, complete=True, picType="spbar",
+    #                            yLable="百分比（%）", hline=False,
+    #                            hasTable=False, figureText="", colorList=[])
+    #
+    # list_a = list_a1
+    # list_d = list_d1
+    # labels = xlabels
+    # figGen.drawDiseaseDistrict('30', list_a, list_d, labels, "exam", config.year,
+    #                            isPercent=True, complete=True, picType="spbar",
+    #                            yLable="百分比（%）", hline=False,
+    #                            hasTable=False, figureText="", colorList=[])
 
 
 def pic3_5(figGen):

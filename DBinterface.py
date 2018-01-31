@@ -156,7 +156,7 @@ class DBInterface:
 
     def sortList(self,dataRaw,sortType = True):
         if sortType:
-            return  sorted(dataRaw, key=lambda dataRaw: dataRaw[1], reverse=1)
+            return sorted(dataRaw, key=lambda dataRaw: dataRaw[1], reverse=1)
         else:
             return sorted(dataRaw, key=lambda dataRaw: dataRaw[1])
 

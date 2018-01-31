@@ -41,15 +41,17 @@ class figureGenerate:
 
     def drawDisease(self,fid, attrExprList, divideExprList,diseaseNameList, dbName,
                     mainType,year, isPercent, complete,xLable=None,yLable=None,picType = "bar",
-                    figureText=""):
+                    figureText="",isSort = True):
         try:
             if mainType == "all":
                 dataRaw = self.dbInf.getDiffDistrictData(attrExprList,divideExprList,diseaseNameList,
                                                          dbName,"all",year,isPercent,complete)
                 dataRaw = [x[0] for x in dataRaw]
-                dataRaw = self.dbInf.sortList(dataRaw)
+                if isSort:
+                    dataRaw = self.dbInf.sortList(dataRaw)
                 data = [[x[1] for x in dataRaw]]
-                labels = diseaseNameList
+
+                labels = [x[0] for x in dataRaw] #仅在画饼图时使用，含义为排序后病的名称
                 xlables = [x[0] for x in dataRaw]
                 id = self.basicDraw(picType, data, labels, xlables,xLable=xLable, yLable=yLable,
                                     hline=False, hasTable=False, figureText=figureText)  # 不带横线
