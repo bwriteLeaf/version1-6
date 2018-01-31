@@ -44,8 +44,8 @@ class DBInterface:
             service_str = "service_code"
 
             if dbName == "early":
-                year_str = "earlyfollowup_time"
-                complete_str = " and earlyyncomplete=1"
+                year_str = "followup_time"
+                complete_str = " and yncomplete=1"
             elif dbName == "outcome":
                 year_str = "followup_time"
                 complete_str = " and yncomplete=1"

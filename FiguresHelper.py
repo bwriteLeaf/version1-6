@@ -51,7 +51,8 @@ class FigureHelper:
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # xAxisLabelList: x轴标签
     # yLabel: y轴标签，可为空
-    def stackedBarPlot(self,dataList, dataLabelList, xAxisLabelList,xLable=None,yLabel=None):
+    def stackedBarPlot(self,dataList, dataLabelList, xAxisLabelList,
+                       xLable=None,yLabel=None,gridcol=(12,11)):
 
         case_cnt = len(dataList)  # 颜色组
 
@@ -63,7 +64,9 @@ class FigureHelper:
         yOffset = np.zeros(len(dataList[0]))
 
         if case_cnt >=4:
-            plt.subplot2grid((1, 12), (0, 0), colspan=11, rowspan=1)
+            c0 = gridcol[0]
+            c1 = gridcol[1]
+            plt.subplot2grid((1, c0), (0, 0), colspan=c1, rowspan=1)
 
         for i in range(0, len(dataList)):
             l = plt.bar(xIndexes, dataList[i], bottom=yOffset, width=0.35)
@@ -73,8 +76,7 @@ class FigureHelper:
         if yLabel is not None:
             plt.ylabel(yLabel)
         plt.xticks(xIndexes, xAxisLabelList)
-        # plt.legend(legends, dataLabelList)
-        # plt.legend(legends, dataLabelList, bbox_to_anchor=(1.01, 1), loc=2, borderaxespad=0.)
+
         bbox_to_anchor = (0.25, 1.02, 0.5, .102)
         if case_cnt >=4:
             bbox_to_anchor = (1.05, 0.65)
@@ -98,8 +100,10 @@ class FigureHelper:
     # xAxisLabelList: x轴标签
     # yLabel: y轴标签，可为空
     # TODO: 调整字体大小
-    def stackedBarPlotWithTable(self,dataList, dataLabelList, xAxisLabelList,xLable=None,yLabel=None):
-        figureId = self.stackedBarPlot(dataList, dataLabelList, xAxisLabelList, yLabel)
+    def stackedBarPlotWithTable(self,dataList, dataLabelList, xAxisLabelList,
+                                xLable=None,yLabel=None,gridcol=(12,11)):
+        figureId = self.stackedBarPlot(dataList, dataLabelList, xAxisLabelList,
+                                       xLable=xLable, yLabel=yLabel, gridcol=gridcol)
 
         table = plt.table(cellText=dataList,
                           rowLabels=dataLabelList,
@@ -115,8 +119,10 @@ class FigureHelper:
     # dataList: 待绘制的数据集，为小数
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # xAxisLabelList: x轴标签
-    def stackedBarPlotWithPercentage(self,dataList, dataLabelList, xAxisLabelList,xLable=None,yLabel=None):
-        figureId = self.stackedBarPlot(dataList, dataLabelList, xAxisLabelList)
+    def stackedBarPlotWithPercentage(self,dataList, dataLabelList, xAxisLabelList,
+                                     xLable=None,yLabel=None,gridcol=(12,11)):
+        figureId = self.stackedBarPlot(dataList, dataLabelList, xAxisLabelList,
+                                       xLable=xLable, yLabel=yLabel, gridcol=gridcol)
         plt.figure(figureId)
         yIndex = np.arange(0, 110, 10)
         plt.yticks(yIndex, list(map(lambda x: "%d%%" % x, yIndex)))
@@ -129,7 +135,8 @@ class FigureHelper:
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # xAxisLabelList: y轴标签
     # yLabel: y轴标签，可为空
-    def stackedHorizontalBarPlot(self,dataList, dataLabelList, yAxisLabelList,xLable=None,yLabel=None):
+    def stackedHorizontalBarPlot(self,dataList, dataLabelList, yAxisLabelList,
+                                 xLable=None,yLabel=None,gridcol=(12,11)):
         matplotlib.rcParams['font.sans-serif'] = 'Microsoft YaHei'
         figureId = self.gernerateFigure()
         if len(dataList) == 0:
@@ -144,6 +151,11 @@ class FigureHelper:
         yIndexes = np.arange(n_groups)
         xOffset = np.zeros(n_groups)
 
+        if case_cnt >=4:
+            c0 = gridcol[0]
+            c1 = gridcol[1]
+            plt.subplot2grid((1, c0), (0, 0), colspan=c1, rowspan=1)
+
         for i in range(0, case_cnt):
             dataListIr = list(reversed(dataList[i]))
             l = plt.barh(yIndexes, dataListIr, 0.35, left=xOffset,
@@ -154,8 +166,15 @@ class FigureHelper:
         if yLabel is not None:
             plt.ylabel(yLabel)
         plt.yticks(yIndexes, yAxisLabelListr)
-        plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, 1.02, 0.5, .102), loc=3,
-                   ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
+
+        bbox_to_anchor = (0.25, 1.02, 0.5, .102)
+        if case_cnt >= 4:
+            bbox_to_anchor = (1.05, 0.65)
+            plt.legend(legends, dataLabelList, bbox_to_anchor=bbox_to_anchor, loc=2,
+                       borderaxespad=0.)
+        else:
+            plt.legend(legends, dataLabelList, bbox_to_anchor=bbox_to_anchor, loc=3,
+                       ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
 
         return figureId
 
@@ -164,8 +183,10 @@ class FigureHelper:
     # dataList: 待绘制的数据集，为小数
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # xAxisLabelList: x轴标签
-    def stackedHorizontalBarPlotWithPercentage(self,dataList, dataLabelList, yAxisLabelList,xLable=None,yLabel=None):
-        figureId = self.stackedHorizontalBarPlot(dataList, dataLabelList, yAxisLabelList)
+    def stackedHorizontalBarPlotWithPercentage(self,dataList, dataLabelList, yAxisLabelList,
+                                               xLable=None,yLabel=None,gridcol=(12,11)):
+        figureId = self.stackedHorizontalBarPlot(dataList, dataLabelList, yAxisLabelList,
+                                                 xLable=xLable,yLabel=yLabel,gridcol=gridcol)
         plt.figure(figureId)
         xIndex = np.arange(0, 110, 10)
         plt.xticks(xIndex, list(map(lambda x: "%d%%" % x, xIndex)))
@@ -227,7 +248,8 @@ class FigureHelper:
     # hasTable 是否带表格，TRUE表示带表格
     # figureText: 长度为0表示不添加文字 ，否则添加“：数值”
     def compoundBarPlot(self,dataList, dataLabelList, xAxisLabelList, xLable=None, yLable='百分比（%）',
-                        hline = False, hasTable = False,figureText = "",colorList = [],indent = False):
+                        hline = False, hasTable = False,figureText = "",colorList = [],
+                        isPercent=True,indent = False):
         case_cnt = len(dataList)
         n_groups = len(dataList[0])
         legends = []
@@ -267,7 +289,10 @@ class FigureHelper:
 
                     width = rect.get_width()
                     xloc = rect.get_x() + width / 2.0
-                    showStr = '%.2f' % dataList[i][j]
+                    if isPercent:
+                        showStr = '%.2f' % dataList[i][j]
+                    else:
+                        showStr = '%d' % dataList[i][j]
 
                     # Center the text vertically in the bar
                     yloc = rect.get_height()*1.02
@@ -318,7 +343,8 @@ class FigureHelper:
     # dataList: 待绘制的数据集，为小数
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # yAxisLabelList: y轴标签
-    def horizontalBarPlot(self,dataList, dataLabelList, yAxisLabelList,xLable='百分比',yLabel=None):
+    def horizontalBarPlot(self,dataList, dataLabelList, yAxisLabelList,
+                          xLable='百分比',yLabel=None, colorList=[]):
         case_cnt = len(dataList)
         n_groups = len(dataList[0])
         legends = []
@@ -326,7 +352,7 @@ class FigureHelper:
         yAxisLabelListr = list(reversed(yAxisLabelList))
 
         bar_width = 0.35  # TODO 修改宽度适合于制定图像
-        opacity = 0.5
+        opacity = 0.9
 
         figureId = self.gernerateFigure()
         if len(dataList) == 0:
@@ -335,8 +361,15 @@ class FigureHelper:
         yIndexes = np.arange(n_groups)
         for i in range(0, case_cnt):
             dataListIr = list(reversed(dataList[i]))
-            rects = plt.barh(yIndexes + i * bar_width, dataListIr, bar_width, alpha=opacity,
-                             label=dataLabelList[i])
+            index = yIndexes + i * bar_width
+            if len(colorList) == 0:
+                rects = plt.barh(index, dataListIr, bar_width, alpha=opacity,
+                            label=dataLabelList[i])
+            else:
+                use_color = colorList[i]
+                rects = plt.barh(index, dataListIr, bar_width, alpha=opacity,
+                            label=dataLabelList[i], color=use_color)
+
             rect_labels = []
             j = 0
             for rect in rects:
@@ -360,8 +393,9 @@ class FigureHelper:
             legends.append(rects)
 
             plt.xlabel(xLable)
-            plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, 1.02, 0.5, .102), loc=3,
-                       ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
+            if case_cnt >= 2:
+                plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, 1.02, 0.5, .102), loc=3,
+                           ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
 
             plt.yticks(yIndexes + bar_width * (case_cnt - 1) / case_cnt, yAxisLabelListr)
 
@@ -371,21 +405,30 @@ class FigureHelper:
     # 绘制饼图
     # dataList: 待绘制的数据集，为小数
     # dataLabelList: 与dataList相对应的标签，被用作图例
-    def pieChartPlot(self,dataList, dataLabelList):
+    def pieChartPlot(self,dataList, dataLabelList,textIn=False):
+        case_cnt = len(dataLabelList)
         figureId = self.gernerateFigure()
         legends = []
         if len(dataList) == 0:
             return None
-        # TODO 饼图的数字重叠问题
+
+        # if case_cnt >=4:
+        #     c0 = gridcol[0]
+        #     c1 = gridcol[1]
+        #     plt.subplot2grid((1, c0), (0, 0), colspan=c1, rowspan=1)
+
+        # 饼图的数字重叠问题
         # explode = (0, 0, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
-        l = plt.pie(dataList, labels=dataLabelList, autopct='%1.2f%%',
-                    shadow=True, startangle=90, counterclock=False, pctdistance = 1.3, labeldistance = 5)
+        if textIn:
+            l = plt.pie(dataList, labels=dataLabelList, autopct='%1.2f%%',
+                    shadow=True, startangle=90, counterclock=False, pctdistance = 0.8, labeldistance = 5)
+        else:
+            l = plt.pie(dataList, labels=dataLabelList, autopct='%1.2f%%',
+                        shadow=True, startangle=90, counterclock=False, pctdistance=1.2, labeldistance = 5)
         #
         legends.append(l)
         plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
         plt.legend()
-        #   plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, 1.02, 0.5, .102), loc=3,
-        #             ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
         return figureId
 
 
@@ -452,16 +495,25 @@ if __name__ == '__main__':
     figureHelper = FigureHelper([8, 4.8])
 
 
-    data = [figureHelper.randomList(8), figureHelper.randomList(8), figureHelper.randomList(8), figureHelper.randomList(8), figureHelper.randomList(8)]
+    data = [figureHelper.randomList(8), figureHelper.randomList(8), figureHelper.randomList(8),
+            figureHelper.randomList(8), figureHelper.randomList(8), figureHelper.randomList(8), figureHelper.randomList(8)]
     for d in data:
         print(d)
 
-    labels = ['<=20', '21-25', '26-30', '31-35', '>=36']
+    labels = ['农民','工人','服务业','经商','家务','教师/公务员/职员','其它']
     xlables = ["接触\n噪音","接触\n猫狗","接触有\n机溶剂","接触\n高温","接触\n放射线","接触\n重金属","接触\n农药","接触\n震动"]
     # 累计条图
-    id1 = figureHelper.stackedBarPlot(data, labels, xlables, 'test')
-    f = plt.figure(id1)
-    f.savefig('test3.png')
+    # id1 = figureHelper.stackedHorizontalBarPlot(data, labels, xlables, 'test',gridcol=(24,19))
+    # f = plt.figure(id1)
+    # f.savefig('test3.png')
+    #
+
+    # 饼图
+    pieChartData = [0.31, 16.3, 7.82, 0.02, 69.08, 3.47, 3.00]
+    pieLabels = ['农民','工人','服务业','经商','家务','教师/公\n务员/职员','其它']
+    id4 = figureHelper.pieChartPlot(pieChartData, pieLabels,textIn=True)  # TODO: piechart 单独设计
+    f = plt.figure(id4)
+    f.savefig('test4.png')
 
     #百分累计条图
     # id2 = figureHelper.stackedBarPlotWithPercentage([[40, 30, 30], [50, 20, 30], [10, 50, 40]], ['1', '2', '3'],
@@ -509,12 +561,6 @@ if __name__ == '__main__':
     # f = plt.figure(id11)
     # f.savefig('11.png')
 
-    # 饼图
-    # pieChartData = [0.31, 16.3, 7.82, 0.02, 69.08, 6.47]
-    # pieLabels = ['l1', 'l2', 'l3', 'l4', 'l5', 'l6']
-    # id4 = figureHelper.pieChartPlot(pieChartData, pieLabels)  # TODO: piechart 单独设计
-    # f = plt.figure(id4)
-    # f.savefig('4.png')
 
     # 复式线图
     # compLineData = [[37.27, 39.62, 60.17, 83.62, 90.65], [32.59, 17.25, 31.2, 79.3, 90.65]]
