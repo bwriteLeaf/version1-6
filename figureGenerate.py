@@ -174,7 +174,10 @@ class figureGenerate:
 
             dataRaw = self.dbInf.timeArray(dataRawList)
             if isSort:
-                dataRaw = self.dbInf.sortArray(dataRaw)
+                if picType =='sbar':
+                    dataRaw = self.dbInf.sortArray(dataRaw,sortType=False)
+                else:
+                    dataRaw = self.dbInf.sortArray(dataRaw)
             else:
                 dataRaw = self.dbInf.noSortArray(dataRaw)
 

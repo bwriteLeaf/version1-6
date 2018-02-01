@@ -112,7 +112,7 @@ class DBInterface:
         return dif_list
 
     #对一个二维数组进行排序
-    def sortArray(self,dataRaw):
+    def sortArray(self,dataRaw,sortType = True):
         all_list = []
         for i in range(0, len(dataRaw)):
             data_now = dataRaw[i]
@@ -121,7 +121,11 @@ class DBInterface:
                     all_list.append(list(data_now[j]))
                 else:
                     all_list[j].append(data_now[j][1])
-        sorted_list = sorted(all_list, key=lambda all_list: all_list[1], reverse=1)
+
+        if sortType:
+            sorted_list = sorted(all_list, key=lambda all_list: all_list[1], reverse=1)
+        else:
+            sorted_list = sorted(all_list, key=lambda all_list: all_list[1])
         return sorted_list
 
         # 对一个二维数组不进行排序返回类似格式
