@@ -162,7 +162,8 @@ class figureGenerate:
 		#添加到List
 
     def drawDisease2(self, fid, attrExprList, divideExprList, labels, xlables, dbName, year, isSort, isPercent,
-                         complete,picType = "bar",yLable=None):
+                         complete,picType = "bar",yLable=None,xLable=None,figureText="",
+                     colorList=[]):
         try:
             dataRawList = []
             n = len(labels)
@@ -174,7 +175,7 @@ class figureGenerate:
 
             dataRaw = self.dbInf.timeArray(dataRawList)
             if isSort:
-                if picType =='sbar':
+                if picType =='hbar':
                     dataRaw = self.dbInf.sortArray(dataRaw,sortType=False)
                 else:
                     dataRaw = self.dbInf.sortArray(dataRaw)
@@ -186,8 +187,8 @@ class figureGenerate:
                 data.append([x[i + 1] for x in dataRaw])
 
             xlables = [x[0] for x in dataRaw]
-            id = self.basicDraw(picType,data, labels, xlables, yLable=yLable,
-                                hline=False, hasTable=False, figureText="")  # 不带横线
+            id = self.basicDraw(picType,data, labels, xlables, yLable=yLable, xLable=xLable,
+                                hline=False, hasTable=False, figureText=figureText,colorList=colorList)  # 不带横线
             f = plt.figure(id)
             f.savefig(fid + '.png')
         except Exception as e:
@@ -200,11 +201,12 @@ class figureGenerate:
             p = None
             if mainType == "bar":
                 p = self.figureHelper.compoundBarPlot(dataList, dataLabelList, xAxisLabelList, xLable, yLable,
-                        hline, hasTable, figureText, colorList,isPercent)
+                        hline, hasTable, figureText, colorList,isPercent,gridcol=gridcol)
             elif mainType == "sbar":
                 p = self.figureHelper.stackedBarPlot(dataList, dataLabelList, xAxisLabelList, xLable, yLable,gridcol)
             elif mainType == "spbar":
-                p = self.figureHelper.stackedBarPlotWithPercentage(dataList, dataLabelList, xAxisLabelList, xLable, yLable,gridcol)
+                p = self.figureHelper.stackedBarPlotWithPercentage(dataList, dataLabelList, xAxisLabelList, xLable,
+                                                                   yLable,gridcol,hasTable=hasTable)
             elif mainType == "stbar":
                 p = self.figureHelper.stackedBarPlotWithTable(dataList, dataLabelList, xAxisLabelList, xLable, yLable,gridcol)
             elif mainType == "hbar":

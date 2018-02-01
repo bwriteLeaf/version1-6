@@ -240,18 +240,10 @@ def pic2(figGen):
 
 def pic3_1(figGen):
     text_q = '全市平均水平'
-    a1 = "(is_born_ill_A=1 or thalassaemia_A =1 or down_syndrome_A=1 or albinism_A=1 or diabetes1_A=1 or blood_sick_A=1 or\
-                        dysgnosia_A=1 or favism_A=1 orcongenital_heart_disease_A=1 or hearing_disorder_A=1 or seeing_disorder_A=1 or infant\
-                        _mortality_A=1 or sterility_A =1 or intermarry =1)"
-    d1 = "(is_born_ill_A is not null or thalassaemia_A  is not null or down_syndrome_A is not null or albinism_A is not null or diabetes1_A is not null or blood_sick_A is not null or\
-                        dysgnosia_A is not null or favism_A is not null orcongenital_heart_disease_A is not null or hearing_disorder_A is not null or seeing_disorder_A is not null or infant\
-                        _mortality_A is not null or sterility_A  is not null or intermarry  is not null)"
-    a2 = "(is_born_ill=1 or thalassaemia =1 or down_syndrome=1 or albinism=1 or diabetes1=1 or blood_sick=1 or\
-                        dysgnosia=1 or favism=1 orcongenital_heart_disease=1 or hearing_disorder=1 or seeing_disorder=1 or infant\
-                        _mortality=1 or sterility =1 or intermarry =1)"
-    d2 = "(is_born_ill is not null or thalassaemia  is not null or down_syndrome is not null or albinism is not null or diabetes1 is not null or blood_sick is not null or\
-                        dysgnosia is not null or favism is not null orcongenital_heart_disease is not null or hearing_disorder is not null or seeing_disorder is not null or infant\
-                        _mortality is not null or sterility  is not null or intermarry  is not null)"
+    a1 = "(is_born_ill_A=1 or thalassaemia_A=1 or down_syndrome_A=1 or albinism_A=1 or diabetes1_A=1 or blood_sick_A=1 or  dysgnosia_A=1 or favism_A=1 or congenital_heart_disease_A=1 or hearing_disorder_A=1 or seeing_disorder_A=1 or infant_mortality_A=1 or sterility_A=1 or intermarry_A=1)"
+    d1 = "(is_born_ill_A is not null or thalassaemia_A is not null or down_syndrome_A is not null or albinism_A is not null or diabetes1_A is not null or blood_sick_A is not null or  dysgnosia_A is not null or favism_A is not null or congenital_heart_disease_A is not null or hearing_disorder_A is not null or seeing_disorder_A is not null or infant_mortality_A is not null or sterility_A is not null or intermarry is not null)"
+    a2 = "(is_born_ill=1 or thalassaemia =1 or down_syndrome=1 or albinism=1 or diabetes1=1 or blood_sick=1 or  dysgnosia=1 or favism=1 or congenital_heart_disease=1 or hearing_disorder=1 or seeing_disorder=1 or infant_mortality=1 or sterility=1 or intermarry=1)"
+    d2 = "(is_born_ill is not null or thalassaemia is not null or down_syndrome is not null or albinism is not null or diabetes1 is not null or blood_sick is not null or  dysgnosia is not null or favism is not null or congenital_heart_disease is not null or hearing_disorder is not null or seeing_disorder is not null or infant_mortality is not null or sterility is not null or intermarry is not null)"
     figGen.drawDistrict('31',a1,d1, "exam",config.year,
                         isPercent=True, complete=True, figureText=text_q,
                         yLable="百分比（%）", colorList=[])

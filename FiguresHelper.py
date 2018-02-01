@@ -120,12 +120,20 @@ class FigureHelper:
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # xAxisLabelList: x轴标签
     def stackedBarPlotWithPercentage(self,dataList, dataLabelList, xAxisLabelList,
-                                     xLable=None,yLabel=None,gridcol=(12,11)):
+                                     xLable=None,yLabel=None,gridcol=(12,11),hasTable=False):
         figureId = self.stackedBarPlot(dataList, dataLabelList, xAxisLabelList,
                                        xLable=xLable, yLabel=yLabel, gridcol=gridcol)
         plt.figure(figureId)
         yIndex = np.arange(0, 110, 10)
         plt.yticks(yIndex, list(map(lambda x: "%d%%" % x, yIndex)))
+        if hasTable:
+            table = plt.table(cellText=dataList,
+                              rowLabels=dataLabelList,
+                              colLabels=xAxisLabelList,
+                              loc='bottom')
+            plt.subplots_adjust(left=0.2, bottom=0.2)
+
+            plt.xticks([])
 
         return figureId
 
@@ -249,21 +257,32 @@ class FigureHelper:
     # figureText: 长度为0表示不添加文字 ，否则添加“：数值”
     def compoundBarPlot(self,dataList, dataLabelList, xAxisLabelList, xLable=None, yLable='百分比（%）',
                         hline = False, hasTable = False,figureText = "",colorList = [],
-                        isPercent=True,indent = False):
+                        isPercent=True,indent = False,gridcol=(12,11)):
         case_cnt = len(dataList)
         n_groups = len(dataList[0])
         legends = []
         bar_width = 0.35
         indent_width = 0.1
+        opacity = 0.9
         xIndexes = np.arange(n_groups)
+
+        figureId = self.gernerateFigure()
 
         if n_groups <= 3 and case_cnt==1:
             bar_width = 0.25
             xIndexes = np.arange(1,3) * 0.4
             print(xIndexes)
-        opacity = 0.9
 
-        figureId = self.gernerateFigure()
+        if case_cnt >= 3:
+            if case_cnt == 3:
+                bar_width = 0.2
+            elif case_cnt == 4:
+                bar_width = 0.18
+            c0 = gridcol[0]
+            c1 = gridcol[1]
+            plt.subplot2grid((1, c0), (0, 0), colspan=c1, rowspan=1)
+
+
         if len(dataList) == 0:
             return None
         for i in range(0, case_cnt):
@@ -307,7 +326,12 @@ class FigureHelper:
             # ax.set_title('Scores by group and gender')
 
         if case_cnt >= 2:
-            plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, 1.02, 0.5, .102), loc=3,
+            if case_cnt >= 3:
+                bbox_to_anchor = (1.05, 0.65)
+                plt.legend(legends, dataLabelList, bbox_to_anchor=bbox_to_anchor, loc=2,
+                           borderaxespad=0.)
+            else:
+                plt.legend(legends, dataLabelList, bbox_to_anchor=(0.25, 1.02, 0.5, .102), loc=3,
                        ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
 
         if hasTable:

@@ -517,14 +517,155 @@ def pic3_5(figGen):
     figGen.drawYearDistrict(114,"(tense_relationship=3 or tense_relationship=4)","tense_relationship is not null","exam",config.year,2,
                            isPercent=True, complete=True,yLable="百分比（%）")
 
+def pic3_1(figGen):
+    text_q = '全市平均水平'
+    a1 = "(is_born_ill=1 or thalassaemia =1 or down_syndrome=1 or albinism=1 or diabetes1=1 or blood_sick=1 or  dysgnosia=1 or favism=1 or congenital_heart_disease=1 or hearing_disorder=1 or seeing_disorder=1 or infant_mortality=1 or sterility=1 or intermarry=1)"
+    d1 = "(is_born_ill is not null or thalassaemia is not null or down_syndrome is not null or albinism is not null or diabetes1 is not null or blood_sick is not null or  dysgnosia is not null or favism is not null or congenital_heart_disease is not null or hearing_disorder is not null or seeing_disorder is not null or infant_mortality is not null or sterility is not null or intermarry is not null)"
+    a2 = "(is_born_ill=1 or thalassaemia =1 or down_syndrome=1 or albinism=1 or diabetes1=1 or blood_sick=1 or  dysgnosia=1 or favism=1 or congenital_heart_disease=1 or hearing_disorder=1 or seeing_disorder=1 or infant_mortality=1 or sterility=1 or intermarry=1)"
+    d2 = "(is_born_ill is not null or thalassaemia is not null or down_syndrome is not null or albinism is not null or diabetes1 is not null or blood_sick is not null or  dysgnosia is not null or favism is not null or congenital_heart_disease is not null or hearing_disorder is not null or seeing_disorder is not null or infant_mortality is not null or sterility is not null or intermarry is not null)"
+    figGen.drawDistrict('31',a1,d1, "exam",config.year,
+                        isPercent=True, complete=True, figureText=text_q,
+                        yLable="百分比（%）", colorList=[])
+    figGen.drawDistrict('32',a2,d2, "exam",config.year,
+                        isPercent=True, complete=True, figureText=text_q,
+                        yLable="百分比（%）", colorList=[])
+
+    figGen.drawYearDistrict('33', a1, d1, "exam", config.year, 2,
+                            isPercent=True, complete=True, yLable="百分比（%）")
+    figGen.drawYearDistrict('34', a2, d2, "exam", config.year, 2,
+                            isPercent=True, complete=True, yLable="百分比（%）")
+
+    list_a1 = ['blood_sick =1', 'favism =1', 'congenital_heart_disease=1',
+               'infant_mortality=1','(hearing_disorder=1 or seeing_disorder=1)','dysgnosia=1']
+    list_a2 = ['blood_sick =1', 'favism =1', 'congenital_heart_disease=1',
+               'infant_mortality=1','(hearing_disorder=1 or seeing_disorder=1)','dysgnosia=1']
+    list_d1 = ['blood_sick  is not null', 'favism  is not null', 'congenital_heart_disease is not null',
+               'infant_mortality is not null','(hearing_disorder is not null or seeing_disorder is not null)','dysgnosia is not null']
+    list_d2 = ['blood_sick  is not null', 'favism  is not null', 'congenital_heart_disease is not null',
+               'infant_mortality is not null','(hearing_disorder is not null or seeing_disorder is not null)','dysgnosia is not null']
+    list_a = [list_a1, list_a2]
+    list_d = [list_d1, list_d2]
+    labels = ['女方', '男方']
+    xlabels = ['地中海贫血', 'G6PD缺乏症', "先天性心脏病", '新生儿或婴\n幼儿死亡史', "内生障碍", '先天性智\n力低下']
+    figGen.drawDisease2('35', list_a, list_d, labels, xlabels, "exam", config.year, isSort=True,
+                        isPercent=True, complete=True, picType="hbar",
+                        xLable="百分比（%）")
+
+    a1 = '(SEA_f like "杂合性突变" or (Alpha37_f like "杂合性突变" or Alpha37_f like "纯合型突变") or (Alpha42_f like "杂合性突变" or Alpha42_f like "纯合型突变") or aCS_f like "杂合性突变" or aWS_f like "杂合性突变" or aOhter_f like "%突变%")'
+    a2 = '(SEA_m like "杂合性突变" or (Alpha37_m like "杂合性突变" or Alpha37_m like "纯合型突变") or (Alpha42_m like "杂合性突变" or Alpha42_m like "纯合型突变") or aCS_m like "杂合性突变" or aWS_m like "杂合性突变" or aOhter_m like "%突变%")'
+    b1 = '(CD14_15_f like "杂合性突变" or CD17_f like "杂合性突变" or CD27_28_f like "杂合性突变" or CD_28_f like "杂合性突变" or CD_29_f like "杂合性突变" or CD_31_f like "杂合性突变" or CD_41_42_f like "杂合性突变" or CD_71_72_f like "杂合性突变" or CAP_f like "杂合性突变" or IntM_f like "杂合性突变" or IVS_5_f like "杂合性突变" or IVS_654_f like "杂合性突变" or Beta_E_f like "杂合性突变" or Beta_Other_f like "%突变%")'
+    b2 = '(CD14_15_m like "杂合性突变" or CD17_m like "杂合性突变" or CD27_28_m like "杂合性突变" or CD_28_m like "杂合性突变" or CD_29_m like "杂合性突变" or CD_31_m like "杂合性突变" or CD_41_42_m like "杂合性突变" or CD_71_72_m like "杂合性突变" or CAP_m like "杂合性突变" or IntM_m like "杂合性突变" or IVS_5_m like "杂合性突变" or IVS_654_m like "杂合性突变" or Beta_E_m like "杂合性突变" or Beta_Other_m like "%突变%")'
+    # list_a1 = ['MCV_f<82', 'MCH_f<27',a1, b1]
+    # list_a2 = ['MCV_m<82', 'MCH_m<27',a2, b2]
+    list_a1 = ['','','','']
+    list_a2 = ['', '', '', '']
+    list_d1 = ['','','','']
+    list_d2 = ['','','','']
+    list_a = [list_a1, list_a2]
+    list_d = [list_d1, list_d2]
+    labels = ['女方', '男方']
+    xlabels = ['MCV', 'MCH', "α地贫", 'β地贫']
+    figGen.drawDisease2('36', list_a, list_d, labels, xlabels, "exam", config.year, isSort=False,
+                        isPercent=True, complete=True, picType="bar",
+                        yLable="百分比（%）",figureText='pass',colorList=['r','b'])
+
+    figGen.figureHelper.nfigsize = [8, 5.8]
+    # list_a = [a1,b1,a2,b2]
+    list_a = ['', '', '', '']
+    list_d = ['','','','']
+    labels = ["女性α地贫", '女性β地贫', "男性α地贫", '男性β地贫']
+    figGen.drawDiseaseDistrict('37', list_a, list_d, labels, "exam", config.year,
+                               isPercent=True, complete=True, picType="bar",
+                               yLable="百分比（%）", hline=False,
+                               hasTable=True, figureText="", colorList=[],gridcol=(24,21))
+    figGen.figureHelper.nfigsize = [8, 4.8]
+
+def pic3_6(figGen):
+
+    list_a = ['(meategg=0)', '(hate_veg=1)', '(raw_meat=1)']
+    list_d = ['', '', '', '']
+    labels = ["素食者", '厌食蔬菜', "食用生肉"]
+    figGen.drawDiseaseDistrict('81', list_a, list_d, labels, "exam", config.year,
+                               isPercent=True, complete=True, picType="bar",
+                               yLable="百分比（%）", hline=False,
+                               hasTable=True, figureText="", colorList=[],gridcol=(24,21))
+
+    list_a = ['(meategg=0)', '(hate_veg=1)', '(raw_meat=1)']
+    list_d = ['', '', '', '']
+    labels = ["素食者", '厌食蔬菜', "食用生肉"]
+    figGen.drawDiseaseDistrict('82', list_a, list_d, labels, "exam", config.year,
+                               isPercent=True, complete=True, picType="bar",
+                               yLable="百分比（%）", hline=False,
+                               hasTable=True, figureText="", colorList=[],gridcol=(24,21))
+    
+    list_a = ['(meategg=0)', '(hate_veg=1)', '(raw_meat=1)']
+    list_d = ['', '', '', '']
+    labels = ["素食者", '厌食蔬菜', "食用生肉"]
+    figGen.drawDiseaseYear('83', list_a, list_d, labels, "exam", config.year, 2,
+                           isPercent=True, complete=True,
+                           yLable="百分比（%）")
+
+    list_a = ['(meategg=0)', '(hate_veg=1)', '(raw_meat=1)']
+    list_d = ['', '', '', '']
+    labels = ["素食者", '厌食蔬菜', "食用生肉"]
+    figGen.drawDiseaseYear('84', list_a, list_d, labels, "exam", config.year, 2,
+                           isPercent=True, complete=True,
+                           yLable="百分比（%）")
+
+    list_a = ['(bmi < 18.5)', '(bmi >= 24 and bmi < 28)', '(bmi >= 28)']
+    list_d = ['', '', '', '']
+    labels = ["低体重", '超重', "肥胖"]
+    figGen.drawDiseaseYear('85', list_a, list_d, labels, "exam", config.year, 2,
+                           isPercent=True, complete=True,
+                           yLable="百分比（%）",isSort = False)
+
+    list_a = ['(bmi < 18.5)', '(bmi >= 24 and bmi < 28)', '(bmi >= 28)']
+    list_d = ['', '', '', '']
+    labels = ["低体重", '超重', "肥胖"]
+    figGen.drawDiseaseYear('86', list_a, list_d, labels, "exam", config.year, 2,
+                           isPercent=True, complete=True,
+                           yLable="百分比（%）",isSort = False)
+
+    figGen.figureHelper.nfigsize = [8, 5.8]
+    list_a = ["(bmi >= 28)", "(bmi >= 24 and bmi < 28)", "(bmi >= 18.5 and bmi < 24)", "(bmi < 18.5)"]
+    list_d = ["bmi is not null", "bmi is not null", "bmi is not null", "bmi is not null"]
+    labels = ["肥胖","偏重","正常","偏瘦"]
+    figGen.drawDiseaseDistrict('87', list_a, list_d, labels, "exam", config.year,
+                               isPercent=True, complete=True, picType="spbar",
+                               yLable="构成比（%）", hline=False,
+                               hasTable=True, figureText="", colorList=[])
+
+    list_a = ["(bmi >= 28)", "(bmi >= 24 and bmi < 28)", "(bmi >= 18.5 and bmi < 24)", "(bmi < 18.5)"]
+    list_d = ["bmi is not null", "bmi is not null", "bmi is not null", "bmi is not null"]
+    labels = ["肥胖","偏重","正常","偏瘦"]
+    figGen.drawDiseaseDistrict('88', list_a, list_d, labels, "exam", config.year,
+                               isPercent=True, complete=True, picType="spbar",
+                               yLable="构成比（%）", hline=False,
+                               hasTable=True, figureText="", colorList=[])
+    figGen.figureHelper.nfigsize = [8, 4.8]
+
+    list_a = ["(anemia=1)", "(bhb<110)"]
+    list_d = ["(is_ill_A is not null and (bhb<110))",'bhb is not null']
+    labels = ["自报患病率", "检出率"]
+    figGen.drawDiseaseDistrict('89', list_a, list_d, labels, "exam", config.year,
+                               isPercent=True, complete=True, picType="bar",
+                               yLable="构成比（%）", hline=False,
+                               hasTable=True, figureText="", colorList=[])
+
+    figGen.drawYearDistrict('90', list_a[0], list_d[0], "exam", config.year, 2,
+                            isPercent=True, complete=True, yLable="百分比（%）")
+    figGen.drawYearDistrict('91', list_a[1], list_d[1], "exam", config.year, 2,
+                            isPercent=True, complete=True, yLable="百分比（%）")
+
+
 
 if __name__ == '__main__':
     config = Config()
     inter = Interpreter(config)
     figGen = figureGenerate(config,inter,[8,4.8])
 
-    pic3_2(figGen)
-    pic3_3(figGen)
+    # pic3_1(figGen)
+    pic3_1(figGen)
 
     # pic2(figGen)
 
