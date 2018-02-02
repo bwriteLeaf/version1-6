@@ -52,7 +52,7 @@ def pic1(figGen):
                                isPercent=True, complete=True, picType="spbar",
                                yLable="百分比（%）", hline=False,
                                hasTable=False,figureText="", colorList=[])
-    text_q = 'pass'
+    text_q = '全市平均水平'
     figGen.drawDistrict('6-2', "dangr_obj between 1 and 3", "complete=1", "exam", config.year,
                         isPercent=True, complete=True, figureText=text_q,
                         yLable="百分比（%）", colorList=["b"])
@@ -199,7 +199,7 @@ def pic2(figGen):
                                yLable="", hline=False,
                                hasTable=False, figureText="", colorList=[],gridcol=(24,21))
 
-    text_q = ''
+    text_q = '全市平均水平'
     figGen.drawDistrict('26', "mnationality!='汉族'", "", "exam", config.year,
                         isPercent=True, complete=True, figureText=text_q,
                         yLable="百分比（%）", colorList=["b"])
@@ -239,7 +239,7 @@ def pic2(figGen):
 
 def pic3_2(figGen):
     # TODO 38为饼柱结合图
-    text_q = 'pass'
+    text_q = '全市平均水平'
     figGen.drawDistrict('39', "bad_pregnancy_result=1", "bad_pregnancy_result is not null", "exam", config.year,
                         isPercent=True, complete=True, figureText=text_q,
                         yLable="百分比（%）", colorList=["r"])
@@ -391,6 +391,67 @@ def pic3_3(figGen):
     figGen.drawYearDistrict('64', list_a[1], list_d[1], "exam", config.year, 2,
                             isPercent=True, complete=True, yLable="百分比（%）")
 
+def pic3_4(figGen):
+    text_q = '全市平均水平'
+    figGen.drawDistrict('65', "(nodule=1 or hb=1 or sexually_infect=1)", "is_ill is not null", "exam",
+                        config.year,
+                        isPercent=True, complete=True, figureText=text_q,
+                        yLable="百分比（%）", colorList=[])
+    figGen.drawDistrict('66', "(nodule=1 or hb=1 or sexually_infect=1)", "is_ill is not null", "exam", config.year,
+                        isPercent=True, complete=True, figureText=text_q,
+                        yLable="百分比（%）", colorList=[])
+    figGen.drawYearDistrict('67', "(nodule=1 or hb=1 or sexually_infect=1)", "is_ill is not null", "exam",
+                            config.year, 2,
+                            isPercent=True, complete=True, yLable="百分比（%）")
+    figGen.drawYearDistrict('68', "(nodule=1 or hb=1 or sexually_infect=1)", "is_ill is not null", "exam",
+                            config.year, 2,
+                            isPercent=True, complete=True, yLable="百分比（%）")
+
+    list_a1 = ['nodule=1', 'hb=1', 'sexually_infect=1']
+    list_a2 = ['nodule=1', 'hb=1', 'sexually_infect=1']
+    list_d1 = ["is_ill is not null", "is_ill is not null", "is_ill is not null"]
+    list_d2 = ["is_ill is not null", "is_ill is not null", "is_ill is not null"]
+    list_a = [list_a1, list_a2]
+    list_d = [list_d1, list_d2]
+    labels = ['女性', '男性']
+    xlabels = ['结核', '乙肝', "性病"]
+    figGen.drawDisease2('69', list_a, list_d, labels, xlabels, "exam", config.year, isSort=True,
+                        isPercent=True, complete=True, picType="bar",
+                        yLable="百分比（%）",figureText="pass")
+
+    figGen.drawDistrict('70', "(cv_igm=1)", "", "exam",
+                        config.year,
+                        isPercent=True, complete=True, figureText=text_q,
+                        yLable="百分比（%）", colorList=[])
+    figGen.drawDistrict('71', "(tg_igm=1)", "", "exam", config.year,
+                        isPercent=True, complete=True, figureText=text_q,
+                        yLable="百分比（%）", colorList=[])
+    figGen.drawDistrict('72', "(rv_igg=1)", "", "exam", config.year,
+                        isPercent=True, complete=True, figureText=text_q,
+                        yLable="百分比（%）", colorList=[])
+
+    list_a = ["hbs_ag=1", "hbs_ag=1"]
+    list_d = ["", ""]
+    labels = ['女性', '男性']
+    figGen.drawDiseaseDistrict('73', list_a, list_d, labels, "exam", config.year,
+                               isPercent=True, complete=True, picType="bar",
+                               yLable="百分比（%）", hline=True,
+                               hasTable=False, figureText="case", colorList=['r', 'b'])
+
+    text_q = '全市平均水平'
+    figGen.drawDistrict('74', "(tpha=1)", "", "exam", config.year,
+                        isPercent=True, complete=True, figureText=text_q,
+                        yLable="百分比（%）", colorList=['b'])
+    figGen.drawDistrict('75', "(micro_sp=1)", "", "exam", config.year,
+                        isPercent=True, complete=True, figureText=text_q,
+                        yLable="百分比（%）", colorList=['r'])
+
+    figGen.drawYearDistrict('76', "(micro_sp=1)", "", "exam",
+                            config.year, 2,
+                            isPercent=True, complete=True, yLable="百分比（%）")
+    figGen.drawYearDistrict('77', "(tpha=1)", "", "exam", config.year, 2,
+                            isPercent=True, complete=True, yLable="百分比（%）")
+
 
 
 def pic3_5(figGen):
@@ -398,68 +459,68 @@ def pic3_5(figGen):
     list_d = ["use_medicine is not null","use_medicine is not null"]
     labels = ["女","男"]
     figGen.figureHelper.nfigsize = [6,4.8]
-    figGen.drawDisease(78,list_a, list_d, labels,"exam", "all",config.year,
+    figGen.drawDisease('78',list_a, list_d, labels,"exam", "all",config.year,
                            isPercent=True, complete=True,picType="bar",
                            yLable="百分比（%）")
     figGen.figureHelper.nfigsize = [8,4.8]
     labels = ["女方","男方"]
-    figGen.drawDiseaseDistrict(79,list_a, list_d, labels,"exam",config.year,
+    figGen.drawDiseaseDistrict('79',list_a, list_d, labels,"exam",config.year,
                            isPercent=True, complete=True,picType="bar",
                            yLable="百分比（%）",hline=False,
                            hasTable=True, figureText="", colorList=[])
 
     labels = ["女","男"]
-    figGen.drawDiseaseYear(80,list_a, list_d, labels,"exam",config.year,2,
+    figGen.drawDiseaseYear('80',list_a, list_d, labels,"exam",config.year,2,
                            isPercent=True, complete=True,
                            yLable="百分比（%）")
 
 
-    text_q = 'pass'
-    figGen.drawDistrict(92,"(smoking=1)","smoking is not null","exam",config.year,
+    text_q = '全市平均水平'
+    figGen.drawDistrict('92',"(smoking=1)","smoking is not null","exam",config.year,
                            isPercent=True,  complete= True,figureText=text_q,
                             yLable="百分比（%）",colorList=["r"])
-    figGen.drawDistrict(93,"(smoking=1)","smoking is not null","exam",config.year,
+    figGen.drawDistrict('93',"(smoking=1)","smoking is not null","exam",config.year,
                            isPercent=True,  complete= True,figureText=text_q,
                             yLable="百分比（%）",colorList=["b"])
 
     list_a = ["second_hand_smoking=1","second_hand_smoking=2"]
     list_d = ["second_hand_smoking is not null","second_hand_smoking is not null"]
     labels = ["经常","偶尔"]
-    figGen.drawDiseaseDistrict(94,list_a, list_d, labels,"exam",config.year,
+    figGen.drawDiseaseDistrict('94',list_a, list_d, labels,"exam",config.year,
                            isPercent=True, complete=True,picType="sbar",
                            yLable="百分比（%）",hline=False,
                            hasTable=True, figureText="", colorList=[])
 
     list_a = ["second_hand_smoking=1","second_hand_smoking=2"]
     list_d = ["second_hand_smoking is not null","second_hand_smoking is not null"]
-    figGen.drawDiseaseDistrict(95,list_a, list_d, labels,"exam",config.year,
+    figGen.drawDiseaseDistrict('95',list_a, list_d, labels,"exam",config.year,
                            isPercent=True, complete=True,picType="sbar",
                            yLable="百分比（%）",hline=False,
                            hasTable=True, figureText="", colorList=[])
 
-    figGen.drawYearDistrict(96,"(smoking=1)","smoking is not null","exam",config.year,2,
+    figGen.drawYearDistrict('96',"(smoking=1)","smoking is not null","exam",config.year,2,
                            isPercent=True, complete=True,yLable="百分比（%）")
-    figGen.drawYearDistrict(97,"(smoking=1)","smoking is not null","exam",config.year,2,
+    figGen.drawYearDistrict('97',"(smoking=1)","smoking is not null","exam",config.year,2,
                            isPercent=True, complete=True,yLable="百分比（%）")
 
     text_q = '全市平均水平'
-    figGen.drawDistrict(98,"(drinking=1 or drinking=2)","drinking is not null","exam",config.year,
+    figGen.drawDistrict('98',"(drinking=1 or drinking=2)","drinking is not null","exam",config.year,
                            isPercent=True,  complete= True,figureText=text_q,
                             yLable="百分比（%）",colorList=[])
-    figGen.drawDistrict(99,"(drinking=1 or drinking=3)","drinking is not null","exam",config.year,
+    figGen.drawDistrict('99',"(drinking=1 or drinking=3)","drinking is not null","exam",config.year,
                            isPercent=True,  complete= True,figureText=text_q,
                             yLable="百分比（%）",colorList=[])
 
-    figGen.drawYearDistrict(100,"(drinking=2)","drinking is not null","exam",config.year,2,
+    figGen.drawYearDistrict('100',"(drinking=2)","drinking is not null","exam",config.year,2,
                            isPercent=True, complete=True,yLable="百分比（%）")
-    figGen.drawYearDistrict(101,"(drinking=3)","drinking is not null","exam",config.year,2,
+    figGen.drawYearDistrict('101',"(drinking=2)","drinking is not null","exam",config.year,2,
                            isPercent=True, complete=True,yLable="百分比（%）")
 
-    text_q = 'pass'
-    figGen.drawDistrict(102,"(pois_expoid is not null)","pois_expoid is not null","exam",config.year,
+    text_q = '全市平均水平'
+    figGen.drawDistrict('102',"(pois_expoid is not null)","pois_expoid is not null","exam",config.year,
                            isPercent=True,  complete= True,figureText=text_q,
                             yLable="百分比（%）",colorList=["b"])
-    figGen.drawDistrict(103,"(pois_expoid is not null)","pois_expoid is not null","exam",config.year,
+    figGen.drawDistrict('103',"(pois_expoid is not null)","pois_expoid is not null","exam",config.year,
                            isPercent=True,  complete= True,figureText=text_q,
                             yLable="百分比（%）",colorList=["r"])
 
@@ -467,20 +528,20 @@ def pic3_5(figGen):
     list_d = ["noise is not null","catdog is not null","new_decoration is not null","high_temperature is not null",
               "radial is not null","lead_hg is not null","pesticide is not null","shake is not null"]
     labels = ["接触\n噪音","接触\n猫狗","接触有\n机溶剂","接触\n高温","接触\n放射线","接触\n重金属","接触\n农药","接触\n震动"]
-    figGen.drawDisease(104,list_a, list_d, labels,"exam", "all",config.year,
+    figGen.drawDisease('104',list_a, list_d, labels,"exam", "all",config.year,
                            isPercent=True, complete=True,picType="bar",
                            yLable="百分比（%）")
     list_a = ["noise=1","catdog=1","new_decoration=1","high_temperature=1","radial=1","lead_hg=1","pesticide=1","shake=1"]
     list_d = ["noise is not null","catdog is not null","new_decoration is not null","high_temperature is not null",
              "radial is not null","lead_hg is not null","pesticide is not null","shake is not null"]
-    figGen.drawDisease(105,list_a, list_d, labels,"exam", "all",config.year,
+    figGen.drawDisease('105',list_a, list_d, labels,"exam", "all",config.year,
                            isPercent=True, complete=True,picType="bar",
                            yLable="百分比（%）")
 
     list_a = ["(pressure=3 or pressure=4)","(pressure=3 or pressure=4)"]
     list_d = ["pressure is not null","pressure is not null"]
     labels = ["女方","男方"]
-    figGen.drawDiseaseDistrict(106,list_a, list_d, labels,"exam",config.year,
+    figGen.drawDiseaseDistrict('106',list_a, list_d, labels,"exam",config.year,
                            isPercent=True, complete=True,picType="bar",
                            yLable="百分比（%）",hline=False,
                            hasTable=True, figureText="", colorList=[])
@@ -488,7 +549,7 @@ def pic3_5(figGen):
     list_a = ["(economic_pressure=3 or economic_pressure=4)","(economic_pressure=3 or economic_pressure=4)"]
     list_d = ["economic_pressure is not null","economic_pressure is not null"]
     labels = ["女方","男方"]
-    figGen.drawDiseaseDistrict(107,list_a, list_d, labels,"exam",config.year,
+    figGen.drawDiseaseDistrict('107',list_a, list_d, labels,"exam",config.year,
                            isPercent=True, complete=True,picType="bar",
                            yLable="百分比（%）",hline=False,
                            hasTable=True, figureText="", colorList=[])
@@ -496,25 +557,25 @@ def pic3_5(figGen):
     list_a = ["(tense_relationship=3 or tense_relationship=4)","(tense_relationship=3 or tense_relationship=4)"]
     list_d = ["tense_relationship is not null","tense_relationship is not null"]
     labels = ["女方","男方"]
-    figGen.drawDiseaseDistrict(108,list_a, list_d, labels,"exam",config.year,
+    figGen.drawDiseaseDistrict('108',list_a, list_d, labels,"exam",config.year,
                            isPercent=True, complete=True,picType="bar",
                            yLable="百分比（%）",hline=False,
                            hasTable=True, figureText="", colorList=[])
 
 
-    figGen.drawYearDistrict(109,"(pressure=3 or pressure=4)","pressure is not null","exam",config.year,2,
+    figGen.drawYearDistrict('109',"(pressure=3 or pressure=4)","pressure is not null","exam",config.year,2,
                            isPercent=True, complete=True,yLable="百分比（%）")
-    figGen.drawYearDistrict(110,"(pressure=3 or pressure=4)","pressure is not null","exam",config.year,2,
-                           isPercent=True, complete=True,yLable="百分比（%）")
-
-    figGen.drawYearDistrict(111,"(economic_pressure=3 or economic_pressure=4)","economic_pressure is not null","exam",config.year,2,
-                           isPercent=True, complete=True,yLable="百分比（%）")
-    figGen.drawYearDistrict(112,"(economic_pressure=3 or economic_pressure=4)","economic_pressure is not null","exam",config.year,2,
+    figGen.drawYearDistrict('110',"(pressure=3 or pressure=4)","pressure is not null","exam",config.year,2,
                            isPercent=True, complete=True,yLable="百分比（%）")
 
-    figGen.drawYearDistrict(113,"(tense_relationship=3 or tense_relationship=4)","tense_relationship is not null","exam",config.year,2,
+    figGen.drawYearDistrict('111',"(economic_pressure=3 or economic_pressure=4)","economic_pressure is not null","exam",config.year,2,
                            isPercent=True, complete=True,yLable="百分比（%）")
-    figGen.drawYearDistrict(114,"(tense_relationship=3 or tense_relationship=4)","tense_relationship is not null","exam",config.year,2,
+    figGen.drawYearDistrict('112',"(economic_pressure=3 or economic_pressure=4)","economic_pressure is not null","exam",config.year,2,
+                           isPercent=True, complete=True,yLable="百分比（%）")
+
+    figGen.drawYearDistrict('113',"(tense_relationship=3 or tense_relationship=4)","tense_relationship is not null","exam",config.year,2,
+                           isPercent=True, complete=True,yLable="百分比（%）")
+    figGen.drawYearDistrict('114',"(tense_relationship=3 or tense_relationship=4)","tense_relationship is not null","exam",config.year,2,
                            isPercent=True, complete=True,yLable="百分比（%）")
 
 def pic3_1(figGen):
@@ -664,9 +725,10 @@ if __name__ == '__main__':
     inter = Interpreter(config)
     figGen = figureGenerate(config,inter,[8,4.8])
 
-    # pic3_1(figGen)
-    pic3_1(figGen)
+    pic3_5(figGen)
+    # pic3_2(figGen)
 
+    # pic1(figGen)
     # pic2(figGen)
 
     figGen.finish()
