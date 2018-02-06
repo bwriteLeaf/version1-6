@@ -286,6 +286,9 @@ class FigureHelper:
 
         if len(dataList) == 0:
             return None
+
+        # xIndexes = xIndexes - (case_cnt - 1)*bar_width/2 +1
+
         for i in range(0, case_cnt):
             index = xIndexes + i * bar_width
             if indent:
@@ -525,7 +528,7 @@ if __name__ == '__main__':
         print(d)
 
     labels = ['农民','工人','服务业','经商','家务','教师/公务员/职员','其它']
-    xlables = ["接触\n噪音","接触\n猫狗","接触有\n机溶剂","接触\n高温","接触\n放射线","接触\n重金属","接触\n农药","接触\n震动"]
+    xlables = ["噪音","猫狗","溶剂","高温","放射线","重金属","农药","震动","农药","震动"]
     # 累计条图
     # id1 = figureHelper.stackedHorizontalBarPlot(data, labels, xlables, 'test',gridcol=(24,19))
     # f = plt.figure(id1)
@@ -552,6 +555,12 @@ if __name__ == '__main__':
     make_a_snapshot('render.html', 'snapshot.png')
 
 
+    # pieChartData = [0.31, 16.3, 7.82, 0.02, 69.08, 3.47, 3.00]
+    # pieLabels = ['农民','工人','服务业','经商','家务','教师/公\n务员/职员','其它']
+    # id4 = figureHelper.pieChartPlot(pieChartData, pieLabels,textIn=True)  # TODO: piechart 单独设计
+    # f = plt.figure(id4)
+    # f.savefig('test4.png')
+
     #百分累计条图
     # id2 = figureHelper.stackedBarPlotWithPercentage([[40, 30, 30], [50, 20, 30], [10, 50, 40]], ['1', '2', '3'],
     #                                    ['abc', 'def', '423'])
@@ -565,13 +574,13 @@ if __name__ == '__main__':
 
 
     #复式条图
-    # compBarData = [figureHelper.randomList(2)]
-    # compBarlabels = ['prapared']
-    # id5 = figureHelper.compoundBarPlot(compBarData, compBarlabels, xlables[0:2],
-    #                     xLable="", yLable="百分比（%）",hline=True,
-    #                     hasTable=False, figureText="",colorList=["r"],indent=True )
-    # f = plt.figure(id5)
-    # f.savefig('5.png')
+    compBarData = [figureHelper.randomList(10),figureHelper.randomList(10)]
+    compBarlabels = ['prapared','prapared']
+    id5 = figureHelper.compoundBarPlot(compBarData, compBarlabels, xlables,
+                        xLable="", yLable="百分比（%）",hline=True,
+                        hasTable=True, figureText="",colorList=["r",'y','b'],indent=False )
+    f = plt.figure(id5)
+    f.savefig('test5.png')
 
     #普通条图 带水平线
     # simpBarData = [figureHelper.randomList(10)]
