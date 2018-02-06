@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pdb
 import os
-import matplotlib.gridspec as gridspec
+from pyecharts import Pie
+from pyecharts_snapshot.main import make_a_snapshot
 
 class FigureHelper:
 
@@ -489,7 +490,6 @@ class FigureHelper:
             plt.xlabel(xLable)
         return figureId
 
-
     # 按元素求和
     def arraySum(self,l, s):
         # 保证l的长度大于等于s的长度
@@ -535,9 +535,22 @@ if __name__ == '__main__':
     # 饼图
     pieChartData = [0.31, 16.3, 7.82, 0.02, 69.08, 3.47, 3.00]
     pieLabels = ['农民','工人','服务业','经商','家务','教师/公\n务员/职员','其它']
-    id4 = figureHelper.pieChartPlot(pieChartData, pieLabels,textIn=True)  # TODO: piechart 单独设计
-    f = plt.figure(id4)
-    f.savefig('test4.png')
+    # id4 = figureHelper.pieChartPlot(pieChartData, pieLabels,textIn=True)  # TODO: piechart 单独设计
+    # f = plt.figure(id4)
+    # f.savefig('test4.png')
+
+    #pyecharts
+    large = 1.3
+    pie = Pie("", title_pos='center', width=800, height=480)
+    pie.add("", ['女方风险', '男方风险', '双方风险','一般人群'], [16.35,3.25,4.7,75.7],
+            radius=[40*large, 55*large], is_label_show=True, legend_pos='left')
+    pie.add("", ['风险人群', '一般人群'], [24.3,75.7], radius=[0*large, 30*large], legend_orient='vertical',
+            legend_pos='left', is_label_show=True,label_formatter='{d}%',label_pos='inside')
+    pie.show_config()
+    pie.render()
+    # print(os.getcwd()+'\\render.html')
+    make_a_snapshot('render.html', 'snapshot.png')
+
 
     #百分累计条图
     # id2 = figureHelper.stackedBarPlotWithPercentage([[40, 30, 30], [50, 20, 30], [10, 50, 40]], ['1', '2', '3'],

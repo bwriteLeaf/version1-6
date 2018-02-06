@@ -14,6 +14,8 @@ import pandas as pd
 from configuration import Config
 from interpreter import Interpreter
 import traceback
+from pyecharts import Pie
+from pyecharts_snapshot.main import make_a_snapshot
 
 class figureGenerate:
     def __init__(self, conf, inter,nfigzise):
@@ -191,6 +193,38 @@ class figureGenerate:
                                 hline=False, hasTable=False, figureText=figureText,colorList=colorList)  # 不带横线
             f = plt.figure(id)
             f.savefig(fid + '.png')
+        except Exception as e:
+            print(traceback.print_exc())
+
+    # diseaseNameList=[内环['风险人群', '一般人群'],外环['女方风险', '男方风险', '双方风险', '一般人群']]
+    # attrExprList=[内环表达式[],外环表达式[]]
+    # data=[内环值[],外环值[]]
+    def drawTwoPie(self,fid, attrExprList, divideExprList,diseaseNameList, dbName,
+                    year, isPercent, complete):
+        try:
+            innerLabel = diseaseNameList[0]
+            outerLabel = diseaseNameList[1]
+
+            dataList = []
+            n = len(diseaseNameList)
+
+            for i in range(0, n):
+                dataNow = self.dbInf.getDiffDistrictData(attrExprList[i], divideExprList[i], diseaseNameList[i],
+                                                         dbName, "all", year, isPercent, complete)
+                dataNow = [x[0] for x in dataNow]
+                data = [[x[1] for x in dataNow]]
+                dataList.append(data)
+
+
+            large = 1.3
+            pie = Pie("", title_pos='center', width=800, height=480)
+            pie.add("", outerLabel, dataList[1],
+                    radius=[40 * large, 55 * large], is_label_show=True, legend_pos='left')
+            pie.add("", innerLabel, dataList[0], radius=[0 * large, 30 * large], legend_orient='vertical',
+                    legend_pos='left', is_label_show=True, label_formatter='{d}%', label_pos='inside')
+            pie.render()
+            make_a_snapshot('render.html', fid+'.png')
+
         except Exception as e:
             print(traceback.print_exc())
 

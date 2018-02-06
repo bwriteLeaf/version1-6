@@ -9,6 +9,7 @@ from DBinterface import DBInterface
 import pandas as pd
 from configuration import Config
 from interpreter import Interpreter
+
 def pic1(figGen):
     list_a = ["(complete=1)","(complete!=1)"]
     list_d = ["",""]

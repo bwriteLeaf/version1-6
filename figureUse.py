@@ -44,6 +44,18 @@ def pic1(figGen):
                                hasTable=False, figureText="pass", colorList=["r", "b"],
                                export=True)
     # TODO 5为饼柱结合图
+    list_a1 = ["(dangr_obj between 1 and 3)", "(dangr_obj = 0)"]
+    list_a2 = ["(dangr_obj=1)", "(dangr_obj = 2)", "(dangr_obj = 3)", "(dangr_obj=0)"]
+    list_d1 = ["", ""]
+    list_d2 = ["", "", "", ""]
+    labels1 = ['风险人群', '一般人群']
+    labels2 = ['女方风险', '男方风险', '双方风险','一般人群']
+    list_a = [list_a1,list_a2]
+    list_d = [list_d1, list_d2]
+    labels = [labels1,labels2]
+    figGen.drawTwoPie('6-1', list_a, list_d, labels, "exam", config.year,
+                               isPercent=True, complete=True)
+
 
     list_a = ["(dangr_obj=0)", "(dangr_obj = 1)","(dangr_obj = 2)","(dangr_obj=3)"]
     list_d = ["", "", "", ""]
@@ -665,8 +677,8 @@ if __name__ == '__main__':
     figGen = figureGenerate(config,inter,[8,4.8])
 
     # pic3_1(figGen)
-    pic3_1(figGen)
+    # pic3_1(figGen)
 
-    # pic2(figGen)
+    pic1(figGen)
 
     figGen.finish()
