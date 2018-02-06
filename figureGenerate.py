@@ -212,12 +212,13 @@ class figureGenerate:
                 dataNow = self.dbInf.getDiffDistrictData(attrExprList[i], divideExprList[i], diseaseNameList[i],
                                                          dbName, "all", year, isPercent, complete)
                 dataNow = [x[0] for x in dataNow]
-                data = [[x[1] for x in dataNow]]
+                data = [x[1] for x in dataNow]
                 dataList.append(data)
 
 
             large = 1.3
-            pie = Pie("", title_pos='center', width=800, height=480)
+            size = 1
+            pie = Pie("", title_pos='center', width=800*size, height=480*size)
             pie.add("", outerLabel, dataList[1],
                     radius=[40 * large, 55 * large], is_label_show=True, legend_pos='left')
             pie.add("", innerLabel, dataList[0], radius=[0 * large, 30 * large], legend_orient='vertical',
