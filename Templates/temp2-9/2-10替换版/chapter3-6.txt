@@ -1,0 +1,39 @@
+{{bt=(select * from exam where archive_code like '{{archive_code}}%' and complete=1 and input_date_archive_ymd between '{{year}}-01-01' and '{{year}}-12-31')}}
+
+[section]营养风险因素
+[subsection]不良饮食习惯
+孕前健康检查主要了解了三道有关饮食结构方面的问题：是否是素食者、是否厌食蔬菜及是否食用生肉。女方与男方素食者比例分别为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_eat_meat_egg_w=0}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%和{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_eat_meat_egg_h=0}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%，厌食蔬菜者比例分别为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_anorexia_vegetables_w=1}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%和{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_anorexia_vegetables_h=1}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%。女方与男方食用生肉的比例分别为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_eat_raw_meat_w=1}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%和{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_eat_raw_meat_h=1}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%。不同地区男女双方饮食习惯情况如图{{label=图81}}、图{{label=图82}}所示。
+{{fig=(81.png, 各区参检女性饮食习惯分布, 图81)}}
+{{fig=(82.png, 各区参检男性饮食习惯分布, 图82)}}
+
+ 
+{{bt=(select * from exam where archive_code like '{{archive_code}}%' and complete=1 and input_date_archive_ymd between '{{year-1}}-01-01' and '{{year-1}}-12-31')}}
+与{{year-1}}年相比，参检女性和男性在素食、厌食蔬菜和食用生肉饮食习惯上所占比例都有所降低。【{{year-1}}数据：女方与男方素食者比例分别为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_eat_meat_egg_w=0}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%和{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_eat_meat_egg_h=0}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%，厌食蔬菜者比例分别为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_anorexia_vegetables_w=1}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%和{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_anorexia_vegetables_h=1}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%。女方与男方食用生肉的比例分别为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_eat_raw_meat_w=1}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%和{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_eat_raw_meat_h=1}}/{{sql:(1,1)= select count(*) from {{bt}}}}*100}}%。】
+{{fig=(83.png, {{year}}年与{{year-1}}年参检女性饮食习惯分布比较, 图83)}}
+{{fig=(84.png, {{year}}年与{{year-1}}年参检男性饮食习惯分布比较, 图84)}}
+ 
+
+
+{{bt=(select * from exam where archive_code like '{{archive_code}}%' and complete=1 and input_date_archive_ymd between '{{year}}-01-01' and '{{year}}-12-31')}}
+[subsection]低体重、超重和肥胖
+按照测量的身高和体重计算身高体重指数（BMI），将BMI<18.5界定为低体重，28>BMI≥24为超重，BMI≥28为肥胖。女性参检人群中低体重、超重和肥胖的比例分别为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where bmi_w<18.5}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%、{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where 24<bmi_w<28}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%和{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where bmi_w>28}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%,男性参检人群低体重、超重和肥胖分别为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where bmi_h<18.5}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%、{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where 24<bmi_h<28}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%和{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where bmi_h>28}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%，说明女性参检人群中体重异常者以低体重者所占比例较高，男性则是超重者较多。与{{year-1}}年比，参检女性和男性人群的超重和肥胖比例均有升高。
+{{bt=(select * from exam where archive_code like '{{archive_code}}%' and complete=1 and input_date_archive_ymd between '{{year-1}}-01-01' and '{{year-1}}-12-31')}}
+【{{year-1}}年数据：女性参检人群中低体重、超重和肥胖的比例分别为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where bmi_w<18.5}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%、{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where 24<bmi_w<28}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%和{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where bmi_w>28}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%,男性参检人群低体重、超重和肥胖分别为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where bmi_h<18.5}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%、{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where 24<bmi_h<28}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%和{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where bmi_h>28}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%】
+如图{{label=图85}}、图{{label=图86}}所示。
+{{fig=(85.png, {{year}}年与{{year-1}}年参检女性体重指数分布比较, 图85)}}
+{{fig=(86.png, {{year}}年与{{year-1}}年参检男性体重指数分布比较, 图86)}}
+
+本年度深圳市各区男女双方参检人群体重指数构成比如图{{label=图87}}、图{{label=图88}}所示。
+{{fig=(87.png, 各区参检女性体重指数分布情况, 图87)}}
+{{fig=(88.png, 各区参检男性体重指数分布情况, 图88)}}
+{{table=表 13深圳市不同地区参检人群体质指数分布情况（%）}}
+
+{{bt=(select * from exam where archive_code like '{{archive_code}}%' and complete=1 and input_date_archive_ymd between '{{year}}-01-01' and '{{year}}-12-31')}}
+[subsection]血红蛋白检测与贫血
+根据血红蛋白（Hb）检测结果，将Hb<110g/L界定为贫血 。按此界定，女方参检对象的贫血患病率为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where check_value_xuechangguixuehongdaiban_w<110}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%，自报贫血患病率为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where suffered_disease_pinxue_w=1}}/{{sql:(1,1)=select count(*) from {{bt}} where is_had_disease_w is not null and check_value_xuechangguixuehongdaiban_w<110}}*100}}%。
+
+{{bt=(select * from exam where archive_code like '{{archive_code}}%' and complete=1 and input_date_archive_ymd between '{{year-1}}-01-01' and '{{year-1}}-12-31')}}
+与{{year-1}}年度相比，女性贫血患病率略有上升【{{year-1}}年数据：{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where check_value_xuechangguixuehongdaiban_w<110}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%】，自报贫血患病率有所上升【{{year-1}}年数据：{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where suffered_disease_pinxue_w=1}}/{{sql:(1,1)=select count(*) from {{bt}} where is_had_disease_w is not null and check_value_xuechangguixuehongdaiban_w<110}}*100}}%】。各区女性贫血检测与自报患病率情况如图{{label=图89}}所示，各区参加健康检查对象的计划怀孕妇女其自报贫血患病率均高于贫血患病率。贫血检出率前三位的地区分别为{{call=getTopk(['check_value_xuechangguixuehongdaiban_w<110'], [''], [], 'exam', 'district', 'texts', 3, {{year}})}}，检出率分别为{{call=getTopk(['check_value_xuechangguixuehongdaiban_w<110'], [''], [], 'exam', 'district', 'nums', 3, {{year}})}}；自报贫血患病率顺位前三位的地区分别为{{call=getTopk(['suffered_disease_pinxue_w=1'], ['is_had_disease_w is not null and check_value_xuechangguixuehongdaiban_w<110'], [], 'exam', 'district', 'texts', 3, {{year}})}}，自报患病率分别为{{call=getTopk(['suffered_disease_pinxue_w=1'], ['is_had_disease_w is not null and check_value_xuechangguixuehongdaiban_w<110'], [], 'exam', 'district', 'nums', 3, {{year}})}}。
+{{fig=(89.png, {{city}}女性贫血与自报患病率的比较, 图89)}}
+{{fig=(90.png, {{year-1}}与{{year}}年女性自报贫血患病率比较, 图90)}}
+{{fig=(91.png, {{year-1}}与{{year}}年女性贫血率比较, 图91)}}

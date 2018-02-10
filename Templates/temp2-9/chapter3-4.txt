@@ -1,0 +1,60 @@
+[section]感染类疾病
+本报告主要通过参检夫妇自报是否患有或曾经患有各种乙肝、结核等疾病，检测生殖道感染、乙肝病毒、梅毒螺旋体、巨细胞病毒、风疹病毒、弓形体等临床实验室检测指标来识别是否患有感染类疾病感染类疾病。
+[subsection]自报患病情况
+孕前健康检查询问了参检夫妇是否患有或曾经患有结核病、乙型肝炎、性病（包括淋病/梅毒/衣原体感染），结果显示深圳市参检对象女性自报患病率为{{expr:float = {{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-01') as bt where nodule_A=1 or hb_A=1 and sexually_infect_A=1}}/{{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-01') as bt where is_ill_A is not null}} * 100}}%。，男性自报患病率为{{expr:float = {{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-01') as bt where nodule=1 or hb=1 and sexually_infect=1}} / {{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-01') as bt where is_ill is not null}} * 100}}%，其中女性排名前三位的地区分别为{{call=getTopk(['nodule_A=1 or hb_A=1 and sexually_infect_A=1'], ['is_ill_A is not null'], [], "exam", 'district', 'texts',3,{{year}})}}，共有6个地区的女性参检人群自报患病率高于全市平均值；男性排名前三位的地区分别为{{call=getTopk(['nodule=1 or hb=1 and sexually_infect=1'], ['is_ill is not null'], [], 'exam', 'district', 'texts',3,{{year}})}}，共有6个地区的男性参检人群自报患病率高于全市平均值。 
+
+***这一整体自报水平相对去年参检人群自报水平略有上升，通过各区县年度比较结果可以看出：女性自报感染类疾病患病率略高于2015年，除福田区、大鹏新区略低于去年水平，其余各区都有不同程度的升高。而除坪山新区、盐田区和福田区外，其余各区男性自报感染类疾病患病率均比2015年有所升高。***
+
+{{fig = (1.png,参检女性自报感染类疾病患病率, 图65)}} 
+{{fig = (1.png,参检男性自报感染类疾病患病率, 图66)}}
+{{fig = (1.png,不同地区参检女性自报感染类疾病患病率年度变化, 图67)}} 
+{{fig = (1.png,不同地区参检男性自报感染类疾病患病率年度变化, 图68)}} 
+{{table=表 9参检人群自报感染类疾病患病率（%）}}
+{{fig = (1.png, 参检人群感染类疾病分病种自报患病率, 图69)}} 
+
+女方参检对象乙型肝炎、结核病以及淋病/梅毒/衣原体感染的自报患病率分别为{{expr:float={{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where hb_A=1}}/{{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where is_ill_A is not null}} * 100}}%、{{expr:float={{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where nodule_A=1}}/{{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where is_ill_A is not null}} * 100}}%，和{{expr:float={{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where sexually_infect_A=1}}/{{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where is_ill_A is not null}} * 100}}%。男方参检对象自报乙型肝炎、结核病以及淋病/梅毒/衣原体感染的自报患病率分别为{{expr:float={{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where hb=1}}/{{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where is_ill is not null}} * 100}}%、{{expr:float={{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where nodule=1}}/{{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where is_ill is not null}} * 100}}%，和{{expr:float={{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where sexually_infect=1}}/{{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31') as bt where is_ill is not null}} * 100}}%。
+
+
+{{bt=(select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year}}-01-01' and '{{year}}-12-31')}}
+[subsection]感染类疾病检测结果
+孕前健康检查主要针对女性参检人群进行了生殖道感染系列检测、乙肝五项检测、梅毒初筛、病原体相关抗体检测（风疹病毒抗体、巨细胞病毒抗体、弓形体抗体），男性参检人群进行了乙肝五项检测和梅毒初筛，各类感染性疾病检出情况总结如下：
+[subsubsection]生殖道感染检测
+本报告分析的生殖道感染包括细菌性阴道病、念珠菌感染、滴虫感染、淋球菌感染及沙眼衣原体感染。根据阴道分泌物检查结果，细菌性阴道病按简略Amsel标准诊断，即满足以下三个条件中的两个：（1）阴道液体PH>4.5，（2）胺臭味实验，（3）显微镜下有线索细胞。女性参检人群生殖道感染前三位的病种分别为阴道念珠菌感染、细菌性阴道病及沙眼衣原体感染，其患病率分别为{{expr:float = {{sql:(1,1)=select count(*) from {{bt}} where leu_monilial=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} * 100}}%、{{expr:float = {{sql:(1,1)=select count(*) from {{bt}} where (leu_clue_cell+leu_amine_odor+leuph) > 1}}/ {{sql:(1,1)=select count(*) from {{bt}}}}* 100}}%和{{expr:float = {{sql:(1,1)=select count(*) from {{bt}} where lchlamydiat=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} * 100}}%。女性生殖道感染排名前三位的地区分别为{{call=getTopk(['leu_monilial=1 or (leu_clue_cell+leu_amine_odor+leuph)>1 or lchlamydiat=1'], [''], [], 'exam', 'district', 'texts', 3, {{year}})}}
+***需要提出注意的是大鹏新区由于检测指标不足，所有人群均无法判断细菌性阴道病患病情况。***
+{{table=表 10女性参检者生殖道感染情况（%）}}
+
+[subsubsection]优生三项检测
+巨细胞病毒感染是最常见的宫内感染，据估计90％以上的感染婴儿出生时症状不明显，但是其中5－17％以后发展成神经性耳聋、脉络视网膜炎、精神发育迟缓以及神经损伤。出生时有症状的婴儿中将近90％将发展成损伤中枢神经系统（CNS）或感觉器官的严重畸形。
+弓形虫是寄生于人和哺乳动物组织细胞内的机会性致病原虫，虫体可通过胎盘导致宫内感染。妊娠1－3个月受到弓形虫感染，约15%胚胎受累；4－6个月约25%；7－9个月约60%。先天性弓形虫病的症状包括脉络视网膜炎、贫血、黄疸、肝肿大、脾肿大、颅内钙化、脑积水或小头畸形以及生长发育受限等。长期后果包括精神发育迟缓、癫痫、严重的视力损害、失明以及听力损害。
+巨细胞病毒和弓形虫新近感染率分别为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where cv_igm=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} * 100}}%和{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where tg_igm=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} * 100}}%。各地区巨细胞病毒和弓形虫新近感染情况如下图所示，
+***可以看出宝安区和光明新区参检女性的巨细胞新近感染率明显高出其他地区，宝安区和罗湖区参检女性的弓形虫新近感染率明显高于其他地方。***
+{{fig = (1.png,各地区女性参检人群巨细胞新近感染率, 图70)}} 
+{{fig = (1.png,各地区女性参检人群弓形虫新近感染率, 图71)}}
+
+风疹病毒抗体检测结果显示在参检妇女中，{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where rv_igg=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} * 100}}%的妇女对风疹病毒具有免疫力，仍有{{expr:float=(1-{{sql:(1,1)=select count(*) from {{bt}} where rv_igg=1}}/{{sql:(1,1)=select count(*) from {{bt}}}}) * 100}}%的育龄妇女对风疹病毒具有易感性，缺乏免疫力。各区对风疹病毒免疫情况如下图所示：{{call=getTopk(['rv_igg=1'], [''], [], 'exam', 'district', 'text', 1, {{year}}, False)}}的育龄女性风疹病毒的免疫力相对较低。
+
+{{fig = (1.png,各地区女性参检人群具有风疹免疫力比例, 图72)}}
+{{table=表11不同地区优生三项筛查阳性率（%）}}
+优生三项检测指标中，弓形虫的新近感染率{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where tg_igm=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} * 100}}%较去年的{{expr:float={{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year-1}}-01-01' and '{{year-1}}-12-31') as bt where tg_igm=1}}/{{sql:(1,1)=select count(*) from (select * from exam where service_code like '{{service_code}}%' and complete=1 and service_time between '{{year-1}}-01-01' and '{{year-1}}-12-31') as bt}} * 100}}%
+***有所下降，尤其宝安区远在全市平均水平之上，而巨细胞新近感染率全市较去年水平略有所上升。***
+
+[subsubsection]乙肝病毒检测
+乙型肝炎病毒（HBV）是一种常见的病毒性传染性疾病，并被证实可通过垂直传播感染胎儿。病史询问结果显示，参检人群乙肝疫苗的接种率均达到50%以上。孕前健康检查对参检夫妇双方的乙肝病毒感染血清学检查结果显示，乙肝表面抗原阳性率女性{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where hbs_ag_A=1}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%，男性为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where hbs_ag=1}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%，均高于夫妇双方自报乙肝患病率（女{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where hb_A=1}}/{{sql:(1,1)=select count(*) from {{bt}} where is_ill_A is not null}}*100}}%，男{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where hb=1}}/{{sql:(1,1)=select count(*) from {{bt}} where is_ill is not null}}*100}}%）。其中，？男方？感染率较高的地区有{{call=getTopk(['hb=1'], ['is_ill is not null'],[], 'exam', 'district', 'texts', 3, {{year}})}}。夫妻双方乙肝病毒感染率情况如下图所示。
+
+{{fig = (1.png,各地区参检人群乙肝表面抗原阳性率, 图73)}}
+{{table=表 12不同地区人群乙肝免疫力水平（%）}}
+
+[subsubsection]梅毒螺旋体筛查
+孕前健康检查对参检夫妇进行了梅毒螺旋体感染筛查，结果表明女性梅毒螺旋体初筛阳性率为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where micro_sp=1}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%，男性梅毒螺旋体初筛阳性率为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where tpha=1}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%，梅毒血清学初筛试验阳性者需做进一步确诊试验，并根据诊断结果提供专业咨询指导和治疗。梅毒螺旋体初筛结果和去年比较，
+***男女方整体平均水平均有所下降***
+，各区初筛阳性率及年度变化情况见下图所示：
+女性人群初筛阳性率排名前三位的是{{call=getTopk(['micro_sp=1'], [''],[], 'exam', 'district', 'texts', 3, {{year}})}}，男性人群初筛阳性率排名前三位的是{{call=getTopk(['tpha=1'], [''],[], 'exam', 'district', 'texts', 3, {{year}})}}，应对以上地区加强宣教，并对感染者提供医疗救治。
+{{fig = (1.png,各地区男性参检人群梅毒初筛阳性率, 图74)}}
+{{fig = (1.png,各地区女性参检人群梅毒初筛阳性率, 图75)}}
+{{fig = (1.png,各地区女性参检人群梅毒初筛阳性率年度变化, 图76)}}
+{{fig = (1.png,各地区男性参检人群梅毒初筛阳性率年度变化, 图77)}}
+
+[subsubsection]HIV
+深圳市对参加孕前优生健康检查的夫妇进行了HIV筛查，其中女方HIV阳性的档案有{{sql:(1,1)= select count(*) from {{bt}} where HIV_f=1}}份，检出率为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where HIV_f=1}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%，主要集中在{{call=getTopk(['HIV_f=1'], [''], [], 'exam', 'district', 'texts', 100, {{year}}, True, False)}}；男方HIV阳性的档案有{{sql:(1,1)=select count(*) from {{bt}} where HIV_m=1}}份，检出率为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where HIV_m=1}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%，主要集中在{{call=getTopk(['HIV_f=1'], [''], [], 'exam', 'district', 'texts', 100, {{year}}, True, False)}}。
+
+{{bt = (select * from exam where service_code like '{{service_code}}%' and complete = 1 and service_time between '{{year}}-01-01' and '{{year}}-12-31')}}
