@@ -26,7 +26,7 @@ def pic1(figGen):
     #                            hline=False,
     #                            hasTable=False, figureText="", colorList=[])
     #
-    # list_a = ["(has_content=2 or has_content=4)", "(has_content between 3 and 4)"]
+    # list_a = ["(informed_consent_signed=0 or informed_consent_signed=2)", "(informed_consent_signed between 0 and 1)"]
     # list_d = ["", ""]
     # labels = ['女性', '男性']
     # figGen.drawDiseaseDistrict('3', list_a, list_d, labels, "exam", config.year,
@@ -101,7 +101,7 @@ def pic1(figGen):
     #
     # text_q = '全市平均水平'
     # #  complete_date 表连接操作
-    # figGen.drawDistrict('10-1', "early.service_code = exam.service_code and early.mens_time - exam.service_time between -30 and 365", "early.service_code = exam.service_code", "exam, early", config.year,
+    # figGen.drawDistrict('10-1', "early.service_code = exam.service_code and early.mens_time - exam.input_date_archive_ymd between -30 and 365", "early.service_code = exam.service_code", "exam, early", config.year,
     #                     isPercent=True, complete=False, figureText=text_q,
     #                     yLable="百分比（%）", colorList=[])
     #
@@ -123,13 +123,13 @@ def pic1(figGen):
     #                    yLable="百分比（%）",figureText="pass")
 
 def pic2(figGen):
-    list_a = ['((DATEDIFF(service_time,mbirthday) div 365) <= 20)',
-     '((DATEDIFF(service_time,mbirthday) div 365) between 21 and 25)',
-     '((DATEDIFF(service_time,mbirthday) div 365) between 26 and 30)',
-     '((DATEDIFF(service_time,mbirthday) div 365) between 31 and 35)',
-     '((DATEDIFF(service_time,mbirthday) div 365) >= 36)']
-    list_d = ['mbirthday is not null', 'mbirthday is not null',
-              'mbirthday is not null', 'mbirthday is not null', 'mbirthday is not null']
+    list_a = ['((DATEDIFF(input_date_archive_ymd,birthday_h) div 365) <= 20)',
+     '((DATEDIFF(input_date_archive_ymd,birthday_h) div 365) between 21 and 25)',
+     '((DATEDIFF(input_date_archive_ymd,birthday_h) div 365) between 26 and 30)',
+     '((DATEDIFF(input_date_archive_ymd,birthday_h) div 365) between 31 and 35)',
+     '((DATEDIFF(input_date_archive_ymd,birthday_h) div 365) >= 36)']
+    list_d = ['birthday_h is not null', 'birthday_h is not null',
+              'birthday_h is not null', 'birthday_h is not null', 'birthday_h is not null']
     labels = ['<=20', '21-25', '26-30', '31-35', '>=36']
     figGen.drawDisease('12', list_a, list_d, labels, "exam", "all", config.year,
                        isPercent=True, complete=True, picType="pie",isSort=False)
@@ -138,13 +138,13 @@ def pic2(figGen):
                                yLable="", hline=False,
                                hasTable=False, figureText="", colorList=[])
     #TODO  饼图篡改标签、标签重合，百分堆积不是百分百、标签重合
-    list_a = ['((DATEDIFF(service_time,fbirthday) div 365) <= 20)',
-             '((DATEDIFF(service_time,fbirthday) div 365) between 21 and 25)',
-             '((DATEDIFF(service_time,fbirthday) div 365) between 26 and 30)',
-             '((DATEDIFF(service_time,fbirthday) div 365) between 31 and 35)',
-             '((DATEDIFF(service_time,fbirthday) div 365) >= 36)']
-    list_d = ['fbirthday is not null', 'fbirthday is not null',
-              'fbirthday is not null', 'fbirthday is not null', 'fbirthday is not null']
+    list_a = ['((DATEDIFF(input_date_archive_ymd,birthday_w) div 365) <= 20)',
+             '((DATEDIFF(input_date_archive_ymd,birthday_w) div 365) between 21 and 25)',
+             '((DATEDIFF(input_date_archive_ymd,birthday_w) div 365) between 26 and 30)',
+             '((DATEDIFF(input_date_archive_ymd,birthday_w) div 365) between 31 and 35)',
+             '((DATEDIFF(input_date_archive_ymd,birthday_w) div 365) >= 36)']
+    list_d = ['birthday_w is not null', 'birthday_w is not null',
+              'birthday_w is not null', 'birthday_w is not null', 'birthday_w is not null']
     labels = ['<=20', '21-25', '26-30', '31-35', '>=36']
     figGen.drawDisease('14', list_a, list_d, labels, "exam", "all", config.year,
                        isPercent=True, complete=True, picType="pie",isSort=False)
@@ -153,20 +153,21 @@ def pic2(figGen):
                                yLable="", hline=False,
                                hasTable=False, figureText="", colorList=[])
 
-    list_a = ['((DATEDIFF(service_time,mbirthday) div 365) = (DATEDIFF(service_time,fbirthday) div 365))',
-             '((DATEDIFF(service_time,mbirthday) div 365) < (DATEDIFF(service_time,fbirthday) div 365))',
-             '((DATEDIFF(service_time,mbirthday) div 365) > (DATEDIFF(service_time,fbirthday) div 365))']
-    list_d = ['fbirthday is not null and mbirthday is not null', 'fbirthday is not null and mbirthday is not null',
-             'fbirthday is not null and mbirthday is not null']
+    list_a = ['((DATEDIFF(input_date_archive_ymd,birthday_h) div 365) = (DATEDIFF(input_date_archive_ymd,birthday_w) div 365))',
+             '((DATEDIFF(input_date_archive_ymd,birthday_h) div 365) < (DATEDIFF(input_date_archive_ymd,birthday_w) div 365))',
+             '((DATEDIFF(input_date_archive_ymd,birthday_h) div 365) > (DATEDIFF(input_date_archive_ymd,birthday_w) div 365))']
+    list_d = ['birthday_w is not null and birthday_h is not null', 'birthday_w is not null and birthday_h is not null',
+             'birthday_w is not null and birthday_h is not null']
     labels = ['同岁', '丈夫比妻子小', '丈夫比妻子大']
     figGen.drawDisease('16', list_a, list_d, labels, "exam", "all", config.year,
                        isPercent=True, complete=True, picType="pie",isSort=False)
 
 
-    list_a = ["medu_level=1", "medu_level=2", "medu_level=3", "medu_level=4", "medu_level=5", "medu_level=6"]
-    list_d = ["medu_level is not null", "medu_level is not null", "medu_level is not null", "medu_level is not null",
-            "medu_level is not null", "medu_level is not null"]
-    labels = ["文盲", "小学", "初中", "高中/中专\n/中技", "大专/大本", "研究生及\n以上"]
+    list_a = ["education_h=1", "education_h=2", "education_h=3", "education_h=4", "education_h=5", "education_h=6",
+              "education_h=7", "education_h=8"]
+    list_d = ["education_h is not null", "education_h is not null", "education_h is not null", "education_h is not null",
+            "education_h is not null", "education_h is not null","education_h is not null", "education_h is not null"]
+    labels = ["文盲", "小学", "初中", "高中/中专\n/中技", "大专", "本科",  "硕士研\n究生","博士研\n究生"]
     figGen.drawDisease('18', list_a, list_d, labels, "exam", "all", config.year,
                        isPercent=True, complete=True, picType="pie",textIn=True,isSort=False)
 
@@ -176,10 +177,11 @@ def pic2(figGen):
                                hasTable=False, figureText="", colorList=[],gridcol=(24,21))
 
 
-    list_a = ["fedu_level=1", "fedu_level=2", "fedu_level=3", "fedu_level=4", "fedu_level=5", "fedu_level=6"]
+    list_a = ["fedu_level=1", "fedu_level=2", "fedu_level=3", "fedu_level=4", "fedu_level=5", "fedu_level=6",
+              "fedu_level=7", "fedu_level=8"]
     list_d = ["fedu_level is not null", "fedu_level is not null", "fedu_level is not null", "fedu_level is not null",
-              "fedu_level is not null", "fedu_level is not null"]
-    labels = ["文盲", "小学", "初中", "高中/中专\n/中技", "大专/大本", "研究生及\n以上"]
+              "fedu_level is not null", "fedu_level is not null","fedu_level is not null", "fedu_level is not null"]
+    labels = ["文盲", "小学", "初中", "高中/中专\n/中技", "大专", "本科",  "硕士研\n究生","博士研\n究生"]
     figGen.drawDisease('20', list_a, list_d, labels, "exam", "all", config.year,
                        isPercent=True, complete=True, picType="pie",textIn=True,isSort=False)
     figGen.drawDiseaseDistrict('21', list_a, list_d, labels, "exam", config.year,
@@ -187,9 +189,9 @@ def pic2(figGen):
                                yLable="", hline=False,
                                hasTable=False, figureText="", colorList=[],gridcol=(24,21))
 
-    list_a = ["mjob=1", "mjob=2", "mjob=3", "mjob=4", "mjob=5", "mjob=6", "mjob=7"]
-    list_d = ["mjob is not null", "mjob is not null", "mjob is not null", "mjob is not null",
-              "mjob is not null", "mjob is not null", "mjob is not null"]
+    list_a = ["occupation_h=1", "occupation_h=2", "occupation_h=3", "occupation_h=4", "occupation_h=5", "occupation_h=6", "occupation_h=7"]
+    list_d = ["occupation_h is not null", "occupation_h is not null", "occupation_h is not null", "occupation_h is not null",
+              "occupation_h is not null", "occupation_h is not null", "occupation_h is not null"]
     labels = ['农民','工人','服务业','经商','家务','教师/公务\n员/职员','其它']
     figGen.drawDisease('22', list_a, list_d, labels, "exam", "all", config.year,
                        isPercent=True, complete=True, picType="pie",textIn=True,isSort=False)
@@ -199,9 +201,9 @@ def pic2(figGen):
                                yLable="", hline=False,
                                hasTable=False, figureText="", colorList=[],gridcol=(24,21))
 
-    list_a = ["fjob=1", "fjob=2", "fjob=3", "fjob=4", "fjob=5", "fjob=6", "fjob=7"]
-    list_d = ["fjob is not null", "fjob is not null", "fjob is not null", "fjob is not null",
-              "fjob is not null", "fjob is not null", "fjob is not null"]
+    list_a = ["occupation_w=1", "occupation_w=2", "occupation_w=3", "occupation_w=4", "occupation_w=5", "occupation_w=6", "occupation_w=7"]
+    list_d = ["occupation_w is not null", "occupation_w is not null", "occupation_w is not null", "occupation_w is not null",
+              "occupation_w is not null", "occupation_w is not null", "occupation_w is not null"]
     labels = ['农民', '工人', '服务业', '经商', '家务', '教师/公务\n员/职员', '其它']
     figGen.drawDisease('24', list_a, list_d, labels, "exam", "all", config.year,
                        isPercent=True, complete=True, picType="pie",textIn=True,isSort=False)
@@ -212,18 +214,18 @@ def pic2(figGen):
                                hasTable=False, figureText="", colorList=[],gridcol=(24,21))
 
     text_q = '全市平均水平'
-    figGen.drawDistrict('26', "mnationality!='汉族'", "", "exam", config.year,
+    figGen.drawDistrict('26', "nation_h!='汉族'", "", "exam", config.year,
                         isPercent=True, complete=True, figureText=text_q,
                         yLable="百分比（%）", colorList=["b"])
-    figGen.drawDistrict('27', "mnationality!='汉族'", "", "exam", config.year,
+    figGen.drawDistrict('27', "nation_w!='汉族'", "", "exam", config.year,
                         isPercent=True, complete=True, figureText=text_q,
                         yLable="百分比（%）", colorList=["r"])
 
 
-    list_a1 = ['(has_content=2 or has_content=4) and faccount_location_city=address_city', '(has_content=2 or has_content=4) and faccount_location_city!=address_city']
-    list_d1 = ['(has_content=2 or has_content=4) and faccount_location_city is not null and address_city is not null', '(has_content=2 or has_content=4) and faccount_location_city is not null and address_city is not null']
-    list_a2 = ["has_content between 3 and 4 and maccount_location_city=address_city", "has_content between 3 and 4 and maccount_location_city!=address_city"]
-    list_d2 = ["has_content between 3 and 4 and maccount_location_city is not null and address_city is not null", "has_content between 3 and 4 and maccount_location_city is not null and address_city is not null"]
+    list_a1 = ['(informed_consent_signed=0 or informed_consent_signed=2) and account_city_w=address_city_w', '(informed_consent_signed=0 or informed_consent_signed=2) and account_city_w!=address_city_w']
+    list_d1 = ['(informed_consent_signed=0 or informed_consent_signed=2) and account_city_w is not null and address_city_w is not null', '(informed_consent_signed=0 or informed_consent_signed=2) and account_city_w is not null and address_city_w is not null']
+    list_a2 = ["informed_consent_signed between 0 and 1 and account_city_h=address_city_w", "informed_consent_signed between 0 and 1 and account_city_h!=address_city_w"]
+    list_d2 = ["informed_consent_signed between 0 and 1 and account_city_h is not null and address_city_w is not null", "informed_consent_signed between 0 and 1 and account_city_h is not null and address_city_w is not null"]
     list_a = [list_a1, list_a2]
     list_d = [list_d1, list_d2]
     labels = ['女方', '男方']
