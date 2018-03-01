@@ -75,10 +75,11 @@ class figureGenerate:
             dataRawList = []
 
             for i in range(0,n):
-                # dataNow = self.dbInf.getDiffDistrictData(attrExprList,divideExprList,diseaseNameList,
-                #                                          dbName,"all",year-(n-1-i),isPercent,complete)
-                dataNow = self.dbInf.getDiffDistrictData(attrExprList, divideExprList, diseaseNameList,
-                                                         dbName, "all", year, isPercent, complete)
+                yearNow = year - (n - 1 - i)
+                dbNameNow = dbName[0:len(dbName) - 4] + str(yearNow)
+                dataNow = self.dbInf.getDiffDistrictData(attrExprList,divideExprList,diseaseNameList,
+                                                         dbNameNow,"all",yearNow,isPercent,complete)
+
                 dataRawList.append(dataNow)
 
             dataRaw = self.dbInf.timeArray(dataRawList)
@@ -136,11 +137,10 @@ class figureGenerate:
             dataRawList = []
 
             for i in range(0, n):
-                # dataNow = self.dbInf.getDistrictData(attrExpr, divideExpr, "", dbName, "district", year - (n - 1 - i), isPercent,
-                #                                      complete)
-                dataNow = self.dbInf.getDistrictData(attrExpr, divideExpr, "", dbName, "district", year, isPercent,
+                yearNow = year - (n - 1 - i)
+                dbNameNow = dbName[0:len(dbName)-4]+str(yearNow)
+                dataNow = self.dbInf.getDistrictData(attrExpr, divideExpr, "", dbNameNow, "district", yearNow, isPercent,
                                                      complete)
-
                 dataRawList.append(dataNow)
 
             dataRaw = self.dbInf.sortArray(dataRawList)

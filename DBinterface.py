@@ -39,9 +39,9 @@ class DBInterface:
             serviceCode = str(serviceCode)
             year = str(year)
 
-            year_str = "service_time"
-            complete_str = " and complete=1"
-            service_str = "service_code"
+            year_str = "input_date_archive_ymd"
+            complete_str = " and iscomplete_ea =2"
+            service_str = "archive_code"
 
             if dbName == "early":
                 year_str = "followup_time"
