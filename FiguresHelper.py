@@ -339,7 +339,8 @@ class FigureHelper:
                        ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
 
         if hasTable:
-            table = plt.table(cellText=dataList,
+
+            table = plt.table(cellText=[float("%.2f" %x) for x in dataList],
                               rowLabels=dataLabelList,
                               colLabels=xAxisLabelList,
                               loc='bottom',
@@ -543,16 +544,16 @@ if __name__ == '__main__':
     # f.savefig('test4.png')
 
     #pyecharts
-    large = 1.3
-    pie = Pie("", title_pos='center', width=800, height=480)
-    pie.add("", ['女方风险', '男方风险', '双方风险','一般人群'], [16.35,3.25,4.7,75.7],
-            radius=[40*large, 55*large], is_label_show=True, legend_pos='left')
-    pie.add("", ['风险人群', '一般人群'], [24.3,75.7], radius=[0*large, 30*large], legend_orient='vertical',
-            legend_pos='left', is_label_show=True,label_formatter='{d}%',label_pos='inside')
-    pie.show_config()
-    pie.render()
-    # print(os.getcwd()+'\\render.html')
-    make_a_snapshot('render.html', 'snapshot.png')
+    # large = 1.3
+    # pie = Pie("", title_pos='center', width=800, height=480)
+    # pie.add("", ['女方风险', '男方风险', '双方风险','一般人群'], [16.35,3.25,4.7,75.7],
+    #         radius=[40*large, 55*large], is_label_show=True, legend_pos='left')
+    # pie.add("", ['风险人群', '一般人群'], [24.3,75.7], radius=[0*large, 30*large], legend_orient='vertical',
+    #         legend_pos='left', is_label_show=True,label_formatter='{d}%',label_pos='inside')
+    # pie.show_config()
+    # pie.render()
+    # # print(os.getcwd()+'\\render.html')
+    # make_a_snapshot('render.html', 'snapshot.png')
 
 
     # pieChartData = [0.31, 16.3, 7.82, 0.02, 69.08, 3.47, 3.00]
@@ -581,6 +582,14 @@ if __name__ == '__main__':
                         hasTable=True, figureText="",colorList=["r",'y','b'],indent=False )
     f = plt.figure(id5)
     f.savefig('test5.png')
+
+    compBarData = [[0.31, 16.3, 7.82, 0.02, 69.08, 3.47, 3.00,0,2,4,5],[0.31, 16.3, 7.82, 0.02, 69.08, 3.47, 3.00,0,2,4,5]]
+    compBarlabels = ['prapared', 'prapared']
+    id5 = figureHelper.compoundBarPlot(compBarData, compBarlabels, xlables,
+                                       xLable="", yLable="百分比（%）", hline=True,
+                                       hasTable=True, figureText="", colorList=["r", 'y', 'b'], indent=False)
+    f = plt.figure(id5)
+    f.savefig('test5-1.png')
 
     #普通条图 带水平线
     # simpBarData = [figureHelper.randomList(10)]

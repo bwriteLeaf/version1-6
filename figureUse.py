@@ -548,9 +548,9 @@ def pic3_5(figGen):
                            isPercent=True, complete=True,yLable="百分比（%）")
 
     text_q = '全市平均水平'
-    figGen.drawDistrict('102',"(is_harmful_environment_h=1)","is_harmful_environment_h is not null","guangdong_yunqianjianchabiao_2017",config.year,
-                           isPercent=True,  complete= True,figureText=text_q,
-                            yLable="百分比（%）",colorList=["b"])
+    # figGen.drawDistrict('102',"(is_harmful_environment_h=1)","is_harmful_environment_h is not null","guangdong_yunqianjianchabiao_2017",config.year,
+    #                        isPercent=True,  complete= True,figureText=text_q,
+    #                         yLable="百分比（%）",colorList=["b"])
     figGen.drawDistrict('103',"(is_harmful_environment_m=1)","is_harmful_environment_m is not null","guangdong_yunqianjianchabiao_2017",config.year,
                            isPercent=True,  complete= True,figureText=text_q,
                             yLable="百分比（%）",colorList=["r"])

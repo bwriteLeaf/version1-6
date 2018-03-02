@@ -43,7 +43,7 @@ class figureGenerate:
 
     def drawDisease(self,fid, attrExprList, divideExprList,diseaseNameList, dbName,
                     mainType,year, isPercent, complete,xLable=None,yLable=None,picType = "bar",
-                    figureText="",isSort = True,textIn=False,upSort = True, colorList=[]):
+                    figureText="pass",isSort = True,textIn=False,upSort = True, colorList=[]):
         try:
             if mainType == "all":
                 dataRaw = self.dbInf.getDiffDistrictData(attrExprList,divideExprList,diseaseNameList,
