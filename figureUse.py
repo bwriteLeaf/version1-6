@@ -491,41 +491,41 @@ def pic3_5(figGen):
     labels = ["女","男"]
     figGen.figureHelper.nfigsize = [6,4.8]
     figGen.drawDisease('78',list_a, list_d, labels,"guangdong_yunqianjianchabiao_2017", "all",config.year,
-                           isPercent=True, complete=True,picType="bar",
+                           isPercent=True, complete=True,picType="bar",figureText="pass",
                            yLable="百分比（%）")
-    figGen.figureHelper.nfigsize = [8,4.8]
-    labels = ["女方","男方"]
-    figGen.drawDiseaseDistrict('79',list_a, list_d, labels,"guangdong_yunqianjianchabiao_2017",config.year,
-                           isPercent=True, complete=True,picType="bar",
-                           yLable="百分比（%）",hline=False,
-                           hasTable=True, figureText="", colorList=[])
+    # figGen.figureHelper.nfigsize = [8,4.8]
+    # labels = ["女方","男方"]
+    # figGen.drawDiseaseDistrict('79',list_a, list_d, labels,"guangdong_yunqianjianchabiao_2017",config.year,
+    #                        isPercent=True, complete=True,picType="bar",
+    #                        yLable="百分比（%）",hline=False,
+    #                        hasTable=True, figureText="", colorList=[])
+    #
+    # labels = ["女","男"]
+    # figGen.drawDiseaseYear('80',list_a, list_d, labels,"guangdong_yunqianjianchabiao_2017",config.year,2,
+    #                        isPercent=True, complete=True,
+    #                        yLable="百分比（%）")
 
-    labels = ["女","男"]
-    figGen.drawDiseaseYear('80',list_a, list_d, labels,"guangdong_yunqianjianchabiao_2017",config.year,2,
-                           isPercent=True, complete=True,
-                           yLable="百分比（%）")
 
-
-    text_q = '全市平均水平'
-    figGen.drawDistrict('92',"(is_somke_w=1)","is_somke_w is not null","guangdong_yunqianjianchabiao_2017",config.year,
-                           isPercent=True,  complete= True,figureText=text_q,
-                            yLable="百分比（%）",colorList=["r"])
-    figGen.drawDistrict('93',"(is_somke_h=1)","is_somke_h is not null","guangdong_yunqianjianchabiao_2017",config.year,
-                           isPercent=True,  complete= True,figureText=text_q,
-                            yLable="百分比（%）",colorList=["b"])
+    # text_q = '全市平均水平'
+    # figGen.drawDistrict('92',"(is_somke_w=1)","is_somke_w is not null","guangdong_yunqianjianchabiao_2017",config.year,
+    #                        isPercent=True,  complete= True,figureText=text_q,
+    #                         yLable="百分比（%）",colorList=["r"])
+    # figGen.drawDistrict('93',"(is_somke_h=1)","is_somke_h is not null","guangdong_yunqianjianchabiao_2017",config.year,
+    #                        isPercent=True,  complete= True,figureText=text_q,
+    #                         yLable="百分比（%）",colorList=["b"])
 
     list_a = ["is_passive_smoking_w=1","is_passive_smoking_w=2"]
     list_d = ["is_passive_smoking_w is not null","is_passive_smoking_w is not null"]
     labels = ["经常","偶尔"]
     figGen.drawDiseaseDistrict('94',list_a, list_d, labels,"guangdong_yunqianjianchabiao_2017",config.year,
-                           isPercent=True, complete=True,picType="sbar",
+                           isPercent=True, complete=True,picType="stbar",
                            yLable="百分比（%）",hline=False,
                            hasTable=True, figureText="", colorList=[])
 
     list_a = ["is_passive_smoking_h=1","is_passive_smoking_h=2"]
     list_d = ["is_passive_smoking_h is not null","is_passive_smoking_h is not null"]
     figGen.drawDiseaseDistrict('95',list_a, list_d, labels,"guangdong_yunqianjianchabiao_2017",config.year,
-                           isPercent=True, complete=True,picType="sbar",
+                           isPercent=True, complete=True,picType="stbar",
                            yLable="百分比（%）",hline=False,
                            hasTable=True, figureText="", colorList=[])
 
@@ -534,13 +534,13 @@ def pic3_5(figGen):
     figGen.drawYearDistrict('97',"(is_somke_h=1)","is_somke_h is not null","guangdong_yunqianjianchabiao_2017",config.year,2,
                            isPercent=True, complete=True,yLable="百分比（%）")
 
-    text_q = '全市平均水平'
-    figGen.drawDistrict('98',"(is_drink_w=1 or is_drink_w=3)","is_drink_w is not null","guangdong_yunqianjianchabiao_2017",config.year,
-                           isPercent=True,  complete= True,figureText=text_q,
-                            yLable="百分比（%）",colorList=[])
-    figGen.drawDistrict('99',"(is_drink_h=1 or is_drink_h=2)","is_drink_h is not null","guangdong_yunqianjianchabiao_2017",config.year,
-                           isPercent=True,  complete= True,figureText=text_q,
-                            yLable="百分比（%）",colorList=[])
+    # text_q = '全市平均水平'
+    # figGen.drawDistrict('98',"(is_drink_w=1 or is_drink_w=3)","is_drink_w is not null","guangdong_yunqianjianchabiao_2017",config.year,
+    #                        isPercent=True,  complete= True,figureText=text_q,
+    #                         yLable="百分比（%）",colorList=[])
+    # figGen.drawDistrict('99',"(is_drink_h=1 or is_drink_h=2)","is_drink_h is not null","guangdong_yunqianjianchabiao_2017",config.year,
+    #                        isPercent=True,  complete= True,figureText=text_q,
+    #                         yLable="百分比（%）",colorList=[])
 
     figGen.drawYearDistrict('100',"(is_drink_w=3)","is_drink_w is not null","guangdong_yunqianjianchabiao_2017",config.year,2,
                            isPercent=True, complete=True,yLable="百分比（%）")
@@ -768,11 +768,13 @@ if __name__ == '__main__':
     inter = Interpreter(config)
     figGen = figureGenerate(config,inter,[8,4.8])
 
-    # pic3_5(figGen)
     # pic3_2(figGen)
+    pic3_5(figGen)
+    pic3_6(figGen)
+
 
     # pic1(figGen)
-    pic2(figGen)
+    # pic2(figGen)
 
 
     figGen.finish()
