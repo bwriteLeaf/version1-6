@@ -241,9 +241,10 @@ class figureGenerate:
                 p = self.figureHelper.stackedBarPlot(dataList, dataLabelList, xAxisLabelList, xLable, yLable,gridcol)
             elif mainType == "spbar":
                 p = self.figureHelper.stackedBarPlotWithPercentage(dataList, dataLabelList, xAxisLabelList, xLable,
-                                                                   yLable,gridcol,hasTable=hasTable)
+                                                                   yLable,gridcol,hasTable=hasTable,isPercent=isPercent)
             elif mainType == "stbar":
-                p = self.figureHelper.stackedBarPlotWithTable(dataList, dataLabelList, xAxisLabelList, xLable, yLable,gridcol)
+                p = self.figureHelper.stackedBarPlotWithTable(dataList, dataLabelList, xAxisLabelList, xLable,
+                                                              yLable,gridcol,isPercent=isPercent)
             elif mainType == "hbar":
                 p = self.figureHelper.horizontalBarPlot(dataList, dataLabelList, xAxisLabelList, xLable, yLable, colorList)
             elif mainType == "hsbar":

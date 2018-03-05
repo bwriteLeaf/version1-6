@@ -102,11 +102,19 @@ class FigureHelper:
     # yLabel: y轴标签，可为空
     # TODO: 调整字体大小
     def stackedBarPlotWithTable(self,dataList, dataLabelList, xAxisLabelList,
-                                xLable=None,yLabel=None,gridcol=(12,11)):
+                                xLable=None,yLabel=None,gridcol=(12,11),isPercent=True):
         figureId = self.stackedBarPlot(dataList, dataLabelList, xAxisLabelList,
                                        xLable=xLable, yLabel=yLabel, gridcol=gridcol)
 
-        table = plt.table(cellText=dataList,
+        case_cnt = len(dataList)  # 颜色组
+        cellText = []
+        for i in range(0, case_cnt):
+            if isPercent:
+                cellApp = [("%.2f" % x) for x in dataList[i]]
+            else:
+                cellApp = [("%d" % x) for x in dataList[i]]
+            cellText.append(cellApp)
+        table = plt.table(cellText=cellText,
                           rowLabels=dataLabelList,
                           colLabels=xAxisLabelList,
                           loc='bottom')
@@ -121,14 +129,22 @@ class FigureHelper:
     # dataLabelList: 与dataList相对应的标签，被用作图例
     # xAxisLabelList: x轴标签
     def stackedBarPlotWithPercentage(self,dataList, dataLabelList, xAxisLabelList,
-                                     xLable=None,yLabel=None,gridcol=(12,11),hasTable=False):
+                                     xLable=None,yLabel=None,gridcol=(12,11),hasTable=False,isPercent=True):
         figureId = self.stackedBarPlot(dataList, dataLabelList, xAxisLabelList,
                                        xLable=xLable, yLabel=yLabel, gridcol=gridcol)
         plt.figure(figureId)
         yIndex = np.arange(0, 110, 10)
         plt.yticks(yIndex, list(map(lambda x: "%d%%" % x, yIndex)))
         if hasTable:
-            table = plt.table(cellText=dataList,
+            case_cnt = len(dataList)  # 颜色组
+            cellText = []
+            for i in range(0, case_cnt):
+                if isPercent:
+                    cellApp = [("%.2f" % x) for x in dataList[i]]
+                else:
+                    cellApp = [("%d" % x) for x in dataList[i]]
+                cellText.append(cellApp)
+            table = plt.table(cellText=cellText,
                               rowLabels=dataLabelList,
                               colLabels=xAxisLabelList,
                               loc='bottom')
@@ -256,6 +272,7 @@ class FigureHelper:
     # vline 是否带横线，TRUE表示带均值横线，包括两条
     # hasTable 是否带表格，TRUE表示带表格
     # figureText: 长度为0表示不添加文字 ，否则添加“：数值”
+    # isPercent 用于表示显示的数字是否为小数 包括矩形上面的和表格中的，表格中保留2位小数点
     def compoundBarPlot(self,dataList, dataLabelList, xAxisLabelList, xLable=None, yLable='百分比（%）',
                         hline = False, hasTable = False,figureText = "",colorList = [],
                         isPercent=True,indent = False,gridcol=(12,11)):
@@ -339,8 +356,16 @@ class FigureHelper:
                        ncol=len(dataLabelList), mode="expand", borderaxespad=0.)
 
         if hasTable:
+            cellText=[]
+            for i in range(0, case_cnt):
+                if isPercent:
+                    cellApp = [("%.2f" % x) for x in dataList[i]]
+                else:
+                    cellApp = [("%d" % x) for x in dataList[i]]
+                cellText.append(cellApp)
 
-            table = plt.table(cellText=[float("%.2f" %x) for x in dataList],
+
+            table = plt.table(cellText=cellText,
                               rowLabels=dataLabelList,
                               colLabels=xAxisLabelList,
                               loc='bottom',
