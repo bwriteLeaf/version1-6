@@ -1,0 +1,50 @@
+[section]生殖风险因素
+生殖风险主要根据计划怀孕妇女的孕育史和生殖系统检查来评估。孕育史中包括既往怀孕妇女的出生缺陷生育史、有两次及以上孕早期自然流产史、死胎死产史和早产史。怀孕妇女具有出生缺陷及其他不良妊娠结局史的，出生缺陷及这些不良妊娠结局的再发风险明显增加。生殖系统检查中主要依照男女双方生殖器官发育异常、生殖系统炎症等对参检夫妇的生殖风险因素进行评估。同时，报告对育龄妇女采用的避孕节育措施进行描述。
+
+{{bt=(select * from yunqianjianchabiao_{{year}} where archive_code like '{{archive_code}}%' and iscomplete_ea=2 or input_date_archive_ymd between '{{year}}-01-01' and '{{year}}-12-31')}}
+[subsection]不良妊娠史
+在填写既往怀孕信息的档案中，有{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where pregnancy_number_w>=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%的计划怀孕妇女曾经怀孕，其中怀孕1次的妇女比例占到{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where pregnancy_number_w=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%，怀孕2次的占到{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where pregnancy_number_w=2}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%，怀孕三次及以上的占到{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where pregnancy_number_w>=3}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%。
+怀孕情况及怀孕次数构成比见图{{label=图38}}所示：和{{year-1}}年既往怀孕情况相比，曾经怀孕比例明显升高。
+{{fig=(1.png, 参检育龄妇女既往怀孕情况构成, 图38)}}
+
+
+参检女性中，发现具有不良妊娠史的妇女比例为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where had_adverse_pregnancy_outcome_w=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%，其中{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where had_defect_child_w=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *1000}}‰人分娩过出生缺陷儿，{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where natural_abortion_number_w>=2}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%人具有两次以上自然流产史，{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where stillbirth_number_w>=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%人既往发生死胎死产，{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where premature_birth_number_w>=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%人有过既往早产史。这一发生率和去年的各项指标相近。根据既往妊娠史来判断计划怀孕妇女的生殖风险，各地区检出情况如图{{label=图39}}所示:可以看出，龙华新区、光明新区、盐田区、罗湖区、龙岗区、南山区、坪山新区、宝安区和大鹏新区【指标10：计算不同地区的不良妊娠结局发生比例(had_adverse_pregnancy_outcome_w=1)。计算方式同指标5。然后列出高于指标5的相应的区名。待实现
+{{call=getTopk(['had_adverse_pregnancy_outcome_w=1'], [''], [], 'yunqianjianchabiao_{{year}}', 'district', 'both', 100, {{year}})}}
+
+】的育龄妇女既往不良妊娠结局的发生比例明显高于全市平均水平，而{{call=getTopk(['had_adverse_pregnancy_outcome_w=1'], [''], [], 'yunqianjianchabiao_{{year}}', 'district', 'text', 1, {{year}}, False)}}参检育龄妇女既往不良妊娠结局的发生率位于全市最低水平。 
+{{fig = (39.png,参检育龄妇女既往不良妊娠史分布情况, 图39)}} 
+
+{{bt=(select * from yunqianjianchabiao_{{year-1}} where archive_code like '{{archive_code}}%' and iscomplete_ea=2 or input_date_archive_ymd between '{{year-1}}-01-01' and '{{year-1}}-12-31')}}
+虽然育龄妇女既往不良妊娠结局发生率的全市平均水平和去年相近【去年数据：{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where had_adverse_pregnancy_outcome_w=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%】，但仔细比较各区两年的发生情况可以看出：除{{call=getDistrictTwoYear(['had_adverse_pregnancy_outcome_w=1'], [''], 'yunqianjianchabiao_{{year}}', 'high')}}略高于去年水平，其它区域不良妊娠结局发生率均有不同程度的下降。
+各区县既往不良妊娠结局发生率及各项指标检出情况见图{{label=图40}}：
+
+{{fig=(40.png, 不同地区育龄女性既往不良妊娠结局发生比例年度变化, 图40)}}
+{{call=drawTable("{{bt}}", 'district', ['had_defect_child_w=1', 'natural_abortion_number_w>=2', 'stillbirth_number_w>=1', 'premature_birth_number_w>=1'], ['', '', '', ''], ['出生缺陷生育史', '两次以上自然流产史', '死胎死产史', '早产史'], '不同地区既往各项不良妊娠结局的检出率（%）', '表4')}}
+
+{{bt=(select * from yunqianjianchabiao_{{year}} where archive_code like "{{archive_code}}%" and iscomplete_ea=2 or input_date_archive_ymd between "{{year}}-01-01" and "{{year}}-12-31")}}
+[subsection]生殖系统检查异常
+本报告对男女双方的生殖系统体格检查结果进行分析。女方生殖系统检查异常项目主要包括女方阴毛异常、乳房异常、外阴异常、阴道异常、分泌物异常、宫颈异常、子宫包块、子宫大小异常、子宫活动度差、和子宫双侧附件异常。男方生殖系统检查异常项目主要包括隐睾、精索静脉曲张、包皮、男方阴毛异常、喉结异常、阴茎异常、附睾异常和输精管异常。完整填写男、女方生殖系统检查信息的档案中，上述项目中有其中任何一项异常，即为这一方的生殖系统检查异常。
+深圳市育龄人群中，女方生殖系统检查异常率为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where pubes_w=0 or bubby_w=0 or vulva_w=0 or vagina_w=0 or secretion_w=0 or cervix_w=0 or uterine_mass_w=1 or (uterine_size_w=1 or uterine_size_w=2) or uterine_activity_w=0 or bilateral_annex_w=0}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%，男方生殖系统检查异常率为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where testis_h=1 or testis_h=2 or testis_h=3 or varicocele_h=1 or prepuce_h=1 or prepuce_h=2 or pubes_h=0 or adam_s_apple_h=0 or penis_h=0 or epididymis_h=0 or spermaduct_h=0}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%，结果显示女方生殖系统检查异常略高于男方。
+
+{{bt=(select * from yunqianjianchabiao_{{year-1}} where archive_code like '{{archive_code}}%' and iscomplete_ea=2 or input_date_archive_ymd between '{{year-1}}-01-01' and '{{year-1}}-12-31')}}
+整体而言，生殖系统检查异常率相对去年的检出水平（女性{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where pubes_w=0 or bubby_w=0 or vulva_w=0 or vagina_w=0 or secretion_w=0 or cervix_w=0 or uterine_mass_w=1 or (uterine_size_w=1 or uterine_size_w=2) or uterine_activity_w=0 or bilateral_annex_w=0}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%，男性{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where testis_h=1 or testis_h=2 or testis_h=3 or varicocele_h=1 or prepuce_h=1 or prepuce_h=2 or pubes_h=0 or adam_s_apple_h=0 or penis_h=0 or epididymis_h=0 or spermaduct_h=0}}/{{sql:(1,1)=select count(*) from {{bt}}}}*100}}%）有所降低。
+不同地区男、女方生殖系统检查异常率见图{{label=图41}}、图{{label=图42}}所示，女方生殖系统检查异常率较高的地区为{{call=getTopk(['pubes_w=0 or bubby_w=0 or vulva_w=0 or vagina_w=0 or secretion_w=0 or cervix_w=0 or uterine_mass_w=1 or (uterine_size_w=1 or uterine_size_w=2) or uterine_activity_w=0 or bilateral_annex_w=0'],[''],[],'yunqianjianchabiao_{{year}}', 'district', 'texts', 3, {{year}})}}。
+男方生殖系统检查异常率较高的地区为{{call=getTopk(['testis_h=1 or testis_h=2 or testis_h=3 or varicocele_h=1 or prepuce_h=1 or prepuce_h=2 or pubes_h=0 or adam_s_apple_h=0 or penis_h=0 or epididymis_h=0 or spermaduct_h=0'],[''],[],'yunqianjianchabiao_{{year}}', 'district', 'texts', 3, {{year}})}}。
+
+{{fig=(41.png, 不同地区女方生殖系统检查异常情况分布, 图41)}}
+{{fig=(42.png, 不同地区男方生殖系统检查异常情况分布, 图42)}}
+{{call=drawTable("{{bt}}", 'district', ['pubes_w=0 or bubby_w=0 or vulva_w=0 or vagina_w=0 or secretion_w=0 or cervix_w=0 or uterine_mass_w=1 or (uterine_size_w=1 or uterine_size_w=2) or uterine_activity_w=0 or bilateral_annex_w=0', 'testis_h=1 or testis_h=2 or testis_h=3 or varicocele_h=1 or prepuce_h=1 or prepuce_h=2 or pubes_h=0 or adam_s_apple_h=0 or penis_h=0 or epididymis_h=0 or spermaduct_h=0'], ['', ''], ['女方生殖系统检查异常, '男方生殖系统检查异常'], '不同地区男、女方生殖系统检查异常率（%）', '表5')}}
+
+女方生殖系统异常主要集中在{{call=getTopk(['pubes_w=0', 'bubby_w=0', 'vulva_w=0', 'vagina_w=0', 'secretion_w=0', 'cervix_w=0', 'uterine_mass_w=1', '(uterine_size_w=1 or uterine_size_w=2)', 'uterine_activity_w=0', 'bilateral_annex_w=0'], ['','','','','','','','','',''], ['阴毛异常', '乳房异常', '外阴异常', '阴道异常', '分泌物异常', '宫颈异常', '子宫包块', '子宫大小异常', '子宫活动度差', '子宫双侧附件异常'], 'yunqianjianchabiao_{{year}}', 'disease', 'texts', 3, {{year}})}}，男方生殖系统异常则主要集中在{{call=getTopk(['(testis_h=1 or testis_h=2 or testis_h=3)', 'varicocele_h=1', '(prepuce_h=1 or prepuce_h=2)', 'pubes_h=0', 'adam_s_apple_h=0', 'penis_h=0', 'epididymis_h=0', 'spermaduct_h=0'], ['','','','','','','',''], ['隐睾', '精索静脉曲张', '包皮', '男方阴毛异常', '喉结异常', '阴茎异常', '附睾异常', '输精管异常'], 'yunqianjianchabiao_{{year}}', 'disease', 'texts', 2, {{year}})}}。
+这一分析结果和去年的结果类似，在个别指标上有所浮动，不同地区男、女各项生殖系统检查指标异常情况见图{{label=图43}}、图{{label=图44}}、表所示。
+
+{{fig=(43.png, 女方生殖系统检查异常指标顺位, 图43)}}
+{{fig=(44.png, 男方生殖系统检查异常指标顺位, 图44)}}
+{{table=表6不同地区生殖系统检查主要异常指标检出率（%）}}
+
+{{bt=(select * from yunqianjianchabiao_{{year}} where archive_code like '{{archive_code}}%' and iscomplete_ea=2 or input_date_archive_ymd between '{{year}}-01-01' and '{{year}}-12-31')}}
+[subsection]避孕节育措施
+参检的计划怀孕夫妇中有{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_contraception_w=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%的育龄夫妇曾采用或正在使用避孕措施。采用的避孕方式主要为避孕套（{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where contraception_biyongtao_w=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%）、宫内节育器（{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where contraception_gongneijieyuqi_w=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%）、自然避孕（{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where contraception_ziranbiyun_w=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%）和口服避孕药（{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where contraception_koufubiyunyao_w=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%），使用其他避孕方式的人群不到参检人群比例的{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where contraception_waiyongbiyunyao_w=1 or contraception_pixiamaizhiji_w=1 or contraception_qitabiyuncuoshi_w=1}}/{{sql:(1,1)=select count(*) from {{bt}}}} *100}}%。采用避孕措施的人群中，平均使用避孕措施的时间为{{expr:int={{sql:(1,1)=select avg(contraception_continuous_time_w) from yunqianjianchabiao_{{year}}}}}}个月，现在停用避孕措施人群构成比为{{expr:float={{sql:(1,1)=select count(*) from {{bt}} where is_stop_contraception_w=1}}/{{sql:(1,1)=select count(*) from {{bt}} where is_contraception_w=1}} *100}}%，目前还在使用避孕措施的人群构成比为{{expr:float=(1-{{sql:(1,1)=select count(*) from {{bt}} where is_stop_contraception_w=1}}/{{sql:(1,1)=select count(*) from {{bt}} where is_contraception_w=1}})*100}}%。和去年相比，采用的避孕措施方式和人群比例差别不大。
+不同地区采用化学性避孕措施（包括宫内节育器、皮下埋植剂、外用药及口服避孕药）的人群比例如图{{label=图45}}所示。
+
+{{fig=(45.png, {{city}}不同地区采取化学性避孕措施人群比例分布, 图45)}}

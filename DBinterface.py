@@ -43,22 +43,27 @@ class DBInterface:
             complete_str = " and iscomplete_ea =2"
             service_str = "archive_code"
 
-            if dbName == "early":
-                year_str = "followup_time"
-                complete_str = " and yncomplete=1"
-            elif dbName == "outcome":
-                year_str = "followup_time"
-                complete_str = " and yncomplete=1"
-            elif dbName == "exam, early":
-                year_str = "exam.complete_date"
-                service_str = "exam.service_code"
+            if dbName == "guangdong_zaoyunsuifangbiao_2017":
+                year_str = "input_date_visitcomplete_y"
+                complete_str = " and iscomplete=2"
+            elif dbName == "guangdong_renshenjiejubiao_2017":
+                year_str = "input_date_visit"
+                complete_str = " and iscomplete=2"
+            elif dbName == "guangdong_yunqianjianchabiao_2017, guangdong_zaoyunsuifangbiao_2017":
+                year_str = "guangdong_yunqianjianchabiao_2017.evaluate_time"
+                service_str = "guangdong_yunqianjianchabiao_2017.archive_code"
 
             sql = "select count(*) from " + dbName + " where "+service_str+" like '" + serviceCode + "%" \
-                     + "' and "+year_str+" between '" + year + "-01-01' and '" + year + "-12-31'"
+                     + "' and "
+            if dbName == "guangdong_zaoyunsuifangbiao_2017":
+                sql = sql +year_str+"="+year
+            else:
+                sql = sql +year_str+" between '" + year + "-01-01' and '" + year + "-12-31'"
             if len(expr) != 0:
                 sql = sql + " and " + expr
             if complete:
                 sql = sql + complete_str
+            print(sql)
             return self.__executeSQL(sql, 1, 1)
 
         except Exception as e:

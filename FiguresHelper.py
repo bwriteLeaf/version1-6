@@ -282,6 +282,8 @@ class FigureHelper:
         bar_width = 0.35
         indent_width = 0.1
         opacity = 0.9
+        if figureText == "case":
+            opacity = 0.8
         xIndexes = np.arange(n_groups)
 
         figureId = self.gernerateFigure()

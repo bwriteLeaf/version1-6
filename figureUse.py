@@ -57,17 +57,17 @@ def pic1(figGen):
     #                            isPercent=True, complete=True)
 
 
-    list_a = ["(risk_population is null)", "(risk_population=2)","(risk_population=1)","(risk_population=0)"]
-    list_d = ["", "", "", ""]
-    labels = ['无高危', '女方', '男方', '双方']
-    figGen.drawDiseaseDistrict('6-1', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
-                               isPercent=True, complete=True, picType="spbar",
-                               yLable="百分比（%）", hline=False,
-                               hasTable=False,figureText="", colorList=[])
-    text_q = '全市平均水平'
-    figGen.drawDistrict('6-2', "risk_population between 0 and 2", "", "guangdong_yunqianjianchabiao_2017", config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=["b"])
+    # list_a = ["(risk_population is null)", "(risk_population=2)","(risk_population=1)","(risk_population=0)"]
+    # list_d = ["", "", "", ""]
+    # labels = ['无高危', '女方', '男方', '双方']
+    # figGen.drawDiseaseDistrict('6-1', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
+    #                            isPercent=True, complete=True, picType="spbar",
+    #                            yLable="百分比（%）", hline=False,
+    #                            hasTable=False,figureText="", colorList=[])
+    # text_q = '全市平均水平'
+    # figGen.drawDistrict('6-2', "risk_population between 0 and 2", "", "guangdong_yunqianjianchabiao_2017", config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=["b"])
     #
     # list_a = ["live_birth_number_w = 0", "live_birth_number_w = 1", "live_birth_number_w >= 2"]
     # list_d = ["live_birth_number_w is not null", "live_birth_number_w is not null", "live_birth_number_w is not null"]
@@ -81,44 +81,46 @@ def pic1(figGen):
     #                            yLable="百分比（%）", hline=False,
     #                            hasTable=False, figureText="", colorList=[])
 
-    # #  early-follow-up time
-    # list_a = ["(bresult=1 or hcg =1)", "(losefollowup=1)"]
-    # list_d = ["yncomplete=1", "yncomplete=1"]
+    #  early-follow-up time
+    # list_a = ["(followup_result=1 or urine_pregnancy=1)", "(followup_result=3)"]
+    # list_d = ["", ""]
     # labels = ["已孕", "失访"]
-    # figGen.drawDiseaseDistrict('8', list_a, list_d, labels, "early", config.year,
-    #                            isPercent=True, complete=True, picType="sbar",
+    # figGen.drawDiseaseDistrict('8', list_a, list_d, labels, "guangdong_zaoyunsuifangbiao_2017", config.year,
+    #                            isPercent=False, complete=True, picType="sbar",
     #                            yLable="档案数量", hline=False,
     #                            hasTable=False, figureText="", colorList=[])
     #
     # # follow-up time
-    # list_a = ["(follow_result='已分娩')", "(losefollowup=1)"]
-    # list_d = ["yncomplete=1", "yncomplete=1"]
+    # list_a = ["(followup_result=1)", "(is_lost =1)"]
+    # list_d = ["", ""]
     # labels = ["已孕档案数", "失访档案数"]
-    # figGen.drawDiseaseDistrict('9', list_a, list_d, labels, "outcome", config.year,
-    #                            isPercent=True, complete=True, picType="sbar",
+    # figGen.drawDiseaseDistrict('9', list_a, list_d, labels, "guangdong_renshenjiejubiao_2017", config.year,
+    #                            isPercent=False, complete=True, picType="sbar",
     #                            yLable="档案数量", hline=False,
     #                            hasTable=False, figureText="", colorList=[])
     #
-    # text_q = '全市平均水平'
-    # #  complete_date 表连接操作
-    # figGen.drawDistrict('10-1', "early.service_code = guangdong_yunqianjianchabiao_2017.service_code and early.mens_time - guangdong_yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365", "early.service_code = guangdong_yunqianjianchabiao_2017.service_code", "guangdong_yunqianjianchabiao_2017, early", config.year,
-    #                     isPercent=True, complete=False, figureText=text_q,
-    #                     yLable="百分比（%）", colorList=[])
+    text_q = '全市平均水平'
+    #  complete_date 表连接操作
+    figGen.drawDistrict('10-1',
+                        "guangdong_zaoyunsuifangbiao_2017.archive_code = guangdong_yunqianjianchabiao_2017.archive_code and guangdong_zaoyunsuifangbiao_2017.last_menstrual_date - guangdong_yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365",
+                        "",
+                        "guangdong_yunqianjianchabiao_2017, guangdong_zaoyunsuifangbiao_2017", config.year,
+                        isPercent=True, complete=False, figureText=text_q,
+                        yLable="百分比（%）", colorList=[])
     #
     # #  follow-up time
-    # list_a = ["normalpre = 1", "normalpre != 1"]
+    # list_a = ["pre_result_type_zhengchanghuochan = 1", "pre_result_type_zhengchanghuochan ！= 1"]
     # list_d = ["", ""]
     # labels = ["正常活产","不良妊娠结局"]
-    # figGen.drawDisease('11-1', list_a, list_d, labels, "outcome", "all", config.year,
+    # figGen.drawDisease('11-1', list_a, list_d, labels, "guangdong_renshenjiejubiao_2017", "all", config.year,
     #                    isPercent=True, complete=True, picType="pie",
     #                    yLable="百分比（%）",textIn=True)
     #
     # #  follow-up time 、yncomplete = 1 ！！ 同步修改getTopK..
-    # list_a = ['natrualpre=1', 'lower_weight=1', 'medicinepre=1', 'bornfault=1', 'earlypre=1', 'treatpre=1', 'differentpre=1',
-    #             'deathpre=1', 'qitapre=1']
+    # list_a = ['pre_result_type_ziranliuchang=1', 'pre_result_type_dichushengtizhong=1', 'pre_result_type_yixuexingrengongliuchang=1', 'pre_result_type_chushengquexian=1', 'pre_result_type_zaochan=1', 'pre_result_type_zhiliaoxingyinchan=1', 'pre_result_type_yiweirenshen=1', 'pre_result_type_sitaisichan=1', 'pre_result_type_qita!="0"']
     # list_d = ['', '', '', '', '', '', '', '', '']
     # labels = ["自然\n流产", "低出生\n体重", "医学性\n人工流产", "出生\n缺陷", "早产","治疗性\n引产", "异位\n妊娠", "死胎\n死产", "其他"]
-    # figGen.drawDisease('11-2', list_a, list_d, labels, "outcome", "all", config.year,
+    # figGen.drawDisease('11-2', list_a, list_d, labels, "guangdong_renshenjiejubiao_2017", "all", config.year,
     #                    isPercent=True, complete=True, picType="bar",
     #                    yLable="百分比（%）",figureText="pass")
 
@@ -268,51 +270,48 @@ def pic3_2(figGen):
     figGen.drawTwoPie('38', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
                       isPercent=True, complete=True)
 
-    text_q = '全市平均水平'
-    figGen.drawDistrict('39', "had_adverse_pregnancy_outcome_w=1", "had_adverse_pregnancy_outcome_w is not null", "guangdong_yunqianjianchabiao_2017", config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=["r"])
-    figGen.drawYearDistrict('40', "had_adverse_pregnancy_outcome_w=1", "had_adverse_pregnancy_outcome_w is not null", "guangdong_yunqianjianchabiao_2017", config.year, 2,
-                            isPercent=True, complete=True, yLable="百分比（%）")
-
-    text_q = '全市平均水平'
-    figGen.drawDistrict('41',
-                        "(pubes_w=1 or bubby_w=1 or vulva_w=1 or vagina_w=1 or secretion_w=1 or cervix_w=1 or uterine_mass_w=1 or (uterine_size_w between 1 and 2) or uterine_activity_w=1 or bilateral_annex_w=1)",
-                        "", "guangdong_yunqianjianchabiao_2017",
-                        config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=[])
-    figGen.drawDistrict('42',
-                        "((testis_h between 1 and 3) or varicocele_h=1 or (prepuce_h between 1 and 2) or pubes_h!=0 or adam_s_apple_h!=0 or penis_h\
-                            !=0 or epididymis_h!=0 or spermaduct_h!=0)",
-                        "", "guangdong_yunqianjianchabiao_2017", config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=[])
-
-
-    list_a = ["pubes_w=1", "bubby_w=1", "vulva_w=1", "vagina_w=1", "secretion_w=1", "cervix_w=1",
-              "uterine_mass_w=1", "uterine_size_w between 1 and 2", "uterine_activity_w=1", "bilateral_annex_w=1"]
-    list_d = ["", "", "", "", "", "", "", "", "", ""]
-    labels = ["阴毛","乳房","外阴","阴道","分泌物","宫颈","子宫\n包块","子宫\n大小","子宫活\n动能力","子宫双\n侧附件"]
-    figGen.drawDisease('43', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", "all", config.year,
-                       isPercent=True, complete=True, picType="bar",
-                       yLable="百分比（%）",figureText="pass")
-
-    list_a = ["testis_h between 1 and 3","varicocele_h=1","prepuce_h between 1 and 2","pubes_h!=0","adam_s_apple_h!=0","penis_h\
-                !=0","epididymis_h!=0","spermaduct_h!=0"]
-    list_d = ["", "", "", "", "", "", "", ""]
-    labels = ["睾丸","精索静\n脉曲张","包皮","阴毛","喉结","阴茎","附睾","输精管"]
-    figGen.drawDisease('44', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", "all", config.year,
-                       isPercent=True, complete=True, picType="bar",
-                       yLable="百分比（%）",figureText="pass")
-
-    text_q = '全市平均水平'
-    figGen.drawDistrict('45',
-                        "(contraception_gongneijieyuqi_w=1 or contraception_pixiamaizhiji_w=1 or contraception_waiyongbiyunyao_w=1 or contraception_koufubiyunyao_w=1)",
-                        "", "guangdong_yunqianjianchabiao_2017",
-                        config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=[])
+    # text_q = '全市平均水平'
+    # figGen.drawDistrict('39', "had_adverse_pregnancy_outcome_w=1", "", "guangdong_yunqianjianchabiao_2017", config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=["r"])
+    # figGen.drawYearDistrict('40', "had_adverse_pregnancy_outcome_w=1", "", "guangdong_yunqianjianchabiao_2017", config.year, 2,
+    #                         isPercent=True, complete=True, yLable="百分比（%）")
+    #
+    # text_q = '全市平均水平'
+    # figGen.drawDistrict('41',
+    #                     "(pubes_w=0 or bubby_w=0 or vulva_w=0 or vagina_w=0 or secretion_w=0 or cervix_w=0 or uterine_mass_w=1 or (uterine_size_w=1 or uterine_size_w=2) or uterine_activity_w=0 or bilateral_annex_w=0)",
+    #                     "", "guangdong_yunqianjianchabiao_2017",
+    #                     config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=[])
+    # figGen.drawDistrict('42',
+    #                     "(testis_h=1 or testis_h=2 or testis_h=3 or varicocele_h=1 or prepuce_h=1 or prepuce_h=2 or pubes_h=0 or adam_s_apple_h=0 or penis_h=0 or epididymis_h=0 or spermaduct_h=0)",
+    #                     "", "guangdong_yunqianjianchabiao_2017", config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=[])
+    #
+    #
+    # list_a = ['pubes_w=0', 'bubby_w=0', 'vulva_w=0', 'vagina_w=0', 'secretion_w=0', 'cervix_w=0', 'uterine_mass_w=1', '(uterine_size_w=1 or uterine_size_w=2)', 'uterine_activity_w=0', 'bilateral_annex_w=0']
+    # list_d = ["", "", "", "", "", "", "", "", "", ""]
+    # labels = ["阴毛","乳房","外阴","阴道","分泌物","宫颈","子宫\n包块","子宫\n大小","子宫活\n动能力","子宫双\n侧附件"]
+    # figGen.drawDisease('43', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", "all", config.year,
+    #                    isPercent=True, complete=True, picType="bar",
+    #                    yLable="百分比（%）",figureText="pass")
+    #
+    # list_a = ['(testis_h=1 or testis_h=2 or testis_h=3)', 'varicocele_h=1', '(prepuce_h=1 or prepuce_h=2)', 'pubes_h=0', 'adam_s_apple_h=0', 'penis_h=0', 'epididymis_h=0', 'spermaduct_h=0']
+    # list_d = ["", "", "", "", "", "", "", ""]
+    # labels = ["睾丸","精索静\n脉曲张","包皮","阴毛","喉结","阴茎","附睾","输精管"]
+    # figGen.drawDisease('44', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", "all", config.year,
+    #                    isPercent=True, complete=True, picType="bar",
+    #                    yLable="百分比（%）",figureText="pass")
+    #
+    # text_q = '全市平均水平'
+    # figGen.drawDistrict('45',
+    #                     "(contraception_gongneijieyuqi_w=1 or contraception_pixiamaizhiji_w=1 or contraception_waiyongbiyunyao_w=1 or contraception_koufubiyunyao_w=1)",
+    #                     "", "guangdong_yunqianjianchabiao_2017",
+    #                     config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=[])
 
 def pic3_3(figGen):
     text_q = '全市平均水平'
@@ -346,9 +345,9 @@ def pic3_3(figGen):
                            isPercent=True, complete=True,
                            yLable="百分比（%）")
 
-    list_a = ['suffered_disease_gaoxueya_h=1', 'suffered_disease_jiazhuangxianjibing_h=1', 'suffered_disease_tangniaobing_h=1']
+    list_a = ['suffered_disease_gaoxueya_h=1', 'suffered_disease_jiazhuangxianjibing_h=1', 'suffered_disease_manxingshenyan_h=1']
     list_d = ['is_had_disease_h is not null', 'is_had_disease_h is not null', 'is_had_disease_h is not null']
-    labels = ["高血压", "甲状腺疾病", "糖尿病"]
+    labels = ["高血压", "甲状腺疾病", "慢性肾炎"]
     figGen.drawDiseaseYear('51', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year, 2,
                            isPercent=True, complete=True,
                            yLable="百分比（%）")
@@ -397,6 +396,7 @@ def pic3_3(figGen):
                                isPercent=True, complete=True, picType="bar",
                                yLable="百分比（%）", hline=False,
                                hasTable=True, figureText="", colorList=['r', 'b'])
+
     figGen.drawYearDistrict('60', list_a[0], list_d[0], "guangdong_yunqianjianchabiao_2017", config.year, 2,
                             isPercent=True, complete=True, yLable="百分比（%）")
     figGen.drawYearDistrict('61', list_a[1], list_d[1], "guangdong_yunqianjianchabiao_2017", config.year, 2,
@@ -415,73 +415,73 @@ def pic3_3(figGen):
                             isPercent=True, complete=True, yLable="百分比（%）")
 
 def pic3_4(figGen):
-    text_q = '全市平均水平'
-    figGen.drawDistrict('65', "(suffered_disease_jihe_w=1 or suffered_disease_yixingganyan_w=1 or suffered_disease_linbingmeiduyiyuanti_w=1)",
-                        "is_had_disease_w is not null", "guangdong_yunqianjianchabiao_2017",
-                        config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=[])
-    figGen.drawDistrict('66', "(suffered_disease_jiehe_h=1 or suffered_disease_yixingganyan_h=1 or suffered_disease_linbingmeiduyiyuanti_h=1)",
-                        "is_had_disease_h is not null", "guangdong_yunqianjianchabiao_2017", config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=[])
-    figGen.drawYearDistrict('67', "(suffered_disease_jihe_w=1 or suffered_disease_yixingganyan_w=1 or suffered_disease_linbingmeiduyiyuanti_w=1)",
-                        "is_had_disease_w is not null", "guangdong_yunqianjianchabiao_2017",
-                            config.year, 2,
-                            isPercent=True, complete=True, yLable="百分比（%）")
-    figGen.drawYearDistrict('68', "(suffered_disease_jiehe_h=1 or suffered_disease_yixingganyan_h=1 or suffered_disease_linbingmeiduyiyuanti_h=1)",
-                        "is_had_disease_h is not null", "guangdong_yunqianjianchabiao_2017",
-                            config.year, 2,
-                            isPercent=True, complete=True, yLable="百分比（%）")
+    # text_q = '全市平均水平'
+    # figGen.drawDistrict('65', "(suffered_disease_jihe_w=1 or suffered_disease_yixingganyan_w=1 or suffered_disease_linbingmeiduyiyuanti_w=1)",
+    #                     "is_had_disease_w is not null", "guangdong_yunqianjianchabiao_2017",
+    #                     config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=[])
+    # figGen.drawDistrict('66', "(suffered_disease_jiehe_h=1 or suffered_disease_yixingganyan_h=1 or suffered_disease_linbingmeiduyiyuanti_h=1)",
+    #                     "is_had_disease_h is not null", "guangdong_yunqianjianchabiao_2017", config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=[])
+    # figGen.drawYearDistrict('67', "(suffered_disease_jihe_w=1 or suffered_disease_yixingganyan_w=1 or suffered_disease_linbingmeiduyiyuanti_w=1)",
+    #                     "is_had_disease_w is not null", "guangdong_yunqianjianchabiao_2017",
+    #                         config.year, 2,
+    #                         isPercent=True, complete=True, yLable="百分比（%）")
+    # figGen.drawYearDistrict('68', "(suffered_disease_jiehe_h=1 or suffered_disease_yixingganyan_h=1 or suffered_disease_linbingmeiduyiyuanti_h=1)",
+    #                     "is_had_disease_h is not null", "guangdong_yunqianjianchabiao_2017",
+    #                         config.year, 2,
+    #                         isPercent=True, complete=True, yLable="百分比（%）")
+    #
+    # list_a1 = ['suffered_disease_jihe_w=1', 'suffered_disease_yixingganyan_w=1',
+    #            'suffered_disease_linbingmeiduyiyuanti_w=1']
+    # list_a2 = ['suffered_disease_jiehe_h=1', 'suffered_disease_yixingganyan_h=1',
+    #            'suffered_disease_linbingmeiduyiyuanti_h=1']
+    # list_d1 = ["is_had_disease_w is not null", "is_had_disease_w is not null",
+    #            "is_had_disease_w is not null"]
+    # list_d2 = ["is_had_disease_h is not null", "is_had_disease_h is not null",
+    #            "is_had_disease_h is not null"]
+    # list_a = [list_a1, list_a2]
+    # list_d = [list_d1, list_d2]
+    # labels = ['女性', '男性']
+    # xlabels = ['结核', '乙肝', "性病"]
+    # figGen.drawDisease2('69', list_a, list_d, labels, xlabels, "guangdong_yunqianjianchabiao_2017", config.year, isSort=True,
+    #                     isPercent=True, complete=True, picType="bar",
+    #                     yLable="百分比（%）",figureText="pass")
+    #
+    # figGen.drawDistrict('70', "(check_value_bingdushaichajuxibaoigm_w=1)", "", "guangdong_yunqianjianchabiao_2017",
+    #                     config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=[])
+    # figGen.drawDistrict('71', "(check_value_bingdushaichagognxingtiigm_w=1)", "", "guangdong_yunqianjianchabiao_2017", config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=[])
+    # figGen.drawDistrict('72', "(check_value_bingdushaichafengzhengbingdu_w=1)", "", "guangdong_yunqianjianchabiao_2017", config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=[])
 
-    list_a1 = ['suffered_disease_jihe_w=1', 'suffered_disease_yixingganyan_w=1',
-               'suffered_disease_linbingmeiduyiyuanti_w=1']
-    list_a2 = ['suffered_disease_jiehe_h=1', 'suffered_disease_yixingganyan_h=1',
-               'suffered_disease_linbingmeiduyiyuanti_h=1']
-    list_d1 = ["is_had_disease_w is not null", "is_had_disease_w is not null",
-               "is_had_disease_w is not null"]
-    list_d2 = ["is_had_disease_h is not null", "is_had_disease_h is not null",
-               "is_had_disease_h is not null"]
-    list_a = [list_a1, list_a2]
-    list_d = [list_d1, list_d2]
-    labels = ['女性', '男性']
-    xlabels = ['结核', '乙肝', "性病"]
-    figGen.drawDisease2('69', list_a, list_d, labels, xlabels, "guangdong_yunqianjianchabiao_2017", config.year, isSort=True,
-                        isPercent=True, complete=True, picType="bar",
-                        yLable="百分比（%）",figureText="pass")
-
-    figGen.drawDistrict('70', "(check_value_bingdushaichajuxibaoigm_w=1)", "", "guangdong_yunqianjianchabiao_2017",
-                        config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=[])
-    figGen.drawDistrict('71', "(check_value_bingdushaichagognxingtiigm_w=1)", "", "guangdong_yunqianjianchabiao_2017", config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=[])
-    figGen.drawDistrict('72', "(check_value_bingdushaichafengzhengbingdu_w=1)", "", "guangdong_yunqianjianchabiao_2017", config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=[])
-
-    list_a = ["check_value_yiganxueqinghbsag_w=1", "check_value_yiganxueiqnghbsag_h=1"]
+    list_a = ["check_value_yiganxueiqnghbsag_h=1","check_value_yiganxueqinghbsag_w=1"]
     list_d = ["", ""]
-    labels = ['女性', '男性']
+    labels = [ '男性','女性']
     figGen.drawDiseaseDistrict('73', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
                                isPercent=True, complete=True, picType="bar",
                                yLable="百分比（%）", hline=True,
-                               hasTable=False, figureText="case", colorList=['r', 'b'])
+                               hasTable=False, figureText="case", colorList=['b', 'r'])
 
-    text_q = '全市平均水平'
-    figGen.drawDistrict('74', "(check_value_meiduluoxianti_h=1)", "", "guangdong_yunqianjianchabiao_2017", config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=['b'])
-    figGen.drawDistrict('75', "(check_value_meiduluoxuanti_w=1)", "", "guangdong_yunqianjianchabiao_2017", config.year,
-                        isPercent=True, complete=True, figureText=text_q,
-                        yLable="百分比（%）", colorList=['r'])
-
-    figGen.drawYearDistrict('76', "(check_value_meiduluoxuanti_w=1)", "", "guangdong_yunqianjianchabiao_2017",
-                            config.year, 2,
-                            isPercent=True, complete=True, yLable="百分比（%）")
-    figGen.drawYearDistrict('77', "(check_value_meiduluoxianti_h=1)", "", "guangdong_yunqianjianchabiao_2017", config.year, 2,
-                            isPercent=True, complete=True, yLable="百分比（%）")
+    # text_q = '全市平均水平'
+    # figGen.drawDistrict('74', "(check_value_meiduluoxianti_h=1)", "", "guangdong_yunqianjianchabiao_2017", config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=['b'])
+    # figGen.drawDistrict('75', "(check_value_bingdushaichameiduluoxuanti_w=1)", "", "guangdong_yunqianjianchabiao_2017", config.year,
+    #                     isPercent=True, complete=True, figureText=text_q,
+    #                     yLable="百分比（%）", colorList=['r'])
+    #
+    # figGen.drawYearDistrict('76', "(check_value_bingdushaichameiduluoxuanti_w=1)", "", "guangdong_yunqianjianchabiao_2017",
+    #                         config.year, 2,
+    #                         isPercent=True, complete=True, yLable="百分比（%）")
+    # figGen.drawYearDistrict('77', "(check_value_meiduluoxianti_h=1)", "", "guangdong_yunqianjianchabiao_2017", config.year, 2,
+    #                         isPercent=True, complete=True, yLable="百分比（%）")
 
 
 
@@ -623,10 +623,10 @@ def pic3_5(figGen):
 
 def pic3_1(figGen):
     text_q = '全市平均水平'
-    a1 = "(is_born_ill=1 or thalassaemia =1 or down_syndrome=1 or albinism=1 or suffered_disease_tangniaobing_w1=1 or blood_sick=1 or  dysgnosia=1 or favism=1 or congenital_suffered_disease_xinzangbing_w=1 or hearing_disorder=1 or seeing_disorder=1 or infant_mortality=1 or sterility=1 or intermarry=1)"
-    d1 = "(is_born_ill is not null or thalassaemia is not null or down_syndrome is not null or albinism is not null or suffered_disease_tangniaobing_w1 is not null or blood_sick is not null or  dysgnosia is not null or favism is not null or congenital_suffered_disease_xinzangbing_w is not null or hearing_disorder is not null or seeing_disorder is not null or infant_mortality is not null or sterility is not null or intermarry is not null)"
-    a2 = "(is_born_ill=1 or thalassaemia =1 or down_syndrome=1 or albinism=1 or suffered_disease_tangniaobing_w1=1 or blood_sick=1 or  dysgnosia=1 or favism=1 or congenital_suffered_disease_xinzangbing_w=1 or hearing_disorder=1 or seeing_disorder=1 or infant_mortality=1 or sterility=1 or intermarry=1)"
-    d2 = "(is_born_ill is not null or thalassaemia is not null or down_syndrome is not null or albinism is not null or suffered_disease_tangniaobing_w1 is not null or blood_sick is not null or  dysgnosia is not null or favism is not null or congenital_suffered_disease_xinzangbing_w is not null or hearing_disorder is not null or seeing_disorder is not null or infant_mortality is not null or sterility is not null or intermarry is not null)"
+    a1 = "(is_birth_defect_w=1 or family_disease_dizhonghaipinxue_w=1 or family_disease_tangshizonghezheng_w=1 or family_disease_baihuabing_w=1 or family_disease_tangniaobing_w=1 or family_disease_xueyoubing_w=1 or  family_disease_xiantianxingzhilidixia_w=1 or family_disease_chandoubing_w=1 or family_disease_xiantianxingxinzangbing_w=1 or family_disease_tinglizhangai_w=1 or family_disease_shijuezhangai_w=1 or family_disease_xinshengeryingyouersiwang_w=1 or gynecopathy_buyunbuyu=1 or is_close_relatives_w=1)"
+    d1 = "(not (is_birth_defect_w is  null and family_disease_dizhonghaipinxue_w is  null and family_disease_tangshizonghezheng_w is  null and family_disease_baihuabing_w is  null and family_disease_tangniaobing_w is  null and family_disease_xueyoubing_w is  null and  family_disease_xiantianxingzhilidixia_w is  null and family_disease_chandoubing_w is  null and family_disease_xiantianxingxinzangbing_w is  null and family_disease_tinglizhangai_w is  null and family_disease_shijuezhangai_w is  null and family_disease_xinshengeryingyouersiwang_w is  null and gynecopathy_buyunbuyu is  null and is_close_relatives_w is  null))"
+    a2 = "(is_birth_defect_h=1 or family_disease_dizhonghaipinxue_h =1 or family_disease_tangshizonghezheng_h=1 or family_disease_baihuabing_h=1 or family_disease_tangniaobing_h=1 or family_disease_xueyoubing_h=1 or  family_disease_xiantianxingzhilidixia_h=1 or family_disease_chandoubing_h=1 or family_disease_xiantianxingxinzangbing_h=1 or family_disease_tinglizhangai_h=1 or family_disease_shilizhangai_h=1 or family_disease_xinshengeryingyouersiwang_h=1 or gynecopathy_buyunbuyu=1 or is_close_relatives_w=1)"
+    d2 = "(not (is_birth_defect_h is null and family_disease_dizhonghaipinxue_h is null and family_disease_tangshizonghezheng_h is null and family_disease_baihuabing_h is null and family_disease_tangniaobing_h is null and family_disease_xueyoubing_h is null and  family_disease_xiantianxingzhilidixia_h is null and family_disease_chandoubing_h is null and family_disease_xiantianxingxinzangbing_h is null and family_disease_tinglizhangai_h is null and family_disease_shilizhangai_h is null and family_disease_xinshengeryingyouersiwang_h is null and gynecopathy_buyunbuyu is null and is_close_relatives_w is null))"
     figGen.drawDistrict('31',a1,d1, "guangdong_yunqianjianchabiao_2017",config.year,
                         isPercent=True, complete=True, figureText=text_q,
                         yLable="百分比（%）", colorList=[])
@@ -639,32 +639,36 @@ def pic3_1(figGen):
     figGen.drawYearDistrict('34', a2, d2, "guangdong_yunqianjianchabiao_2017", config.year, 2,
                             isPercent=True, complete=True, yLable="百分比（%）")
 
-    list_a1 = ['blood_sick =1', 'favism =1', 'congenital_suffered_disease_xinzangbing_w=1',
-               'infant_mortality=1','(hearing_disorder=1 or seeing_disorder=1)','dysgnosia=1']
-    list_a2 = ['blood_sick =1', 'favism =1', 'congenital_suffered_disease_xinzangbing_w=1',
-               'infant_mortality=1','(hearing_disorder=1 or seeing_disorder=1)','dysgnosia=1']
-    list_d1 = ['blood_sick  is not null', 'favism  is not null', 'congenital_suffered_disease_xinzangbing_w is not null',
-               'infant_mortality is not null','(hearing_disorder is not null or seeing_disorder is not null)','dysgnosia is not null']
-    list_d2 = ['blood_sick  is not null', 'favism  is not null', 'congenital_suffered_disease_xinzangbing_w is not null',
-               'infant_mortality is not null','(hearing_disorder is not null or seeing_disorder is not null)','dysgnosia is not null']
-    list_a = [list_a1, list_a2]
-    list_d = [list_d1, list_d2]
-    labels = ['女方', '男方']
-    xlabels = ['地中海贫血', 'G6PD缺乏症', "先天性心脏病", '新生儿或婴\n幼儿死亡史', "内生障碍", '先天性智\n力低下']
+    list_a1 = ['family_disease_xiantianxingzhilidixia_w=1', 'family_disease_tinglizhangai_w=1 or family_disease_shijuezhangai_w=1', 'family_disease_xinshengeryingyouersiwang_w=1', 'family_disease_xiantianxingxinzangbing_w=1', 'family_disease_chandoubing_w=1', 'family_disease_xueyoubing_w=1']
+    list_a2 = ['family_disease_xiantianxingzhilidixia_h=1', 'family_disease_tinglizhangai_h=1 or family_disease_shilizhangai_h=1', 'family_disease_xinshengeryingyouersiwang_h=1', 'family_disease_xiantianxingxinzangbing_h=1', 'family_disease_chandoubing_h=1', 'family_disease_xueyoubing_h=1']
+    list_d1 = ['is_birth_defect_w is not null', 'not (family_disease_tinglizhangai_w is null and family_disease_shijuezhangai_w is null)', 'family_disease_xinshengeryingyouersiwang_w is not null', 'family_disease_xiantianxingxinzangbing_w is not null', 'is_birth_defect_w is not null', 'is_birth_defect_w is not null']
+    list_d2 = ['is_birth_defect_h is not null',
+               'not (family_disease_tinglizhangai_h is null and family_disease_shilizhangai_h is null)',
+               'family_disease_xinshengeryingyouersiwang_h is not null',
+               'family_disease_xiantianxingxinzangbing_h is not null', 'is_birth_defect_h is not null',
+               'is_birth_defect_h is not null']
+    list_a = [list_a2, list_a1]
+    list_d = [list_d2, list_d1]
+    labels = ['男方','女方']
+    xlabels =['先天性智\n力低下', '内生障碍', '新生儿或婴\n幼儿死亡史', "先天性心脏病", 'G6PD缺乏症', '地中海贫血']
     figGen.drawDisease2('35', list_a, list_d, labels, xlabels, "guangdong_yunqianjianchabiao_2017", config.year, isSort=True,
                         isPercent=True, complete=True, picType="hbar",
                         xLable="百分比（%）")
 
-    a1 = '(SEA_f like "杂合性突变" or (Alpha37_f like "杂合性突变" or Alpha37_f like "纯合型突变") or (Alpha42_f like "杂合性突变" or Alpha42_f like "纯合型突变") or aCS_f like "杂合性突变" or aWS_f like "杂合性突变" or aOhter_f like "%突变%")'
-    a2 = '(SEA_m like "杂合性突变" or (Alpha37_m like "杂合性突变" or Alpha37_m like "纯合型突变") or (Alpha42_m like "杂合性突变" or Alpha42_m like "纯合型突变") or aCS_m like "杂合性突变" or aWS_m like "杂合性突变" or aOhter_m like "%突变%")'
-    b1 = '(CD14_15_f like "杂合性突变" or CD17_f like "杂合性突变" or CD27_28_f like "杂合性突变" or CD_28_f like "杂合性突变" or CD_29_f like "杂合性突变" or CD_31_f like "杂合性突变" or CD_41_42_f like "杂合性突变" or CD_71_72_f like "杂合性突变" or CAP_f like "杂合性突变" or IntM_f like "杂合性突变" or IVS_5_f like "杂合性突变" or IVS_654_f like "杂合性突变" or Beta_E_f like "杂合性突变" or Beta_Other_f like "%突变%")'
-    b2 = '(CD14_15_m like "杂合性突变" or CD17_m like "杂合性突变" or CD27_28_m like "杂合性突变" or CD_28_m like "杂合性突变" or CD_29_m like "杂合性突变" or CD_31_m like "杂合性突变" or CD_41_42_m like "杂合性突变" or CD_71_72_m like "杂合性突变" or CAP_m like "杂合性突变" or IntM_m like "杂合性突变" or IVS_5_m like "杂合性突变" or IVS_654_m like "杂合性突变" or Beta_E_m like "杂合性突变" or Beta_Other_m like "%突变%")'
-    # list_a1 = ['MCV_f<82', 'MCH_f<27',a1, b1]
-    # list_a2 = ['MCV_m<82', 'MCH_m<27',a2, b2]
-    list_a1 = ['','','','']
-    list_a2 = ['', '', '', '']
-    list_d1 = ['','','','']
-    list_d2 = ['','','','']
+
+    a1 = 'check_value_ajiyinqueshisea_wg=1 or (check_value_ajiyinqueshia37_wg=1 or check_value_ajiyinqueshia37_wg=2) or (check_value_ajiyinqueshia42_wg=1 or check_value_ajiyinqueshia42_wg=2) or check_value_ajiyintubianacs_wg=1 or check_value_ajiyintubianaws_wg=1 or check_value_ajiyinyichang_wg=1'
+    b1 = 'CD14_15_f=1 or CD17_f=1 or CD27_28_f=1 or CD_28_f=1 or CD_29_f=1 or CD_31_f=1 or CD_41_42_f=1 or CD_71_72_f=1 or CAP_f=1 or IntM_f=1 or IVS_5_f=1 or IVS_654_f=1 or Beta_E_f=1 or Beta_Other_f=1'
+    a2 = 'SEA_m=1 or (Alpha37_m=1 or Alpha37_m=2) or (Alpha42_m=1 or Alpha42_m=2) or aCS_m=1 or aWS_m=1 or aOhter_m=1',
+    b2 = 'CD14_15_m=1 or CD17_m=1 or CD27_28_m=1 or CD_28_m=1 or CD_29_m=1 or CD_31_m=1 or CD_41_42_m=1 or CD_71_72_m=1 or CAP_m=1 or IntM_m=1 or IVS_5_m=1 or IVS_654_m=1 or Beta_E_m=1 or Beta_Other_m=1'
+
+    list_a1 = ['check_value_dipinchushaimcv_wev<82','check_value_dipinchushaimch_wev<27',
+               a1, b1]
+    list_a2 = ['check_value_dipinchushaimcv_hev<82', 'check_value_dipinchushaimch_hev<27',
+               a2, b2]
+    list_d1 = ['check_value_dipinchushaimcv_wev is not null','check_value_dipinchushaimch_wev is not null',
+               '','']
+    list_d2 = ['check_value_dipinchushaimcv_hev is not null','check_value_dipinchushaimch_hev is not null',
+               '','']
     list_a = [list_a1, list_a2]
     list_d = [list_d1, list_d2]
     labels = ['女方', '男方']
@@ -674,8 +678,7 @@ def pic3_1(figGen):
                         yLable="百分比（%）",figureText='pass',colorList=['r','b'])
 
     figGen.figureHelper.nfigsize = [8, 5.8]
-    # list_a = [a1,b1,a2,b2]
-    list_a = ['', '', '', '']
+    list_a = [a1,b1,a2,b2]
     list_d = ['','','','']
     labels = ["女性α地贫", '女性β地贫', "男性α地贫", '男性β地贫']
     figGen.drawDiseaseDistrict('37', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
@@ -686,70 +689,70 @@ def pic3_1(figGen):
 
 def pic3_6(figGen):
 
-    list_a = ['(is_eat_meat_egg_w=0)', '(is_anorexia_vegetables_w=1)', '(is_eat_raw_meat_w=1)']
-    list_d = ['', '', '', '']
-    labels = ["素食者", '厌食蔬菜', "食用生肉"]
-    figGen.drawDiseaseDistrict('81', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
-                               isPercent=True, complete=True, picType="bar",
-                               yLable="百分比（%）", hline=False,
-                               hasTable=True, figureText="", colorList=[],gridcol=(24,21))
-
-    list_a = ['(is_eat_meat_egg_h=0)', '(is_anorexia_vegetables_h=1)', '(is_eat_raw_meat_h=1)']
-    list_d = ['', '', '', '']
-    labels = ["素食者", '厌食蔬菜', "食用生肉"]
-    figGen.drawDiseaseDistrict('82', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
-                               isPercent=True, complete=True, picType="bar",
-                               yLable="百分比（%）", hline=False,
-                               hasTable=True, figureText="", colorList=[],gridcol=(24,21))
-
-    list_a = ['(is_eat_meat_egg_w=0)', '(is_anorexia_vegetables_w=1)', '(is_eat_raw_meat_w=1)']
-    list_d = ['', '', '', '']
-    labels = ["素食者", '厌食蔬菜', "食用生肉"]
-    figGen.drawDiseaseYear('83', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year, 2,
-                           isPercent=True, complete=True,
-                           yLable="百分比（%）")
-
-    list_a = ['(is_eat_meat_egg_h=0)', '(is_anorexia_vegetables_h=1)', '(is_eat_raw_meat_h=1)']
-    list_d = ['', '', '', '']
-    labels = ["素食者", '厌食蔬菜', "食用生肉"]
-    figGen.drawDiseaseYear('84', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year, 2,
-                           isPercent=True, complete=True,
-                           yLable="百分比（%）")
-
-    list_a = ['(bmi_w < 18.5)', '(bmi_w >= 24 and bmi_w < 28)', '(bmi_w >= 28)']
-    list_d = ['', '', '', '']
-    labels = ["低体重", '超重', "肥胖"]
-    figGen.drawDiseaseYear('85', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year, 2,
-                           isPercent=True, complete=True,
-                           yLable="百分比（%）",isSort = False)
-
-    list_a = ['(bmi_h < 18.5)', '(bmi_h >= 24 and bmi_h < 28)', '(bmi_h >= 28)']
-    list_d = ['', '', '', '']
-    labels = ["低体重", '超重', "肥胖"]
-    figGen.drawDiseaseYear('86', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year, 2,
-                           isPercent=True, complete=True,
-                           yLable="百分比（%）",isSort = False)
-
-    figGen.figureHelper.nfigsize = [8, 5.8]
-    list_a = ["(bmi_w >= 28)", "(bmi_w >= 24 and bmi_w < 28)", "(bmi_w >= 18.5 and bmi_w < 24)", "(bmi_w < 18.5)"]
-    list_d = ["bmi_w is not null", "bmi_w is not null", "bmi_w is not null", "bmi_w is not null"]
-    labels = ["肥胖","偏重","正常","偏瘦"]
-    figGen.drawDiseaseDistrict('87', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
-                               isPercent=True, complete=True, picType="spbar",
-                               yLable="构成比（%）", hline=False,
-                               hasTable=True, figureText="", colorList=[])
-
-    list_a = ["(bmi_h >= 28)", "(bmi_h >= 24 and bmi_h < 28)", "(bmi_h >= 18.5 and bmi_h < 24)", "(bmi_h < 18.5)"]
-    list_d = ["bmi_h is not null", "bmi_h is not null", "bmi_h is not null", "bmi_h is not null"]
-    labels = ["肥胖","偏重","正常","偏瘦"]
-    figGen.drawDiseaseDistrict('88', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
-                               isPercent=True, complete=True, picType="spbar",
-                               yLable="构成比（%）", hline=False,
-                               hasTable=True, figureText="", colorList=[])
-    figGen.figureHelper.nfigsize = [8, 4.8]
+    # list_a = ['(is_eat_meat_egg_w=0)', '(is_anorexia_vegetables_w=1)', '(is_eat_raw_meat_w=1)']
+    # list_d = ['', '', '', '']
+    # labels = ["素食者", '厌食蔬菜', "食用生肉"]
+    # figGen.drawDiseaseDistrict('81', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
+    #                            isPercent=True, complete=True, picType="bar",
+    #                            yLable="百分比（%）", hline=False,
+    #                            hasTable=True, figureText="", colorList=[],gridcol=(24,21))
+    #
+    # list_a = ['(is_eat_meat_egg_h=0)', '(is_anorexia_vegetables_h=1)', '(is_eat_raw_meat_h=1)']
+    # list_d = ['', '', '', '']
+    # labels = ["素食者", '厌食蔬菜', "食用生肉"]
+    # figGen.drawDiseaseDistrict('82', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
+    #                            isPercent=True, complete=True, picType="bar",
+    #                            yLable="百分比（%）", hline=False,
+    #                            hasTable=True, figureText="", colorList=[],gridcol=(24,21))
+    #
+    # list_a = ['(is_eat_meat_egg_w=0)', '(is_anorexia_vegetables_w=1)', '(is_eat_raw_meat_w=1)']
+    # list_d = ['', '', '', '']
+    # labels = ["素食者", '厌食蔬菜', "食用生肉"]
+    # figGen.drawDiseaseYear('83', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year, 2,
+    #                        isPercent=True, complete=True,
+    #                        yLable="百分比（%）")
+    #
+    # list_a = ['(is_eat_meat_egg_h=0)', '(is_anorexia_vegetables_h=1)', '(is_eat_raw_meat_h=1)']
+    # list_d = ['', '', '', '']
+    # labels = ["素食者", '厌食蔬菜', "食用生肉"]
+    # figGen.drawDiseaseYear('84', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year, 2,
+    #                        isPercent=True, complete=True,
+    #                        yLable="百分比（%）")
+    #
+    # list_a = ['(bmi_w < 18.5)', '(bmi_w >= 24 and bmi_w < 28)', '(bmi_w >= 28)']
+    # list_d = ['', '', '', '']
+    # labels = ["低体重", '超重', "肥胖"]
+    # figGen.drawDiseaseYear('85', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year, 2,
+    #                        isPercent=True, complete=True,
+    #                        yLable="百分比（%）",isSort = False)
+    #
+    # list_a = ['(bmi_h < 18.5)', '(bmi_h >= 24 and bmi_h < 28)', '(bmi_h >= 28)']
+    # list_d = ['', '', '', '']
+    # labels = ["低体重", '超重', "肥胖"]
+    # figGen.drawDiseaseYear('86', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year, 2,
+    #                        isPercent=True, complete=True,
+    #                        yLable="百分比（%）",isSort = False)
+    #
+    # figGen.figureHelper.nfigsize = [8, 5.8]
+    # list_a = ["(bmi_w >= 28)", "(bmi_w >= 24 and bmi_w < 28)", "(bmi_w >= 18.5 and bmi_w < 24)", "(bmi_w < 18.5)"]
+    # list_d = ["bmi_w is not null", "bmi_w is not null", "bmi_w is not null", "bmi_w is not null"]
+    # labels = ["肥胖","偏重","正常","偏瘦"]
+    # figGen.drawDiseaseDistrict('87', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
+    #                            isPercent=True, complete=True, picType="spbar",
+    #                            yLable="构成比（%）", hline=False,
+    #                            hasTable=True, figureText="", colorList=[])
+    #
+    # list_a = ["(bmi_h >= 28)", "(bmi_h >= 24 and bmi_h < 28)", "(bmi_h >= 18.5 and bmi_h < 24)", "(bmi_h < 18.5)"]
+    # list_d = ["bmi_h is not null", "bmi_h is not null", "bmi_h is not null", "bmi_h is not null"]
+    # labels = ["肥胖","偏重","正常","偏瘦"]
+    # figGen.drawDiseaseDistrict('88', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
+    #                            isPercent=True, complete=True, picType="spbar",
+    #                            yLable="构成比（%）", hline=False,
+    #                            hasTable=True, figureText="", colorList=[])
+    # figGen.figureHelper.nfigsize = [8, 4.8]
 
     list_a = ["(suffered_disease_pinxue_w=1)", "(check_value_xuechangguixuehongdaiban_w<110)"]
-    list_d = ["(is_had_disease_w is not null and check_value_xuechangguixuehongdaiban_w<110)",'check_value_xuechangguixuehongdaiban_w is not null']
+    list_d = ["(is_had_disease_w is not null)",'check_value_xuechangguixuehongdaiban_w is not null']
     labels = ["自报患病率", "检出率"]
     figGen.drawDiseaseDistrict('89', list_a, list_d, labels, "guangdong_yunqianjianchabiao_2017", config.year,
                                isPercent=True, complete=True, picType="bar",
@@ -768,16 +771,17 @@ if __name__ == '__main__':
     inter = Interpreter(config)
     figGen = figureGenerate(config,inter,[8,4.8])
 
+    pic1(figGen)
+    # pic2(figGen)
+
+
     # pic3_1(figGen)
     # pic3_2(figGen)
     # pic3_3(figGen)
     # pic3_4(figGen)
-    pic3_5(figGen)
+    # pic3_5(figGen)
     # pic3_6(figGen)
 
-
-    # pic1(figGen)
-    # pic2(figGen)
 
 
     figGen.finish()
