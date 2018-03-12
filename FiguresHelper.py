@@ -477,10 +477,10 @@ class FigureHelper:
         # explode = (0, 0, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
         if textIn:
             l = plt.pie(dataList, labels=dataLabelList, autopct='%1.2f%%',
-                    shadow=True, startangle=90, counterclock=False, pctdistance = 0.8, labeldistance = 5)
+                    shadow=False, startangle=90, counterclock=False, pctdistance = 0.8, labeldistance = 5)
         else:
             l = plt.pie(dataList, labels=dataLabelList, autopct='%1.2f%%',
-                        shadow=True, startangle=90, counterclock=False, pctdistance=1.2, labeldistance = 5)
+                        shadow=False, startangle=90, counterclock=False, pctdistance=1.2, labeldistance = 5)
         #
         legends.append(l)
         plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.

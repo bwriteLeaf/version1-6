@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 from FiguresHelper import FigureHelper
-from DBinterface import DBInterface
+from DBinterfaceDraw import DBInterfaceDraw
 import pandas as pd
 from configuration import Config
 from interpreter import Interpreter
@@ -18,10 +18,9 @@ from pyecharts import Pie
 from pyecharts_snapshot.main import make_a_snapshot
 
 class figureGenerate:
-    def __init__(self, conf, inter,nfigzise):
+    def __init__(self, conf,nfigzise):
         self.config = conf
-        self.inter = inter
-        self.dbInf = DBInterface(self.config, self.inter)
+        self.dbInf = DBInterfaceDraw(self.config)
         self.figureHelper = FigureHelper(nfigzise)
 
 
@@ -38,6 +37,7 @@ class figureGenerate:
                                 hline=True, hasTable=False, figureText=figureText,colorList=colorList)  # 不带横线
             f = plt.figure(id)
             f.savefig(fid+'.png')
+            print("图片生成完成："+fid)
         except Exception as e:
             print(traceback.print_exc())
 
@@ -63,6 +63,7 @@ class figureGenerate:
                                     colorList=colorList)  # 不带横线
                 f = plt.figure(id)
                 f.savefig(fid+'.png')
+                print("图片生成完成：" + fid)
             else:
                 pass
         except Exception as e:
@@ -100,6 +101,7 @@ class figureGenerate:
                                 hline=False, hasTable=False, figureText="pass")  # 不带横线
             f = plt.figure(id)
             f.savefig(fid+'.png')
+            print("图片生成完成：" + fid)
         except Exception as e:
             print(traceback.print_exc())
 
@@ -127,19 +129,23 @@ class figureGenerate:
                                 colorList=colorList,gridcol=gridcol,isPercent=isPercent)  # 不带横线
             f = plt.figure(id)
             f.savefig(fid + '.png')
+            print("图片生成完成：" + fid)
         except Exception as e:
             print(traceback.print_exc())
 
 
     def drawYearDistrict(self, fid, attrExpr, divideExpr, dbName, year, n, isPercent,
-                            complete,picType = "bar",yLable=None):
+                            complete,picType = "bar",yLable=None,hline=False, figureText="",
+                         colorList=[],hasTable=True):
         try:
             dataRawList = []
 
             for i in range(0, n):
                 yearNow = year - (n - 1 - i)
-                dbNameNow = dbName[0:len(dbName)-4]+str(yearNow)
-                dataNow = self.dbInf.getDistrictData(attrExpr, divideExpr, "", dbNameNow, "district", yearNow, isPercent,
+                dbNameNow = dbName.replace(str(year),str(yearNow))
+                attrExprNow = attrExpr.replace(str(year),str(yearNow))
+                divideExprNow = divideExpr.replace(str(year),str(yearNow))
+                dataNow = self.dbInf.getDistrictData(attrExprNow, divideExprNow, "", dbNameNow, "district", yearNow, isPercent,
                                                      complete)
                 dataRawList.append(dataNow)
 
@@ -149,13 +155,18 @@ class figureGenerate:
             labels = []
             for i in range(0, n):
                 data.append([x[i + 1] for x in dataRaw])
-                labels.append(str(year - (n - 1 - i)))
+                if figureText =="case":
+                    labels.append(str(year - (n - 1 - i))+"年")
+                else:
+                    labels.append(str(year - (n - 1 - i)))
 
             xlables = [x[0][0:2] for x in dataRaw]
             id = self.basicDraw(picType, data, labels, xlables, yLable=yLable,
-                                hline=False, hasTable=True, figureText="")  # 不带横线
+                                hline=hline, hasTable=hasTable, figureText=figureText,
+                                colorList=colorList)  # 不带横线
             f = plt.figure(id)
             f.savefig(fid + '.png')
+            print("图片生成完成：" + fid)
         except Exception as e:
             print(traceback.print_exc())
 
@@ -193,6 +204,7 @@ class figureGenerate:
                                 hline=False, hasTable=False, figureText=figureText,colorList=colorList)  # 不带横线
             f = plt.figure(id)
             f.savefig(fid + '.png')
+            print("图片生成完成：" + fid)
         except Exception as e:
             print(traceback.print_exc())
 
@@ -225,6 +237,71 @@ class figureGenerate:
                     legend_pos='left', is_label_show=True, label_formatter='{d}%', label_pos='inside')
             pie.render()
             make_a_snapshot('render.html', fid+'.png')
+            print("图片生成完成：" + fid)
+
+        except Exception as e:
+            print(traceback.print_exc())
+
+
+            # diseaseNameList=[内环['风险人群', '一般人群'],外环['女方风险', '男方风险', '双方风险', '一般人群']]
+
+        # attrExprList=[内环表达式[],外环表达式[]]
+        # data=[内环值[],外环值[]]
+        def drawTwoPie(self, fid, attrExprList, divideExprList, diseaseNameList, dbName,
+                       year, isPercent, complete):
+            try:
+                innerLabel = diseaseNameList[0]
+                outerLabel = diseaseNameList[1]
+
+                dataList = []
+                n = len(diseaseNameList)
+
+                for i in range(0, n):
+                    dataNow = self.dbInf.getDiffDistrictData(attrExprList[i], divideExprList[i], diseaseNameList[i],
+                                                             dbName, "all", year, isPercent, complete)
+                    dataNow = [x[0] for x in dataNow]
+                    data = [x[1] for x in dataNow]
+                    dataList.append(data)
+
+                large = 1.3
+                size = 0.8
+                pie = Pie("", title_pos='center', width=800 * size, height=480 * size)
+                pie.add("", outerLabel, dataList[1],
+                        radius=[40 * large, 55 * large], is_label_show=True, legend_pos='left')
+                pie.add("", innerLabel, dataList[0], radius=[0 * large, 30 * large], legend_orient='vertical',
+                        legend_pos='left', is_label_show=True, label_formatter='{d}%', label_pos='inside')
+                pie.render()
+                make_a_snapshot('render.html', fid + '.png')
+                print("图片生成完成：" + fid)
+
+            except Exception as e:
+                print(traceback.print_exc())
+
+
+        # diseaseNameList=['女方风险', '男方风险', '双方风险', '一般人群']
+        # attrExprList=表达式[]
+        # data=值[]
+    def drawOnePie(self, fid, attrExprList, divideExprList, diseaseNameList, dbName,
+                       year, isPercent, complete):
+        try:
+
+            dataList = []
+
+
+            dataNow = self.dbInf.getDiffDistrictData(attrExprList, divideExprList, diseaseNameList,
+                                                         dbName, "all", year, isPercent, complete)
+            dataNow = [x[0] for x in dataNow]
+            data = [x[1] for x in dataNow]
+            dataList.append(data)
+
+            large = 1.3
+            size = 0.8
+            pie = Pie("", title_pos='center', width=800 * size, height=480 * size)
+            pie.add("", diseaseNameList, dataList[0], radius=[0 * large, 45 * large], legend_orient='vertical',
+                    is_label_show=True, legend_pos='left', label_formatter='{d}%', label_pos='left')
+            pie.render()
+            make_a_snapshot('render.html', fid + '.png')
+            print("图片生成完成：" + fid)
 
         except Exception as e:
             print(traceback.print_exc())
