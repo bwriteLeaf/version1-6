@@ -41,7 +41,7 @@ def pic1(figGen):
     #                            hasTable=False, figureText="pass", colorList=["r", "b"],
     #                            export=True)
     # # 5为饼柱结合图
-    list_a1 = ["(risk_population between 0 and 2)", "(risk_population is null)"]
+    list_a1 = ["(risk_population is not null)", "(risk_population is null)"]
     list_a2 = ["(risk_population=2)", "(risk_population=1)", "(risk_population=0)", "(risk_population is null)"]
     list_d1 = ["", ""]
     list_d2 = ["", "", "", ""]
@@ -62,7 +62,7 @@ def pic1(figGen):
                                yLable="百分比（%）", hline=False,
                                hasTable=False,figureText="", colorList=[])
     text_q = '全市平均水平'
-    figGen.drawDistrict('6-2', "(risk_population between 0 and 2)", "", "yunqianjianchabiao_2017", config.year,
+    figGen.drawDistrict('6-2', "(risk_population is not null)", "", "yunqianjianchabiao_2017", config.year,
                         isPercent=True, complete=True, figureText=text_q,
                         yLable="百分比（%）", colorList=["b"])
 
