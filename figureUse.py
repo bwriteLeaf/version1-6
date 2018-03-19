@@ -41,7 +41,7 @@ def pic1(figGen):
     #                            hasTable=False, figureText="pass", colorList=["r", "b"],
     #                            export=True)
     # # 5为饼柱结合图
-    list_a1 = ["(risk_population between 0 and 2)", "(risk_population is null)"]
+    list_a1 = ["(risk_population is not null)", "(risk_population is null)"]
     list_a2 = ["(risk_population=2)", "(risk_population=1)", "(risk_population=0)", "(risk_population is null)"]
     list_d1 = ["", ""]
     list_d2 = ["", "", "", ""]
@@ -62,64 +62,64 @@ def pic1(figGen):
                                yLable="百分比（%）", hline=False,
                                hasTable=False,figureText="", colorList=[])
     text_q = '全市平均水平'
-    figGen.drawDistrict('6-2', "(risk_population between 0 and 2)", "", "yunqianjianchabiao_2017", config.year,
+    figGen.drawDistrict('6-2', "(risk_population is not null)", "", "yunqianjianchabiao_2017", config.year,
                         isPercent=True, complete=True, figureText=text_q,
                         yLable="百分比（%）", colorList=["b"])
-
-    list_a = ["live_birth_number_w = 0", "live_birth_number_w = 1", "live_birth_number_w >= 2"]
-    list_d = ["live_birth_number_w is not null", "live_birth_number_w is not null", "live_birth_number_w is not null"]
-    labels = ["头胎", "二胎", "三胎及以上"]
-    figGen.drawDiseaseYear('7-1', list_a, list_d, labels, "yunqianjianchabiao_2017", config.year, 2,
-                           isPercent=True, complete=True,
-                           yLable="构成比（%）",isSort=False)
-
-    figGen.drawDiseaseDistrict('7-2', list_a, list_d, labels, "yunqianjianchabiao_2017", config.year,
-                               isPercent=True, complete=False, picType="spbar",
-                               yLable="百分比（%）", hline=False,
-                               hasTable=False, figureText="", colorList=[])
-
-     # early-follow-up time
-    list_a = ["(followup_result=1 or urine_pregnancy=1)", "(followup_result=3)"]
-    list_d = ["", ""]
-    labels = ["已孕", "失访"]
-    figGen.drawDiseaseDistrict('8', list_a, list_d, labels, "zaoyunsuifangbiao_2017", config.year,
-                               isPercent=False, complete=True, picType="sbar",
-                               yLable="档案数量", hline=False,
-                               hasTable=False, figureText="", colorList=[])
-
-    # follow-up time
-    list_a = ["(followup_result=1)", "(is_lost =1)"]
-    list_d = ["", ""]
-    labels = ["已孕档案数", "失访档案数"]
-    figGen.drawDiseaseDistrict('9', list_a, list_d, labels, "renshenjiejubiao_2017", config.year,
-                               isPercent=False, complete=True, picType="sbar",
-                               yLable="档案数量", hline=False,
-                               hasTable=False, figureText="", colorList=[])
     #
+    # list_a = ["live_birth_number_w = 0", "live_birth_number_w = 1", "live_birth_number_w >= 2"]
+    # list_d = ["live_birth_number_w is not null", "live_birth_number_w is not null", "live_birth_number_w is not null"]
+    # labels = ["头胎", "二胎", "三胎及以上"]
+    # figGen.drawDiseaseYear('7-1', list_a, list_d, labels, "yunqianjianchabiao_2017", config.year, 2,
+    #                        isPercent=True, complete=True,
+    #                        yLable="构成比（%）",isSort=False)
+    #
+    # figGen.drawDiseaseDistrict('7-2', list_a, list_d, labels, "yunqianjianchabiao_2017", config.year,
+    #                            isPercent=True, complete=False, picType="spbar",
+    #                            yLable="百分比（%）", hline=False,
+    #                            hasTable=False, figureText="", colorList=[])
+    #
+    #  # early-follow-up time
+    # list_a = ["(followup_result=1 or urine_pregnancy=1)", "(followup_result=3)"]
+    # list_d = ["", ""]
+    # labels = ["已孕", "失访"]
+    # figGen.drawDiseaseDistrict('8', list_a, list_d, labels, "zaoyunsuifangbiao_2017", config.year,
+    #                            isPercent=False, complete=True, picType="sbar",
+    #                            yLable="档案数量", hline=False,
+    #                            hasTable=False, figureText="", colorList=[])
+    #
+    # # follow-up time
+    # list_a = ["(followup_result=1)", "(is_lost =1)"]
+    # list_d = ["", ""]
+    # labels = ["已孕档案数", "失访档案数"]
+    # figGen.drawDiseaseDistrict('9', list_a, list_d, labels, "renshenjiejubiao_2017", config.year,
+    #                            isPercent=False, complete=True, picType="sbar",
+    #                            yLable="档案数量", hline=False,
+    #                            hasTable=False, figureText="", colorList=[])
 
-    #  complete_date 表连接操作
+
+     # complete_date 表连接操作
     # figGen.drawYearDistrict('10-1',
     #                     "(zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)",
-    #                     "zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code",
+    #                     "",
     #                     "yunqianjianchabiao_2017,zaoyunsuifangbiao_2017", config.year,2,
     #                     isPercent=True, complete=False, figureText="case",
     #                     hasTable=False,yLable="百分比（%）", colorList=['g', 'b'], hline=True)
-    #
-    # follow-up time
-    list_a = ["pre_result_type_zhengchanghuochan = 1", "pre_result_type_zhengchanghuochan is null"]
-    list_d = ["", ""]
-    labels = ["正常活产","不良妊娠结局"]
-    figGen.drawDisease('11-1', list_a, list_d, labels, "renshenjiejubiao_2017", "all", config.year,
-                       isPercent=True, complete=True, picType="pie",
-                       yLable="百分比（%）",textIn=True)
 
-    #  follow-up time 、yncomplete = 1 ！！ 同步修改getTopK..
-    list_a = ['pre_result_type_ziranliuchang=1', 'pre_result_type_dichushengtizhong=1', 'pre_result_type_yixuexingrengongliuchang=1', 'pre_result_type_chushengquexian=1', 'pre_result_type_zaochan=1', 'pre_result_type_zhiliaoxingyinchan=1', 'pre_result_type_yiweirenshen=1', 'pre_result_type_sitaisichan=1', 'pre_result_type_qita!="0"']
-    list_d = ['', '', '', '', '', '', '', '', '']
-    labels = ["自然\n流产", "低出生\n体重", "医学性\n人工流产", "出生\n缺陷", "早产","治疗性\n引产", "异位\n妊娠", "死胎\n死产", "其他"]
-    figGen.drawDisease('11-2', list_a, list_d, labels, "renshenjiejubiao_2017", "all", config.year,
-                       isPercent=True, complete=True, picType="bar",
-                       yLable="百分比（%）",figureText="pass")
+    # # follow-up time
+    # list_a = ["pre_result_type_zhengchanghuochan = 1", "pre_result_type_zhengchanghuochan is null"]
+    # list_d = ["", ""]
+    # labels = ["正常活产","不良妊娠结局"]
+    # figGen.drawDisease('11-1', list_a, list_d, labels, "renshenjiejubiao_2017", "all", config.year,
+    #                    isPercent=True, complete=True, picType="pie",
+    #                    yLable="百分比（%）",textIn=True)
+    #
+    # #  follow-up time 、yncomplete = 1 ！！ 同步修改getTopK..
+    # list_a = ['pre_result_type_ziranliuchang=1', 'pre_result_type_dichushengtizhong=1', 'pre_result_type_yixuexingrengongliuchang=1', 'pre_result_type_chushengquexian=1', 'pre_result_type_zaochan=1', 'pre_result_type_zhiliaoxingyinchan=1', 'pre_result_type_yiweirenshen=1', 'pre_result_type_sitaisichan=1', 'pre_result_type_qita!="0"']
+    # list_d = ['', '', '', '', '', '', '', '', '']
+    # labels = ["自然\n流产", "低出生\n体重", "医学性\n人工流产", "出生\n缺陷", "早产","治疗性\n引产", "异位\n妊娠", "死胎\n死产", "其他"]
+    # figGen.drawDisease('11-2', list_a, list_d, labels, "renshenjiejubiao_2017", "all", config.year,
+    #                    isPercent=True, complete=True, picType="bar",
+    #                    yLable="百分比（%）",figureText="pass")
 
 def pic2(figGen):
     #
