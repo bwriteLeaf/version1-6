@@ -9,15 +9,21 @@ import sys
 import pdb
 import pandas as pd
 from configuration import Config
-from interpreter import Interpreter
 import traceback
 import re
+from datetime import datetime
 
 
 class DBInterfaceDraw:
 
     def __init__(self, conf):
         self.__conf = conf
+
+    def __log(self, msg):
+        logfile = open(os.path.join(self.__conf.supFilePath, 'drawlogger.log'), 'a', encoding='utf-8')
+        print(datetime.today(), msg, file=logfile)
+        logfile.close()
+        return
 
     # 得到该城市所有地区的数目，名字，第一列为code，第二列为字符串
     def getDistricts(self):
@@ -48,6 +54,8 @@ class DBInterfaceDraw:
             complete_str = " and iscomplete_ea =2"
             service_str = "archive_code"
 
+            normalFlag = True
+
             if pattern_renshen.match(dbName)!= None:
                 year_str = "input_date_visit"
                 complete_str = " and iscomplete=2"
@@ -56,6 +64,7 @@ class DBInterfaceDraw:
                 yearNow = p.group(1)
                 year_str = "yunqianjianchabiao_"+yearNow+".evaluate_time"
                 service_str = "yunqianjianchabiao_"+yearNow+".archive_code"
+                normalFlag = False
 
 
             sql = "select count(*) from " + dbName + " where " + service_str + " like '" + serviceCode + "%" \
@@ -73,19 +82,22 @@ class DBInterfaceDraw:
                 sql = "select count(*) from " + dbName
                 addexpr = " where " + expr
                 yearexpr = ""
+                normalFlag = False
                 
             sql = sql +yearexpr
             if len(expr) != 0:
                 sql = sql +addexpr
             if complete:
                 sql = sql + complete_str
-            print(sql)
             a = self.__executeSQL(sql, 1, 1)
-            print(a)
+            if not normalFlag:
+                self.__log(sql + "\n" + a)
             return a
 
         except Exception as e:
             print(traceback.print_exc())
+            self.__log(sql)
+            self.__log(traceback.print_exc())
 
     #输入：分子的sql表达式，分母的sql表达式
     #返回List，[('大鹏新区', 8.8), ('罗湖区', 5.0), ('龙华新区', 4.8)]

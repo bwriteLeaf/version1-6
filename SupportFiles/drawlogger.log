@@ -1,0 +1,6 @@
+2018-03-19 19:18:49.011542 select count(*) from yunqianjianchabiao_2017 where archive_code like '4403%' and input_date_archive_ymd between '2017-01-01' and '2017-12-31' and (risk_population is not null) and iscomplete_ea =2
+2018-03-19 19:18:49.015050 'NoneType' object has no attribute 'cursor'
+2018-03-19 19:18:49.072703 select count(*) from yunqianjianchabiao_2017 where archive_code like '440309%' and input_date_archive_ymd between '2017-01-01' and '2017-12-31' and (risk_population is null) and iscomplete_ea =2
+2018-03-19 19:18:49.075711 'NoneType' object has no attribute 'cursor'
+2018-03-19 19:18:49.132863 select count(*) from yunqianjianchabiao_2017 where archive_code like '440309%' and input_date_archive_ymd between '2017-01-01' and '2017-12-31' and (risk_population is not null) and iscomplete_ea =2
+2018-03-19 19:18:49.136372 'NoneType' object has no attribute 'cursor'

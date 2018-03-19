@@ -4,15 +4,9 @@
     工具包：图表绘制函数
 '''
 
-import matplotlib
 import matplotlib.pyplot as plt
-import numpy as np
-import os
 from FiguresHelper import FigureHelper
 from DBinterfaceDraw import DBInterfaceDraw
-import pandas as pd
-from configuration import Config
-from interpreter import Interpreter
 import traceback
 from pyecharts import Pie
 from pyecharts_snapshot.main import make_a_snapshot
