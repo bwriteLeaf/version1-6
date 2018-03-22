@@ -103,10 +103,10 @@ def pic1(figGen):
     #
     figGen.drawDistrict('10-1',
                         "(zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)",
-                        "zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code",
+                        "",
                         "yunqianjianchabiao_2017,zaoyunsuifangbiao_2017", config.year,
                         isPercent=True, complete=False, figureText="全市平均水平",
-                        hasTable=False,yLable="百分比（%）",  hline=True)
+                        yLable="百分比（%）")
     #
     #
     # list_a = ["pre_result_type_zhengchanghuochan = 1", "pre_result_type_zhengchanghuochan is null"]
