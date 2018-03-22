@@ -275,7 +275,7 @@ class FigureHelper:
     # isPercent 用于表示显示的数字是否为小数 包括矩形上面的和表格中的，表格中保留2位小数点
     def compoundBarPlot(self,dataList, dataLabelList, xAxisLabelList, xLable=None, yLable='百分比（%）',
                         hline = False, hasTable = False,figureText = "",colorList = [],
-                        isPercent=True,indent = False,gridcol=(12,11)):
+                        isPercent=True,indent = False,gridcol=(12,11),avg=[]):
         case_cnt = len(dataList)
         n_groups = len(dataList[0])
         legends = []
@@ -381,16 +381,15 @@ class FigureHelper:
                 plt.xticks(xIndexes + bar_width * (case_cnt - 1) / case_cnt, xAxisLabelList)
         if hline:
             for i in range(0, len(dataList)):
-                dataNum = np.array(dataList[i])
                 if len(colorList) == 0:
                     use_color = '#d62728'
                 else:
                     use_color = colorList[i]
-                plt.axhline(dataNum.mean(),linewidth=3, color=use_color)
+                plt.axhline(avg[i],linewidth=3, color=use_color)
                 if figureText == "case":
-                    plt.text(n_groups * 0.7, dataNum.mean() * 1.05, dataLabelList[i]+"平均水平" + '：%.2f' % (dataNum.mean()))
+                    plt.text(n_groups * 0.7, (avg[i]) * 1.05, dataLabelList[i]+"平均水平" + '：%.2f' % (avg[i]))
                 elif len(figureText) > 0 and figureText != "pass":
-                    plt.text(n_groups*0.7, dataNum.mean()*1.05, figureText+'：%.2f' % (dataNum.mean()))
+                    plt.text(n_groups*0.7, (avg[i])*1.05, figureText+'：%.2f' % (avg[i]))
                 # TODO 修改颜色与柱颜色统一
         return figureId
 
