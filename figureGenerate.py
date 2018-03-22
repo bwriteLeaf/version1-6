@@ -25,10 +25,14 @@ class figureGenerate:
             dataRaw = self.dbInf.getDistrictData(attrExpr,divideExpr,"",dbName,"district",year,isPercent,complete)
             dataRaw = self.dbInf.sortList(dataRaw)
             data = [[x[1] for x in dataRaw]]
+            avgRaw = self.dbInf.getDistrictData(attrExpr,divideExpr,"",dbName,"all",year,isPercent,complete)
+            avg = avgRaw[0][1]
+            avglist=[]
+            avglist.append(avg)
             labels = [""]
             xlables = [x[0][0:2] for x in dataRaw]
             id = self.basicDraw(picType, data, labels, xlables, yLable=yLable,
-                                hline=True, hasTable=False, figureText=figureText,colorList=colorList)  # 不带横线
+                                hline=True, hasTable=False, figureText=figureText,colorList=colorList,avg=avglist)  # 不带横线
             f = plt.figure(id)
             f.savefig(fid+'.png')
             print("图片生成完成："+fid)
@@ -133,6 +137,7 @@ class figureGenerate:
                          colorList=[],hasTable=True):
         try:
             dataRawList = []
+            avgList = []
 
             for i in range(0, n):
                 yearNow = year - (n - 1 - i)
@@ -142,6 +147,12 @@ class figureGenerate:
                 dataNow = self.dbInf.getDistrictData(attrExprNow, divideExprNow, "", dbNameNow, "district", yearNow, isPercent,
                                                      complete)
                 dataRawList.append(dataNow)
+
+                avgRaw = self.dbInf.getDistrictData(attrExprNow, divideExprNow, "", dbNameNow, "all", yearNow, isPercent,
+                                                     complete)
+                avg = avgRaw[0][1]
+                avgList.append(avg)
+
 
             dataRaw = self.dbInf.sortArray(dataRawList)
 
@@ -157,7 +168,7 @@ class figureGenerate:
             xlables = [x[0][0:2] for x in dataRaw]
             id = self.basicDraw(picType, data, labels, xlables, yLable=yLable,
                                 hline=hline, hasTable=hasTable, figureText=figureText,
-                                colorList=colorList)  # 不带横线
+                                colorList=colorList,avg=avgList)  # 不带横线
             f = plt.figure(id)
             f.savefig(fid + '.png')
             print("图片生成完成：" + fid)
@@ -302,12 +313,12 @@ class figureGenerate:
 
     def basicDraw(self,mainType,dataList, dataLabelList, xAxisLabelList, xLable=None, yLable=None,
                     hline=False, hasTable=False, figureText="",colorList = [],textIn=False,gridcol=(12,11),
-                  isPercent=True):
+                  isPercent=True,avg=[]):
         try:
             p = None
             if mainType == "bar":
                 p = self.figureHelper.compoundBarPlot(dataList, dataLabelList, xAxisLabelList, xLable, yLable,
-                        hline, hasTable, figureText, colorList,isPercent,gridcol=gridcol)
+                        hline, hasTable, figureText, colorList,isPercent,gridcol=gridcol,avg=avg)
             elif mainType == "sbar":
                 p = self.figureHelper.stackedBarPlot(dataList, dataLabelList, xAxisLabelList, xLable, yLable,gridcol)
             elif mainType == "spbar":

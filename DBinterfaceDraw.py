@@ -62,6 +62,8 @@ class DBInterfaceDraw:
             elif pattern_zaoyunlianjie.match(dbName)!= None:
                 p = pattern_zaoyunlianjie.match(dbName)
                 yearNow = p.group(1)
+                if len(expr) == 0:
+                    yearNow = str(int(p.group(1))-1)
                 year_str = "yunqianjianchabiao_"+yearNow+".evaluate_time"
                 service_str = "yunqianjianchabiao_"+yearNow+".county_code"
                 normalFlag = False
@@ -90,8 +92,10 @@ class DBInterfaceDraw:
             if complete:
                 sql = sql + complete_str
             a = self.__executeSQL(sql, 1, 1)
+            print(sql)
+            print(a)
             if not normalFlag:
-                self.__log(sql + "\n" + a)
+                self.__log(sql + "\n" + str(a))
             return a
 
         except Exception as e:
@@ -122,6 +126,7 @@ class DBInterfaceDraw:
                 r_down = int(r_down_s)
                 percentage = r_up / r_down * 100
                 percentage = round(percentage, 2)
+
                 ret_list.append((name_district, percentage))
             else:
                 ret_list.append((name_district, r_up))

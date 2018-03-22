@@ -4,3 +4,13 @@
 2018-03-19 19:18:49.075711 'NoneType' object has no attribute 'cursor'
 2018-03-19 19:18:49.132863 select count(*) from yunqianjianchabiao_2017 where archive_code like '440309%' and input_date_archive_ymd between '2017-01-01' and '2017-12-31' and (risk_population is not null) and iscomplete_ea =2
 2018-03-19 19:18:49.136372 'NoneType' object has no attribute 'cursor'
+2018-03-21 15:06:10.455305 select count(*) from yunqianjianchabiao_2017 where archive_code like '4403%' and input_date_archive_ymd between '2017-01-01' and '2017-12-31' and (risk_population is not null) and iscomplete_ea =2
+2018-03-21 15:06:10.470813 None
+2018-03-21 15:06:10.564556 select count(*) from yunqianjianchabiao_2017 where archive_code like '440309%' and input_date_archive_ymd between '2017-01-01' and '2017-12-31' and (risk_population is null) and iscomplete_ea =2
+2018-03-21 15:06:10.564556 None
+2018-03-21 15:06:10.642688 select count(*) from yunqianjianchabiao_2017 where archive_code like '440309%' and input_date_archive_ymd between '2017-01-01' and '2017-12-31' and (risk_population is not null) and iscomplete_ea =2
+2018-03-21 15:06:10.642688 None
+2018-03-21 16:51:06.507279 select count(*) from yunqianjianchabiao_2016,zaoyunsuifangbiao_2016 where yunqianjianchabiao_2016.archive_code like '440309%' and yunqianjianchabiao_2016.evaluate_time between '2016-01-01' and '2016-12-31' and (zaoyunsuifangbiao_2016.archive_code = yunqianjianchabiao_2016.archive_code and zaoyunsuifangbiao_2016.last_menstrual_date - yunqianjianchabiao_2016.input_date_archive_ymd between -30 and 365)
+480
+2018-03-21 16:51:06.507279 select count(*) from yunqianjianchabiao_2016,zaoyunsuifangbiao_2016 where yunqianjianchabiao_2015.archive_code like '440309%' and yunqianjianchabiao_2015.evaluate_time between '2016-01-01' and '2016-12-31'
+None
