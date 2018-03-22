@@ -64,6 +64,8 @@ class DBInterfaceDraw:
                 yearNow = p.group(1)
                 if len(expr) == 0:
                     yearNow = str(int(p.group(1))-1)
+                    dbName = dbName.replace(year,yearNow)
+                    year = yearNow
                 year_str = "yunqianjianchabiao_"+yearNow+".evaluate_time"
                 service_str = "yunqianjianchabiao_"+yearNow+".county_code"
                 normalFlag = False
