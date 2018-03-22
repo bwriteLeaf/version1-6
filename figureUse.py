@@ -99,7 +99,7 @@ def pic1(figGen):
 
     figGen.drawYearDistrict('10-1',
                         "(zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)",
-                        "",
+                        "zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code",
                         "yunqianjianchabiao_2017,zaoyunsuifangbiao_2017", config.year,2,
                         isPercent=True, complete=False, figureText="case",
                         hasTable=False,yLable="百分比（%）", colorList=['g', 'b'], hline=True)
