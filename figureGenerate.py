@@ -118,13 +118,19 @@ class figureGenerate:
                                                          dbName, "district", year, isPercent, complete)
                 dataRaw = self.dbInf.sortArray(dataRaw)
             data = []
+            avglist = []
             for i in range(0, len(diseaseNameList)):
                 data.append([x[i+1] for x in dataRaw])
+                avgRaw = self.dbInf.getDistrictData(attrExprList[i], divideExprList[i], "", dbName, "all", year,
+                                                    isPercent, complete)
+                avg = avgRaw[0][1]
+                avglist.append(avg)
 
             xlables = [x[0][0:2] for x in dataRaw]
             id = self.basicDraw(picType, data, diseaseNameList, xlables, yLable=yLable,
                                 hline=hline, hasTable=hasTable, figureText=figureText,
-                                colorList=colorList,gridcol=gridcol,isPercent=isPercent)  # 不带横线
+                                colorList=colorList,gridcol=gridcol,isPercent=isPercent,
+                                avg=avglist)  # 不带横线
             f = plt.figure(id)
             f.savefig(fid + '.png')
             print("图片生成完成：" + fid)

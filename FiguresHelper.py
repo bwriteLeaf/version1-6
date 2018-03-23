@@ -604,18 +604,11 @@ if __name__ == '__main__':
     compBarData = [figureHelper.randomList(10),figureHelper.randomList(10)]
     compBarlabels = ['prapared','prapared']
     id5 = figureHelper.compoundBarPlot(compBarData, compBarlabels, xlables,
-                        xLable="", yLable="百分比（%）",hline=True,
+                        xLable="", yLable="百分比（%）",hline=False,
                         hasTable=True, figureText="",colorList=["r",'y','b'],indent=False )
     f = plt.figure(id5)
     f.savefig('test5.png')
 
-    compBarData = [[0.31, 16.3, 7.82, 0.02, 69.08, 3.47, 3.00,0,2,4,5],[0.31, 16.3, 7.82, 0.02, 69.08, 3.47, 3.00,0,2,4,5]]
-    compBarlabels = ['prapared', 'prapared']
-    id5 = figureHelper.compoundBarPlot(compBarData, compBarlabels, xlables,
-                                       xLable="", yLable="百分比（%）", hline=True,
-                                       hasTable=True, figureText="", colorList=["r", 'y', 'b'], indent=False)
-    f = plt.figure(id5)
-    f.savefig('test5-1.png')
 
     #普通条图 带水平线
     # simpBarData = [figureHelper.randomList(10)]

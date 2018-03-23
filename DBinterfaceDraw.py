@@ -65,12 +65,11 @@ class DBInterfaceDraw:
                 if len(expr) == 0:
                     yearNow = str(int(p.group(1))-1)
                     yearOld = p.group(1)
-                    dbName = dbName.replace(yearOld,yearNow)
+                    dbName = dbName.replace(",zaoyunsuifangbiao_"+yearOld, "")
                     year = yearNow
-
-                year_str = "yunqianjianchabiao_"+yearNow+".evaluate_time"
-                service_str = "yunqianjianchabiao_"+yearNow+".county_code"
-                normalFlag = False
+                else:
+                    year_str = "yunqianjianchabiao_"+yearNow+".evaluate_time"
+                    service_str = "yunqianjianchabiao_"+yearNow+".county_code"
 
 
             sql = "select count(*) from " + dbName + " where " + service_str + " like '" + serviceCode + "%" \
