@@ -38,6 +38,7 @@ None
 162923267
 2018-03-22 17:40:43.200961 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440306%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
 1281
+<<<<<<< HEAD
 2018-03-22 18:35:01.262648 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440309%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
 324
 2018-03-22 18:39:35.906610 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440309%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
@@ -64,3 +65,41 @@ None
 896
 2018-03-22 19:20:57.728552 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '4403%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
 6975
+=======
+2018-03-22 18:15:05.732221 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440309%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+2018-03-22 18:15:05.732723 None
+2018-03-22 18:42:34.596921 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440309%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+2018-03-22 18:42:34.597922 None
+2018-03-23 09:41:20.977784 select count(*) from yunqianjianchabiao_2017 where county_code like '440309%' and input_date_archive_ymd between '2017-01-01' and '2017-12-31' and check_value_yiganxueiqnghbsag_h=1 and iscomplete_ea =2
+2018-03-23 09:41:21.009011 None
+>>>>>>> 89598a17d12178c5b4fba35227c354fe667b9186
+2018-03-23 11:32:28.057638 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440309%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+324
+2018-03-23 11:34:50.332598 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440305%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+754
+2018-03-23 11:35:12.947029 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440310%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+110
+2018-03-23 11:35:21.531428 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440312%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+26
+2018-03-23 11:40:32.104016 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440306%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+1281
+2018-03-23 11:40:45.221174 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440308%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+71
+2018-03-23 11:45:31.922542 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440304%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+2279
+2018-03-23 11:47:23.021298 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440303%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+522
+2018-03-23 11:50:19.559104 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440311%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+712
+2018-03-23 11:52:27.375735 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '440307%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+896
+2018-03-23 12:12:49.748018 select count(*) from yunqianjianchabiao_2017,zaoyunsuifangbiao_2017 where yunqianjianchabiao_2017.county_code like '4403%' and yunqianjianchabiao_2017.evaluate_time between '2017-01-01' and '2017-12-31' and (zaoyunsuifangbiao_2017.archive_code = yunqianjianchabiao_2017.archive_code and zaoyunsuifangbiao_2017.last_menstrual_date - yunqianjianchabiao_2017.input_date_archive_ymd between -30 and 365)
+6975
+2018-03-26 18:05:42.336801 select count(*) from yunqianjianchabiao_2017 where county_code like '440309%' and input_date_archive_ymd between '2017-01-01' and '2017-12-31' and (check_value_xuetang_w >= 6.10) and iscomplete_ea =2
+2018-03-26 18:05:42.352430 None
+2018-03-26 18:05:42.414822 select count(*) from yunqianjianchabiao_2017 where county_code like '440309%' and input_date_archive_ymd between '2017-01-01' and '2017-12-31' and (check_value_xuetang_w>=7.0 or suffered_disease_tangniaobing_w=1) and iscomplete_ea =2
+2018-03-26 18:05:42.414822 None
+2018-03-26 18:05:42.477302 select count(*) from yunqianjianchabiao_2016 where county_code like '440309%' and input_date_archive_ymd between '2016-01-01' and '2016-12-31' and (check_value_xuetang_w >= 6.10) and iscomplete_ea =2
+2018-03-26 18:05:42.477302 None
+2018-03-26 18:05:42.539827 select count(*) from yunqianjianchabiao_2016 where county_code like '440309%' and input_date_archive_ymd between '2016-01-01' and '2016-12-31' and (check_value_xuetang_w>=7.0 or suffered_disease_tangniaobing_w=1) and iscomplete_ea =2
+2018-03-26 18:05:42.555458 None
